@@ -126,10 +126,20 @@ namespace WebServer
             return string.Format(response);
         }
 
+        public static string About_json(HttpListenerRequest request)
+        {
+            var response = "ON A PAS ENCORE FAIT CALMES TOI FDP";
+            return string.Format(response);
+        }
+
+        public static string Login(HttpListenerRequest request)
+        {
+            var response = "JE T'AI PAS AUTORISE A TE LOG ENCULER";
+            return string.Format(response);
+        }
+
         public static string Process_request(HttpListenerRequest request)
         {
-
-
             foreach (Route element in route_map)
             {
                 if (element.my_route == request.RawUrl)
@@ -143,6 +153,8 @@ namespace WebServer
         private static void Main(string[] args)
         {
             route_map.Add(new Route("/", Default_index));
+            route_map.Add(new Route("/about.json", About_json));
+            route_map.Add(new Route("/login", Login));
 
 
             var ws = new WebServer(Process_request, "http://localhost:8080/");
