@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using System.Text;
 using System.Threading;
@@ -110,7 +111,7 @@ namespace WebServer
 
         public static string Default_index(HttpListenerRequest request)
         {
-
+            
             var response = "<HTML><BODY>TA GEULE PUTAIN.<br>" + DateTime.Now;
 
             response += "<br><br>KeepAlive: " + request.KeepAlive;
@@ -134,12 +135,25 @@ namespace WebServer
 
         public static string Login(HttpListenerRequest request)
         {
-            var response = "JE T'AI PAS AUTORISE A TE LOG ENCULER";
-            return string.Format(response);
+            var projectPath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
+            string filePath = Path.Combine(Path.GetFullPath(@"..\..\"), "Resources");
+            filePath += "\\template\\login.html";
+            string login_page = File.ReadAllText(filePath);
+            return string.Format(login_page);
+        }
+
+        public static string Signup(HttpListenerRequest request)
+        {
+            var projectPath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
+            string filePath = Path.Combine(Path.GetFullPath(@"..\..\"), "Resources");
+            filePath += "\\template\\signup.html";
+            string login_page = File.ReadAllText(filePath);
+            return string.Format(login_page);
         }
 
         public static string Process_request(HttpListenerRequest request)
         {
+            
             foreach (Route element in route_map)
             {
                 if (element.my_route == request.RawUrl)
@@ -155,6 +169,7 @@ namespace WebServer
             route_map.Add(new Route("/", Default_index));
             route_map.Add(new Route("/about.json", About_json));
             route_map.Add(new Route("/login", Login));
+            route_map.Add(new Route("/signup", Signup));
 
 
             var ws = new WebServer(Process_request, "http://+:8080/"); // "http://localhost:8080/");
