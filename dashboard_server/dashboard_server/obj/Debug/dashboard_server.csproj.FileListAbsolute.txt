@@ -1,0 +1,7 @@
+C:\Users\louison.harizi\Desktop\dashboard_mirror\dashboard_server\dashboard_server\bin\Debug\dashboard_server.exe.config
+C:\Users\louison.harizi\Desktop\dashboard_mirror\dashboard_server\dashboard_server\bin\Debug\dashboard_server.exe
+C:\Users\louison.harizi\Desktop\dashboard_mirror\dashboard_server\dashboard_server\bin\Debug\dashboard_server.pdb
+C:\Users\louison.harizi\Desktop\dashboard_mirror\dashboard_server\dashboard_server\obj\Debug\dashboard_server.exe
+C:\Users\louison.harizi\Desktop\dashboard_mirror\dashboard_server\dashboard_server\obj\Debug\dashboard_server.pdb
+C:\Users\louison.harizi\Desktop\dashboard_mirror\dashboard_server\dashboard_server\obj\Debug\dashboard_server.csprojAssemblyReference.cache
+C:\Users\louison.harizi\Desktop\dashboard_mirror\dashboard_server\dashboard_server\obj\Debug\dashboard_server.csproj.CoreCompileInputs.cache
