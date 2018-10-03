@@ -14,7 +14,7 @@ namespace WebServer
         public WebServer(IReadOnlyCollection<string> prefixes, Func<HttpListenerRequest, string> method)
         {
 
-            // URI prefixes are required eg: "http://localhost:8080/test/"
+            // URI prefixes are required eg: "http://localhost:8080"
             if (prefixes == null || prefixes.Count == 0)
             {
                 throw new ArgumentException("URI prefixes are required");
@@ -95,47 +95,21 @@ namespace WebServer
     public class Route
     {
         public string my_route { get; set; }
-        public Action functionPTR { get; set; }
+        public Func<HttpListenerRequest, string> functionPTR { get; set; }
 
-        public Route(string key, Action value)
+        public Route(string key, Func<HttpListenerRequest, string> value)
         {
             my_route = key;
             functionPTR = value;
         }
     }
 
-    public class Routing
-    {
-        private List<Route> route_map = new List<Route>();
-
-        /*private void test1()
-        {
-            Console.WriteLine("test 1 ok");
-        }*/
-
-        public Routing()
-        {
-            //route_map.Add(new Route("lol", test1));
-            //route_map[0].functionPTR();
-
-        }
-
-        ~Routing()
-        {
-
-        }
-    }
-
-
     internal class Program
     {
+        static private List<Route> route_map = new List<Route>();
 
-        public static string process_request(HttpListenerRequest request)
+        public static string Default_index(HttpListenerRequest request)
         {
-
-            //var route = new Routing();
-
-            Console.WriteLine(request);
 
             var response = "<HTML><BODY>TA GEULE PUTAIN.<br>" + DateTime.Now;
 
@@ -149,17 +123,29 @@ namespace WebServer
             response += "<br>Is secure: " + request.IsSecureConnection;
             response += "</BODY></HTML>";
 
-
-            Console.WriteLine("URL: {0}", request.Url.OriginalString);
-            Console.WriteLine("Raw URL: {0}", request.RawUrl);
-            Console.WriteLine("Host address: {0}", request.UserHostAddress);
-
             return string.Format(response);
+        }
+
+        public static string Process_request(HttpListenerRequest request)
+        {
+
+
+            foreach (Route element in route_map)
+            {
+                if (element.my_route == request.RawUrl)
+                {
+                    return element.functionPTR(request);
+                }
+            }
+            return ("404 error mdr");
         }
 
         private static void Main(string[] args)
         {
-            var ws = new WebServer(process_request, "http://localhost:8080/");
+            route_map.Add(new Route("/", Default_index));
+
+
+            var ws = new WebServer(Process_request, "http://localhost:8080/");
             ws.Run();
             Console.WriteLine("A simple webserver. Press a key to quit.");
             Console.ReadKey();
