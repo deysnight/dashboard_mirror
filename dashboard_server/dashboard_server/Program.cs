@@ -157,7 +157,7 @@ namespace WebServer
             route_map.Add(new Route("/login", Login));
 
 
-            var ws = new WebServer(Process_request, "http://localhost:8080/");
+            var ws = new WebServer(Process_request, "http://+:8080/"); // "http://localhost:8080/");
             ws.Run();
             Console.WriteLine("A simple webserver. Press a key to quit.");
             Console.ReadKey();
