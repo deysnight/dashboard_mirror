@@ -123,7 +123,6 @@ namespace WebServer
 
         private static void Main(string[] args)
         {
-
             route_map.Add(new Route("/", Routes.Default_index));
             route_map.Add(new Route("/about.json", Routes.About_json));
             route_map.Add(new Route("/login", Routes.Login));

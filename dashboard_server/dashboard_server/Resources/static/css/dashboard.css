@@ -17,7 +17,7 @@
 .services {
     border: 1px solid black;
     border-radius: 10px;
-    margin: 2em;
+    margin: 1em;
     padding: 1em;
     cursor: pointer;
     flex: 1;
@@ -82,6 +82,19 @@
 
 .services i {
     padding-top: 2px;
+}
+
+#service_intel_wrap {
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    margin-left:30%;
+    margin-right: 30%;
+}
+
+.service_intel {
+    display: none;
+    list-style-type: none;
 }
 
 @-webkit-keyframes animatefromtop {

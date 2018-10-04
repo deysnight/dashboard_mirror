@@ -17,3 +17,73 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 };
+
+document.getElementById('meteo_service').onclick = function(event) {
+    document.getElementById('meteo_intel').style.display = "block";
+    document.getElementById('steam_intel').style.display = "none";
+    document.getElementById('twitch_intel').style.display = "none";
+    document.getElementById('crypto_intel').style.display = "none";
+    document.getElementById('youtube_intel').style.display = "none";
+    document.getElementById('starcraft_intel').style.display = "none";
+    document.getElementById('epitech_intel').style.display = "none";
+}
+
+document.getElementById('steam_service').onclick = function(event) {
+    document.getElementById('meteo_intel').style.display = "none";
+    document.getElementById('steam_intel').style.display = "block";
+    document.getElementById('twitch_intel').style.display = "none";
+    document.getElementById('crypto_intel').style.display = "none";
+    document.getElementById('youtube_intel').style.display = "none";
+    document.getElementById('starcraft_intel').style.display = "none";
+    document.getElementById('epitech_intel').style.display = "none";
+}
+
+document.getElementById('twitch_service').onclick = function(event) {
+    document.getElementById('meteo_intel').style.display = "none";
+    document.getElementById('steam_intel').style.display = "none";
+    document.getElementById('twitch_intel').style.display = "block";
+    document.getElementById('crypto_intel').style.display = "none";
+    document.getElementById('youtube_intel').style.display = "none";
+    document.getElementById('starcraft_intel').style.display = "none";
+    document.getElementById('epitech_intel').style.display = "none";
+}
+
+document.getElementById('crypto_service').onclick = function(event) {
+    document.getElementById('meteo_intel').style.display = "none";
+    document.getElementById('steam_intel').style.display = "none";
+    document.getElementById('twitch_intel').style.display = "none";
+    document.getElementById('crypto_intel').style.display = "block";
+    document.getElementById('youtube_intel').style.display = "none";
+    document.getElementById('starcraft_intel').style.display = "none";
+    document.getElementById('epitech_intel').style.display = "none";
+}
+
+document.getElementById('youtube_service').onclick = function(event) {
+    document.getElementById('meteo_intel').style.display = "none";
+    document.getElementById('steam_intel').style.display = "none";
+    document.getElementById('twitch_intel').style.display = "none";
+    document.getElementById('crypto_intel').style.display = "none";
+    document.getElementById('youtube_intel').style.display = "block";
+    document.getElementById('starcraft_intel').style.display = "none";
+    document.getElementById('epitech_intel').style.display = "none";
+}
+
+document.getElementById('starcraft_service').onclick = function(event) {
+    document.getElementById('meteo_intel').style.display = "none";
+    document.getElementById('steam_intel').style.display = "none";
+    document.getElementById('twitch_intel').style.display = "none";
+    document.getElementById('crypto_intel').style.display = "none";
+    document.getElementById('youtube_intel').style.display = "none";
+    document.getElementById('starcraft_intel').style.display = "block";
+    document.getElementById('epitech_intel').style.display = "none";
+}
+
+document.getElementById('epitech_service').onclick = function(event) {
+    document.getElementById('meteo_intel').style.display = "none";
+    document.getElementById('steam_intel').style.display = "none";
+    document.getElementById('twitch_intel').style.display = "none";
+    document.getElementById('crypto_intel').style.display = "none";
+    document.getElementById('youtube_intel').style.display = "none";
+    document.getElementById('starcraft_intel').style.display = "none";
+    document.getElementById('epitech_intel').style.display = "block";
+}
