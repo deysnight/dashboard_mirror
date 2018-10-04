@@ -107,53 +107,10 @@ namespace WebServer
 
     internal class Program
     {
-        static private List<Route> route_map = new List<Route>();
-
-        public static string Default_index(HttpListenerRequest request)
-        {
-            
-            var response = "<HTML><BODY>TA GEULE PUTAIN.<br>" + DateTime.Now;
-
-            response += "<br><br>KeepAlive: " + request.KeepAlive;
-            response += "<br>Local end point: " + request.LocalEndPoint.ToString();
-            response += "<br>Remote end point: " + request.RemoteEndPoint.ToString();
-            response += "<br>Is local? " + request.IsLocal;
-            response += "<br>HTTP method: " + request.HttpMethod;
-            response += "<br>Protocol version: " + request.ProtocolVersion;
-            response += "<br>Is authenticated: " + request.IsAuthenticated;
-            response += "<br>Is secure: " + request.IsSecureConnection;
-            response += "</BODY></HTML>";
-
-            return string.Format(response);
-        }
-
-        public static string About_json(HttpListenerRequest request)
-        {
-            var response = "ON A PAS ENCORE FAIT CALMES TOI FDP";
-            return string.Format(response);
-        }
-
-        public static string Login(HttpListenerRequest request)
-        {
-            var projectPath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
-            string filePath = Path.Combine(Path.GetFullPath(@"..\..\"), "Resources");
-            filePath += "\\template\\login.html";
-            string login_page = File.ReadAllText(filePath);
-            return string.Format(login_page);
-        }
-
-        public static string Signup(HttpListenerRequest request)
-        {
-            var projectPath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
-            string filePath = Path.Combine(Path.GetFullPath(@"..\..\"), "Resources");
-            filePath += "\\template\\signup.html";
-            string login_page = File.ReadAllText(filePath);
-            return string.Format(login_page);
-        }
+        static private List<Route> route_map = new List<Route>(); 
 
         public static string Process_request(HttpListenerRequest request)
         {
-            
             foreach (Route element in route_map)
             {
                 if (element.my_route == request.RawUrl)
@@ -166,11 +123,17 @@ namespace WebServer
 
         private static void Main(string[] args)
         {
-            route_map.Add(new Route("/", Default_index));
-            route_map.Add(new Route("/about.json", About_json));
-            route_map.Add(new Route("/login", Login));
-            route_map.Add(new Route("/signup", Signup));
 
+            route_map.Add(new Route("/", Routes.Default_index));
+            route_map.Add(new Route("/about.json", Routes.About_json));
+            route_map.Add(new Route("/login", Routes.Login));
+            route_map.Add(new Route("/signup", Routes.Signup));
+            route_map.Add(new Route("/dashboard", Routes.Dashboard));
+
+            route_map.Add(new Route("/css/login.css", Routes.Css_Login));
+            route_map.Add(new Route("/css/dashboard.css", Routes.Css_Dashboard));
+
+            route_map.Add(new Route("/js/dashboard.js", Routes.Js_Dashboard));
 
             var ws = new WebServer(Process_request, "http://+:8080/"); // "http://localhost:8080/");
             ws.Run();
