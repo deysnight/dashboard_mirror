@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\dashboard_server",
+    "\\dashboard_server\\dashboard_server",
+    "\\dashboard_server\\dashboard_server\\Resources",
+    "\\dashboard_server\\dashboard_server\\Resources\\static",
+    "\\dashboard_server\\dashboard_server\\Resources\\static\\css",
+    "\\dashboard_server\\dashboard_server\\Resources\\template"
+  ],
+  "SelectedNode": "\\dashboard_server\\dashboard_server\\Routes.cs",
+  "PreviewInSolutionExplorer": false
+}

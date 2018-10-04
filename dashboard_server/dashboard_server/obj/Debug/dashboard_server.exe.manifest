@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="dashboard_server.exe" size="12312">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="dashboard_server.exe" size="13336">
       <assemblyIdentity name="dashboard_server" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>daSB34SM+jubO5rEgASpYdeCZcfTzG12XQEdzw5nrhw=</dsig:DigestValue>
+        <dsig:DigestValue>Zp4XXN68ltV4G1Yi/bekrZPikawbsxParmR0maea4zU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

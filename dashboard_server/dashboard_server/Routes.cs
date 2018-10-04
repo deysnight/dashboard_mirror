@@ -61,8 +61,26 @@ namespace WebServer
             return string.Format(login_page);
         }
 
+        public static string Error404(HttpListenerRequest request)
+        {
+            var projectPath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
+            string filePath = Path.Combine(Path.GetFullPath(@"..\..\"), "Resources");
+            filePath += "\\template\\404.html";
+            string login_page = File.ReadAllText(filePath);
+            return string.Format(login_page);
+        }
+
 
         ////////ROUTES CSS
+
+        public static string Css_Base(HttpListenerRequest request)
+        {
+            var projectPath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
+            string filePath = Path.Combine(Path.GetFullPath(@"..\..\"), "Resources");
+            filePath += "\\static\\css\\base.css";
+            string login_page = File.ReadAllText(filePath);
+            return (login_page);
+        }
 
         public static string Css_Login(HttpListenerRequest request)
         {
@@ -78,6 +96,24 @@ namespace WebServer
             var projectPath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
             string filePath = Path.Combine(Path.GetFullPath(@"..\..\"), "Resources");
             filePath += "\\static\\css\\dashboard.css";
+            string login_page = File.ReadAllText(filePath);
+            return (login_page);
+        }
+
+        public static string Css_Header(HttpListenerRequest request)
+        {
+            var projectPath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
+            string filePath = Path.Combine(Path.GetFullPath(@"..\..\"), "Resources");
+            filePath += "\\static\\css\\header.css";
+            string login_page = File.ReadAllText(filePath);
+            return (login_page);
+        }
+
+        public static string Css_404(HttpListenerRequest request)
+        {
+            var projectPath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
+            string filePath = Path.Combine(Path.GetFullPath(@"..\..\"), "Resources");
+            filePath += "\\static\\css\\404.css";
             string login_page = File.ReadAllText(filePath);
             return (login_page);
         }

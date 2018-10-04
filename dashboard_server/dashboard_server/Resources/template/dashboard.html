@@ -6,48 +6,46 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/base.css" />
     <link rel="stylesheet" href="css/login.css" />
     <link rel="stylesheet" href="css/dashboard.css" />
+    <link rel="stylesheet" href="css/header.css" />
 </head>
 <body>
-<div id="glob">
     <header>
         <div id="header_nav">
-            <h2><a href="#">Dashboard</a></h2>
-            <li id="header_list">
-                <ul><a href="#">First</a></ul>
-            </li>
+            <h2><a class="header_text_title" href="#">Dashboard</a></h2>
+                <li id="header_list">
+                    <ul><a class="header_text_menu" href="#">Pseudo</a></ul>
+                    <ul><a class="header_text_menu" href="#">Se déconnecter</a></ul>
+                </li>
         </div>
     </header>
-
-    <button id="ServiceButton" class="link_button">Mes services</button>
-
-    <div id="ServiceModal" class="modal">
-
-        <div class="modal-content">
-            <div class="modal-header">
-                <p id="global_title">Abonnez-vous !</p>
-            </div>
-            <div class="modal-body">
-                <div class="services-global">
-                    <div id="service_container">
-                        <div class="services" id="meteo_service"><i class="fas fa-sun"></i>Météo<input name="meteo_check" type="checkbox"></div>
-                        <div class="services" id="steam_service"><i class="fab fa-steam"></i>Steam<input name="steam_check" type="checkbox"></div>
-                        <div class="services" id="twitch_service"><i class="fab fa-twitch"></i>Twitch<input name="twitch_check" type="checkbox"></div>
-                        <div class="services" id="crypto_service"><i class="fab fa-bitcoin"></i>Crypto<input name="crypto_check" type="checkbox"></div>
-                        <div class="services" id="youtube_service"><i class="fab fa-youtube"></i>Youtube<input name="youtube_check" type="checkbox"></div>
-                        <div class="services" id="epitech_service"><i class="fas fa-address-book"></i>Epitech<input name="epitech_check"type="checkbox"></div>
+    <div id="glob">
+        <button id="ServiceButton" class="link_button">Mes services</button>
+        <div id="ServiceModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <p id="global_title">Abonnez-vous !</p>
+                </div>
+                <div class="modal-body">
+                    <div class="services-global">
+                        <div id="service_container">
+                            <div class="services" id="meteo_service"><i class="fas fa-sun"></i>Météo<input name="meteo_check" type="checkbox"></div>
+                            <div class="services" id="steam_service"><i class="fab fa-steam"></i>Steam<input name="steam_check" type="checkbox"></div>
+                            <div class="services" id="twitch_service"><i class="fab fa-twitch"></i>Twitch<input name="twitch_check" type="checkbox"></div>
+                            <div class="services" id="crypto_service"><i class="fab fa-bitcoin"></i>Crypto<input name="crypto_check" type="checkbox"></div>
+                            <div class="services" id="youtube_service"><i class="fab fa-youtube"></i>Youtube<input name="youtube_check" type="checkbox"></div>
+                            <div class="services" id="epitech_service"><i class="fas fa-address-book"></i>Epitech<input name="epitech_check"type="checkbox"></div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button class="CloseServiceModal link_button">Validez</button>
+                <div class="modal-footer">
+                    <button class="CloseServiceModal link_button">Validez</button>
+                </div>
             </div>
         </div>
-
     </div>
-
-</div>
 </body>
 <script src="js/dashboard.js"></script>
 </html>

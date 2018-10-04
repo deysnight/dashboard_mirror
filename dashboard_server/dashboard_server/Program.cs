@@ -118,7 +118,7 @@ namespace WebServer
                     return element.functionPTR(request);
                 }
             }
-            return ("404 error mdr");
+            return ("J'sais pas comment trigger le fichier 404 dans templates mdr");
         }
 
         private static void Main(string[] args)
@@ -129,9 +129,15 @@ namespace WebServer
             route_map.Add(new Route("/login", Routes.Login));
             route_map.Add(new Route("/signup", Routes.Signup));
             route_map.Add(new Route("/dashboard", Routes.Dashboard));
+            route_map.Add(new Route("/404", Routes.Error404)); 
 
+
+            route_map.Add(new Route("/css/base.css", Routes.Css_Base));
             route_map.Add(new Route("/css/login.css", Routes.Css_Login));
             route_map.Add(new Route("/css/dashboard.css", Routes.Css_Dashboard));
+            route_map.Add(new Route("/css/header.css", Routes.Css_Header));
+            route_map.Add(new Route("/css/404.css", Routes.Css_404));
+  
 
             route_map.Add(new Route("/js/dashboard.js", Routes.Js_Dashboard));
             route_map.Add(new Route("/js/signup.js", Routes.Js_Signup));
