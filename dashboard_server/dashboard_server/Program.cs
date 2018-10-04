@@ -135,6 +135,7 @@ namespace WebServer
 
             route_map.Add(new Route("/js/dashboard.js", Routes.Js_Dashboard));
             route_map.Add(new Route("/js/signup.js", Routes.Js_Signup));
+            route_map.Add(new Route("/js/login.js", Routes.Js_Login);
 
             var ws = new WebServer(Process_request, "http://+:8080/"); // "http://localhost:8080/");
             ws.Run();
