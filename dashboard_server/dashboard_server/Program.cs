@@ -133,7 +133,7 @@ namespace WebServer
 
 
             route_map.Add(new Route("/css/base.css", Routes.Css_Base));
-            route_map.Add(new Route("/css/login.css", Routes.Css_Login));
+            route_map.Add(new Route("/css/registration.css", Routes.Css_Registration));
             route_map.Add(new Route("/css/dashboard.css", Routes.Css_Dashboard));
             route_map.Add(new Route("/css/header.css", Routes.Css_Header));
             route_map.Add(new Route("/css/404.css", Routes.Css_404));

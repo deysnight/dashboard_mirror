@@ -82,11 +82,11 @@ namespace WebServer
             return (login_page);
         }
 
-        public static string Css_Login(HttpListenerRequest request)
+        public static string Css_Registration(HttpListenerRequest request)
         {
             var projectPath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
             string filePath = Path.Combine(Path.GetFullPath(@"..\..\"), "Resources");
-            filePath += "\\static\\css\\login.css";
+            filePath += "\\static\\css\\registration.css";
             string login_page = File.ReadAllText(filePath);
             return (login_page);
         }

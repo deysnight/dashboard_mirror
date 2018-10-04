@@ -80,19 +80,6 @@
     margin: 1em;
 }
 
-.link_button {
-    font-size: 18px;
-    padding: 8px 1em;
-    transition: all ease-in-out 0.2s;
-}
-
-.link_button:hover {
-    border: 2px solid #EA0E13;
-    background-color: #ea0e13;
-    transition: all ease-in-out 0.2s;
-
-}
-
 .services i {
     padding-top: 2px;
 }
