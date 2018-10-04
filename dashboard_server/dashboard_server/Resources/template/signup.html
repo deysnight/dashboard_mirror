@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Dashboard - Créer son compte</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/login.css" />
 </head>
 <body>
@@ -20,24 +22,24 @@
         </div>
         <div id="wrap-form">
             <div id="container-form">
-                <form method="post">
+                <form id="signup_form" method="post">
                     <div class="form-group">
-                        <input type="text" placeholder="Votre login" />
+                        <input id="signup_username" name="Username" type="text" required placeholder="Votre login" />
                     </div>
                     <div class="form-group">
-                        <input type="email" placeholder="Votre email" />
+                        <input id="signup_email" type="email" required placeholder="Votre email" />
                     </div>
                     <div class="form-group">
-                        <input type="password" placeholder="Votre mot de passe" />
+                        <input id="signup_pass1" type="password" required placeholder="Votre mot de passe" />
                     </div>
-                    <div class="form-group">
-                        <input type="password" placeholder="Confirmer votre mot de passe" />
+                    <div class="form-group pass2_div">
+                        <input id="signup_pass2" type="password" required placeholder="Confirmer votre mot de passe" />
                     </div>
-                    <button onclick="signup()" class="link_button" type="submit"><span>Créer un compte</span></button>
+                    <button id="signup_button" class="link_button" type="submit"><span>Créer un compte</span></button>
                 </form>
             </div>
         </div>
     </div>
+    <script src="js/signup.js"></script>
 </body>
-<script src="js/signup.js"></script>
 </html>

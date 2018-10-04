@@ -146,12 +146,12 @@ textarea {
 }
 
 .link_button:hover span:after {
-	opacity: 1;
-	right: 0;
+    opacity: 1;
+    right: 0;
 }
 
 @media (max-width: 790px) {
-	form {
+    form {
 		margin-top: 2em;
 		margin-left: auto;
 		margin-right: auto;
@@ -179,15 +179,12 @@ textarea {
     }
 }
 
-@media screen and ( max-width: 1200px ) {
-    #wrap-form {
-        margin-left: 17%;
-        margin-right: 17%;
-    }
-}
-
 @media screen and ( max-width: 1250px ) {
     #glob {
+        margin-right: 0;
+        margin-left: 0;
+    }
+    form {
         margin-right: 0;
         margin-left: 0;
     }
