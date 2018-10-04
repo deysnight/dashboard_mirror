@@ -9,3 +9,14 @@ C:\Users\louison.harizi\Desktop\dashboard_mirror\dashboard_server\dashboard_serv
 C:\Users\louison.harizi\Desktop\dashboard_mirror\dashboard_server\dashboard_server\bin\Debug\dashboard_server.application
 C:\Users\louison.harizi\Desktop\dashboard_mirror\dashboard_server\dashboard_server\obj\Debug\dashboard_server.exe.manifest
 C:\Users\louison.harizi\Desktop\dashboard_mirror\dashboard_server\dashboard_server\obj\Debug\dashboard_server.application
+C:\Users\GedFenir\Desktop\dashboard_mirror\dashboard_server\dashboard_server\obj\Debug\dashboard_server.csprojAssemblyReference.cache
+C:\Users\GedFenir\Desktop\dashboard_mirror\dashboard_server\dashboard_server\obj\Debug\dashboard_server.csproj.CoreCompileInputs.cache
+C:\Users\GedFenir\Desktop\dashboard_mirror\dashboard_server\dashboard_server\obj\Debug\dashboard_server.exe
+C:\Users\GedFenir\Desktop\dashboard_mirror\dashboard_server\dashboard_server\obj\Debug\dashboard_server.pdb
+C:\Users\GedFenir\Desktop\dashboard_mirror\dashboard_server\dashboard_server\bin\Debug\dashboard_server.exe.config
+C:\Users\GedFenir\Desktop\dashboard_mirror\dashboard_server\dashboard_server\bin\Debug\dashboard_server.exe.manifest
+C:\Users\GedFenir\Desktop\dashboard_mirror\dashboard_server\dashboard_server\bin\Debug\dashboard_server.application
+C:\Users\GedFenir\Desktop\dashboard_mirror\dashboard_server\dashboard_server\bin\Debug\dashboard_server.exe
+C:\Users\GedFenir\Desktop\dashboard_mirror\dashboard_server\dashboard_server\bin\Debug\dashboard_server.pdb
+C:\Users\GedFenir\Desktop\dashboard_mirror\dashboard_server\dashboard_server\obj\Debug\dashboard_server.exe.manifest
+C:\Users\GedFenir\Desktop\dashboard_mirror\dashboard_server\dashboard_server\obj\Debug\dashboard_server.application
