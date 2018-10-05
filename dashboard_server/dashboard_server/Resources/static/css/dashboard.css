@@ -106,3 +106,16 @@
     from {top:-300px; opacity:0}
     to {top:0; opacity:1}
 }
+
+@media (max-width: 750px) {
+    #service_container {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 700px) {
+    #service_intel_wrap {
+        margin-left: 4%;
+        margin-right: 4%;
+    }
+}
