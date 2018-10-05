@@ -54,13 +54,12 @@ namespace WebServer
 
             string output = JsonConvert.SerializeObject(all_users);
 
+            string path = Directory.GetCurrentDirectory() + "\\users.json";
+            TextWriter tw = new StreamWriter(path, true);
+            tw.WriteLine("The next line!");
+            tw.Close();
 
-
-            Console.WriteLine(words[0]);
-            Console.WriteLine(words[1]);
-            Console.WriteLine(words[2]);
-
-            return (s);
+            return (output);
         }
     }
 }
