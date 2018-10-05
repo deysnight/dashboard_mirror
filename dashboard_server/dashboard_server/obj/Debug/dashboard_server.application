@@ -7,14 +7,18 @@
     <framework targetVersion="4.5.2" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="dashboard_server.exe.manifest" size="3607">
+    <dependentAssembly dependencyType="install" codebase="dashboard_server.exe.manifest" size="4291">
       <assemblyIdentity name="dashboard_server.exe" version="1.0.0.1" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+<<<<<<< Updated upstream
         <dsig:DigestValue>jYh4ypEAkEEoZJW0CRzJF5y9DUc/Q3P3v+VvEw7Cx6g=</dsig:DigestValue>
+=======
+        <dsig:DigestValue>TxMOzEiRNP09+4xFpnfT62+3k9vcFX32t6xyw+7zgbs=</dsig:DigestValue>
+>>>>>>> Stashed changes
       </hash>
     </dependentAssembly>
   </dependency>

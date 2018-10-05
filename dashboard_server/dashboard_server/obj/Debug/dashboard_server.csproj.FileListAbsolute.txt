@@ -9,6 +9,7 @@ C:\Users\louison.harizi\Desktop\dashboard_mirror\dashboard_server\dashboard_serv
 C:\Users\louison.harizi\Desktop\dashboard_mirror\dashboard_server\dashboard_server\bin\Debug\dashboard_server.application
 C:\Users\louison.harizi\Desktop\dashboard_mirror\dashboard_server\dashboard_server\obj\Debug\dashboard_server.exe.manifest
 C:\Users\louison.harizi\Desktop\dashboard_mirror\dashboard_server\dashboard_server\obj\Debug\dashboard_server.application
+<<<<<<< Updated upstream
 C:\Users\GedFenir\Desktop\dashboard_mirror\dashboard_server\dashboard_server\obj\Debug\dashboard_server.csprojAssemblyReference.cache
 C:\Users\GedFenir\Desktop\dashboard_mirror\dashboard_server\dashboard_server\obj\Debug\dashboard_server.csproj.CoreCompileInputs.cache
 C:\Users\GedFenir\Desktop\dashboard_mirror\dashboard_server\dashboard_server\obj\Debug\dashboard_server.exe
@@ -20,3 +21,8 @@ C:\Users\GedFenir\Desktop\dashboard_mirror\dashboard_server\dashboard_server\bin
 C:\Users\GedFenir\Desktop\dashboard_mirror\dashboard_server\dashboard_server\bin\Debug\dashboard_server.pdb
 C:\Users\GedFenir\Desktop\dashboard_mirror\dashboard_server\dashboard_server\obj\Debug\dashboard_server.exe.manifest
 C:\Users\GedFenir\Desktop\dashboard_mirror\dashboard_server\dashboard_server\obj\Debug\dashboard_server.application
+=======
+C:\Users\louison.harizi\Desktop\dashboard_mirror\dashboard_server\dashboard_server\bin\Debug\Newtonsoft.Json.dll
+C:\Users\louison.harizi\Desktop\dashboard_mirror\dashboard_server\dashboard_server\bin\Debug\Newtonsoft.Json.xml
+C:\Users\louison.harizi\Desktop\dashboard_mirror\dashboard_server\dashboard_server\obj\Debug\dashboard_server.csproj.CopyComplete
+>>>>>>> Stashed changes
