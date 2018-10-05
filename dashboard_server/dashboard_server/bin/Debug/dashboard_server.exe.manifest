@@ -49,6 +49,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+<<<<<<< Updated upstream
         <dsig:DigestValue>EzYHFtlBQF2OSGVzl+F6ZuyHf4HBdR1EcrL2VVUX8xQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
@@ -62,6 +63,9 @@
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
         <dsig:DigestValue>9Yw3T/yq5ONtdA2Q+/f+cNCrtzKM2a86CntwgD6ZS6Q=</dsig:DigestValue>
+=======
+        <dsig:DigestValue>Fwjhfncux3pGr1m8J/y/Sym3wBa9Ay5QHyV9QU/beNk=</dsig:DigestValue>
+>>>>>>> Stashed changes
       </hash>
     </dependentAssembly>
   </dependency>

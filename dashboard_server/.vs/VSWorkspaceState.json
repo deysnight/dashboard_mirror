@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\dashboard_server",
+    "\\dashboard_server\\Resources",
+    "\\dashboard_server\\Resources\\static",
+    "\\dashboard_server\\Resources\\static\\css",
+    "\\dashboard_server\\Resources\\template"
+  ],
+  "SelectedNode": "\\dashboard_server\\Program.cs",
+  "PreviewInSolutionExplorer": false
+}

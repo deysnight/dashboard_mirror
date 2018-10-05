@@ -10,6 +10,7 @@ C:\Users\louison.harizi\Desktop\dashboard_mirror\dashboard_server\dashboard_serv
 C:\Users\louison.harizi\Desktop\dashboard_mirror\dashboard_server\dashboard_server\obj\Debug\dashboard_server.exe.manifest
 C:\Users\louison.harizi\Desktop\dashboard_mirror\dashboard_server\dashboard_server\obj\Debug\dashboard_server.application
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 C:\Users\GedFenir\Desktop\dashboard_mirror\dashboard_server\dashboard_server\obj\Debug\dashboard_server.csprojAssemblyReference.cache
 C:\Users\GedFenir\Desktop\dashboard_mirror\dashboard_server\dashboard_server\obj\Debug\dashboard_server.csproj.CoreCompileInputs.cache
 C:\Users\GedFenir\Desktop\dashboard_mirror\dashboard_server\dashboard_server\obj\Debug\dashboard_server.exe
@@ -29,3 +30,16 @@ C:\Users\louison.harizi\Desktop\dashboard_mirror\dashboard_server\dashboard_serv
 C:\Users\GedFenir\Desktop\dashboard_mirror\dashboard_server\dashboard_server\bin\Debug\Newtonsoft.Json.dll
 C:\Users\GedFenir\Desktop\dashboard_mirror\dashboard_server\dashboard_server\bin\Debug\Newtonsoft.Json.xml
 C:\Users\GedFenir\Desktop\dashboard_mirror\dashboard_server\dashboard_server\obj\Debug\dashboard_server.csproj.CopyComplete
+=======
+C:\Users\charles.claude\Desktop\dashboard_mirror\dashboard_server\dashboard_server\obj\Debug\dashboard_server.exe
+C:\Users\charles.claude\Desktop\dashboard_mirror\dashboard_server\dashboard_server\obj\Debug\dashboard_server.pdb
+C:\Users\charles.claude\Desktop\dashboard_mirror\dashboard_server\dashboard_server\bin\Debug\dashboard_server.exe.config
+C:\Users\charles.claude\Desktop\dashboard_mirror\dashboard_server\dashboard_server\bin\Debug\dashboard_server.exe.manifest
+C:\Users\charles.claude\Desktop\dashboard_mirror\dashboard_server\dashboard_server\bin\Debug\dashboard_server.application
+C:\Users\charles.claude\Desktop\dashboard_mirror\dashboard_server\dashboard_server\bin\Debug\dashboard_server.exe
+C:\Users\charles.claude\Desktop\dashboard_mirror\dashboard_server\dashboard_server\bin\Debug\dashboard_server.pdb
+C:\Users\charles.claude\Desktop\dashboard_mirror\dashboard_server\dashboard_server\obj\Debug\dashboard_server.csprojAssemblyReference.cache
+C:\Users\charles.claude\Desktop\dashboard_mirror\dashboard_server\dashboard_server\obj\Debug\dashboard_server.csproj.CoreCompileInputs.cache
+C:\Users\charles.claude\Desktop\dashboard_mirror\dashboard_server\dashboard_server\obj\Debug\dashboard_server.exe.manifest
+C:\Users\charles.claude\Desktop\dashboard_mirror\dashboard_server\dashboard_server\obj\Debug\dashboard_server.application
+>>>>>>> Stashed changes

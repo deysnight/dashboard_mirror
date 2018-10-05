@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 {
   "ExpandedNodes": [
     "",
@@ -10,4 +11,14 @@
   ],
   "SelectedNode": "\\dashboard_server\\dashboard_server\\Program.cs",
   "PreviewInSolutionExplorer": false
+=======
+{
+  "ExpandedNodes": [
+    "",
+    "\\dashboard_server",
+    "\\dashboard_server\\dashboard_server"
+  ],
+  "SelectedNode": "\\dashboard_server\\dashboard_server\\Program.cs",
+  "PreviewInSolutionExplorer": false
+>>>>>>> Stashed changes
 }

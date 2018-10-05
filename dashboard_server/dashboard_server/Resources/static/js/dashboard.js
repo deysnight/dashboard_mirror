@@ -87,3 +87,4 @@ document.getElementById('epitech_service').onclick = function(event) {
     document.getElementById('starcraft_intel').style.display = "none";
     document.getElementById('epitech_intel').style.display = "block";
 }
+
