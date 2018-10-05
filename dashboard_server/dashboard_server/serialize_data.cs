@@ -53,16 +53,13 @@ namespace WebServer
             {
                 if (u.login == words[0] && u.password == words[1])
                 {
-                    Console.WriteLine("OK LOGIN");
                     return ("OK LOGIN");
                 }
                 else if (u.login == words[0] && u.password != words[1])
                 {
-                    Console.WriteLine("KO PASS");
                     return ("KO PASS");
                 }
             }
-            Console.WriteLine("KO LOGIN");
             return ("KO LOGIN");
         }
 
