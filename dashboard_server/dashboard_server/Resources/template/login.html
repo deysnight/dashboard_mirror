@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Dashboard - Login</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600" rel="stylesheet">
     <link rel="stylesheet" href="css/base.css" />
     <link rel="stylesheet" type="text/css" href="css/registration.css" />
@@ -24,14 +26,14 @@
         </div>
         <div id="wrap-form">
             <div id="container-form">
-                <form method="post">
+                <form id="login_form" method="post">
                     <div class="form-group">
-                        <input type="text" placeholder="Votre login" />
+                        <input id="login_username" type="text" placeholder="Votre login" />
                     </div>
                     <div class="form-group">
-                        <input type="password" placeholder="Votre mot de passe" />
+                        <input id="login_pass1" type="password" placeholder="Votre mot de passe" />
                     </div>
-                    <button onclick="login()" class="link_button" type="submit"><span>Se connecter</span></button>
+                    <button id="login_button" class="link_button" type="submit"><span>Se connecter</span></button>
                 </form>
             </div>
         </div>
