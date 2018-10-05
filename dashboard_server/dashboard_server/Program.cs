@@ -141,10 +141,7 @@ namespace WebServer
             route_map.Add(new Route("/js/dashboard.js", Routes.Js_Dashboard));
             route_map.Add(new Route("/js/signup.js", Routes.Js_Signup));
             route_map.Add(new Route("/js/login.js", Routes.Js_Login));
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
             route_map.Add(new Route("/?/signup", Serialize_data.Process_signup));
             route_map.Add(new Route("/?/login", Serialize_data.Process_login));
 

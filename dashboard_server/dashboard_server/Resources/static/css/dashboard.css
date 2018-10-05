@@ -12,7 +12,6 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    background-color: green;
 }
 
 .services {
@@ -25,7 +24,6 @@
     text-align: center;
     display: flex;
     justify-content: space-between;
-    box-shadow: 3px 3px 3px lightgray;
 }
 
 #ServiceModal {
@@ -60,7 +58,7 @@
 .modal-header {
     display: flex;
     padding: 2px 16px;
-    background-color: red;
+    background-color: white;
     flex-direction: column;
     border-radius: 10px;
 }
@@ -84,47 +82,6 @@
 
 .services i {
     padding-top: 2px;
-}
-/* Hide the browser's default checkbox */
-.services input {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-}
-
-/* Create a custom checkbox */
-.checkmark {
-    position: relative;
-    top: 0;
-    left: 0;
-    height: 18px;
-    width: 18px;
-    background-color: #eee;
-    border: black solid 1px;
-    border-radius: 50%
-}
-
-/* On mouse-over, add a grey background color */
-.services:hover input ~ .checkmark {
-    background-color: #ccc;
-}
-
-/* When the checkbox is checked, add a blue background */
-.services input:checked ~ .checkmark {
-    background-color: black;
-    opacity: 0.70;
-}
-
-
-/* Show the checkmark when checked */
-.services input:checked ~ .checkmark:after {
-    display: block;
-}
-
-.link_button {
-    font-size: 18px;
-    padding: 8px 1em;
-    transition: all ease-in-out 0.2s;
 }
 
 #service_intel_wrap {

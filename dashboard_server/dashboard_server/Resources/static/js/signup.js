@@ -55,7 +55,7 @@ $("#signup_button").click(function () {
 
     var formData = username + ':' + email + ':' + pass1;
     console.log(formData);
-    $.post("http://localhost:8080/?/signup", {
+    $.post("http://10.18.207.77:8080/?/signup", {
         data: formData
     })
 });

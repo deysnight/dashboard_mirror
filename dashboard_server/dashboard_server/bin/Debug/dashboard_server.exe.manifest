@@ -42,7 +42,7 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="dashboard_server.exe" size="14360">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="dashboard_server.exe" size="13336">
       <assemblyIdentity name="dashboard_server" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
@@ -50,11 +50,9 @@
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
 <<<<<<< Updated upstream
-<<<<<<< Updated upstream
-        <dsig:DigestValue>EzYHFtlBQF2OSGVzl+F6ZuyHf4HBdR1EcrL2VVUX8xQ=</dsig:DigestValue>
+        <dsig:DigestValue>jxgCkCqr6RRl7UjOZkJnm3ht2+ghBsH3VQlS8aE0qHU=</dsig:DigestValue>
 =======
-        <dsig:DigestValue>MBoqIbJq0FLEBrfPcOgrhFWbqy72qKBPScC6ZH0dBt8=</dsig:DigestValue>
->>>>>>> Stashed changes
+        <dsig:DigestValue>N0m82TKQ5CiSgFdFTMszVtbOkxO6wO1GGKZpB9f0YqM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -67,11 +65,6 @@
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
         <dsig:DigestValue>9Yw3T/yq5ONtdA2Q+/f+cNCrtzKM2a86CntwgD6ZS6Q=</dsig:DigestValue>
-<<<<<<< Updated upstream
-=======
-        <dsig:DigestValue>Fwjhfncux3pGr1m8J/y/Sym3wBa9Ay5QHyV9QU/beNk=</dsig:DigestValue>
->>>>>>> Stashed changes
-=======
 >>>>>>> Stashed changes
       </hash>
     </dependentAssembly>
