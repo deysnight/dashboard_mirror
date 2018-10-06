@@ -36,6 +36,7 @@ $("#login_button").click(function () {
                     // create cookie
                     $("#error_login").remove();
                     cpt_login_error = 0;
+                    location.href = "http://localhost:8080/dashboard"
                 }
                 else {
                     if (cpt_login_error < 1) {
@@ -50,6 +51,6 @@ $("#login_button").click(function () {
         })
     });
 
-$("#login_form").submit(function (e) {
+$("#login_form").submit(function(e) {
     e.preventDefault();
 });

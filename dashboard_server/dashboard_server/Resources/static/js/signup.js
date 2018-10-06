@@ -97,10 +97,12 @@ $("#signup_button").click(function () {
         data: formData,
         success: function(response){
             if (response == "OK USER REGISTER") {
+                // create cookie
                 $("#error_signup_login").remove();
                 error_signup_login = 0;
                 $("#error_signup_mail").remove();
                 error_signup_mail = 0;
+                location.href = "http://localhost:8080/dashboard"
             }
             else {
                 if (response == "KO LOGIN") {
@@ -116,8 +118,6 @@ $("#signup_button").click(function () {
                     $("#error_signup_login").remove();
                     error_signup_login = 0
                 }    
-                
-
                 if (response == "KO MAIL") {
                     if (error_signup_mail < 1) {
                         input = $('<p class="error_fade" id="error_signup_mail">Cette adresse email est déjà utilisée.</p>');
@@ -136,6 +136,6 @@ $("#signup_button").click(function () {
     })
 });
 
-$("#signup_form").submit(function (e) {
+$("#signup_form").submit(function(e) {
     e.preventDefault();
 });
