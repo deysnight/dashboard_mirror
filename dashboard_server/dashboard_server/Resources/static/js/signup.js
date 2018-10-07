@@ -87,7 +87,9 @@ $("#signup_button").click(function () {
         $("#error_field").remove();
     }
 
-    var formData = username + ':' + email + ':' + pass1;
+    var hash = EncryptPass(pass1);
+
+    var formData = username + ':' + email + ':' + hash;
 
    $.ajax(
     {
@@ -139,3 +141,13 @@ $("#signup_button").click(function () {
 $("#signup_form").submit(function(e) {
     e.preventDefault();
 });
+
+function EncryptPass(pass1) {
+    var hash = 0, i, chr;
+    for (i = 0; i < pass1.length; i++) {
+        chr = pass1.charCodeAt(i);
+        hash = ((hash << 5) - hash) + chr;
+        hash |= 0;
+    }
+    return hash;
+}
