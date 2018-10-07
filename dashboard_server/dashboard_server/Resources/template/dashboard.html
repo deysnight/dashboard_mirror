@@ -20,12 +20,26 @@
             </li>
         </div>
     </header>
-    <div id="glob">
-        <button id="ServiceButton" class="service_button">Mes services</button>
+    <div id="glob" class="dashboard_glob">
+
+        <div id="widget_menu">
+
+        </div>
+
+        <div id="widget_div">
+            <div id="more_data_service">
+                    <button id="ServiceButton" class="service_button">Mes services</button>
+            </div>
+            <div id="widget_result">
+
+            </div>
+        </div>
+
+
         <div id="ServiceModal" class="modal">
             <div class="modal-content">
                 <div class="modal-header">
-                    <p id="global_title">Abonnez-vous !</p>
+                    <p id="global_title">Sélectionner vos services !</p>
                 </div>
                 <div class="modal-body">
                     <div class="services-global">
@@ -39,22 +53,26 @@
                             <div class="services" id="epitech_service"><i class="fas fa-address-book"></i>Epitech<input name="epitech_check" type="checkbox"></div>
                         </div>
                         <div id="service_intel_wrap">
-                            <div class="service_intel" id="meteo_intel"><p class="widget_intel">Widget : Service météo</p><p class="widget_description">Description : x</p></div>
-                            <div class="service_intel" id="steam_intel"><p class="widget_intel">Widget : Service météo</p><p class="widget_description">Description : x</p></div>
-                            <div class="service_intel" id="twitch_intel"><p class="widget_intel">Widget : Service météo</p><p class="widget_description">Description : x</p></div>
-                            <div class="service_intel" id="crypto_intel"><p class="widget_intel">Widget : Service météo</p><p class="widget_description">Description : x</p></div>
-                            <div class="service_intel" id="youtube_intel"><p class="widget_intel">Widget : Service météo</p><p class="widget_description">Description : x</p></div>
-                            <div class="service_intel" id="starcraft_intel"><p class="widget_intel">Widget : Service météo</p><p class="widget_description">Description : x</p></div>
-                            <div class="service_intel" id="epitech_intel"><p class="widget_intel">Widget : Service météo</p><p class="widget_description">Description : x</p></div>
+                            <div class="service_intel" id="meteo_intel"><p class="widget_intel"><i class="fas fa-caret-right"></i>&nbsp;&nbsp;&nbsp;Widget : Service météo</p><p class="widget_description">Description : x</p></div>
+                            <div class="service_intel" id="steam_intel"><p class="widget_intel"><i class="fas fa-caret-right"></i>&nbsp;&nbsp;&nbsp;Widget : Service météo</p><p class="widget_description">Description : x</p></div>
+                            <div class="service_intel" id="twitch_intel"><p class="widget_intel"><i class="fas fa-caret-right"></i>&nbsp;&nbsp;&nbsp;Widget : Service météo</p><p class="widget_description">Description : x</p></div>
+                            <div class="service_intel" id="crypto_intel"><p class="widget_intel"><i class="fas fa-caret-right"></i>&nbsp;&nbsp;&nbsp;Widget : Service météo</p><p class="widget_description">Description : x</p></div>
+                            <div class="service_intel" id="youtube_intel"><p class="widget_intel"><i class="fas fa-caret-right"></i>&nbsp;&nbsp;&nbsp;Widget : Service météo</p><p class="widget_description">Description : x</p></div>
+                            <div class="service_intel" id="starcraft_intel"><p class="widget_intel"><i class="fas fa-caret-right"></i>&nbsp;&nbsp;&nbsp;Widget : Service météo</p><p class="widget_description">Description : x</p></div>
+                            <div class="service_intel" id="epitech_intel"><p class="widget_intel"><i class="fas fa-caret-right"></i>&nbsp;&nbsp;&nbsp;Widget : Service météo</p><p class="widget_description">Description : x</p></div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="CloseServiceModal validate_service_button">Validez</button>
+                    <button class="CloseServiceModal service_button">Validez</button>
                 </div>
             </div>
         </div>
     </div>
+
+
+
+
     <script src="js/dashboard.js"></script>
 </body>
 </html>
