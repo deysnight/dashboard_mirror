@@ -143,3 +143,42 @@ $(function() {
     $( "#sortable" ).sortable();
     $( "#sortable" ).disableSelection();
   });
+
+function delete_cookie(name) {
+    document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    location.reload(true);
+}
+
+function getCookie(name) {
+    var cookie = document.cookie;
+    var prefix = name + "=";
+    var begin = cookie.indexOf("; " + prefix);
+    if (begin == -1) {
+        begin = cookie.indexOf(prefix);
+        if (begin != 0) return null;
+    } else {
+        begin += 2;
+        var end = document.cookie.indexOf(";", begin);
+        if (end == -1) {
+        end = cookie.length;
+        }
+    }
+    return unescape(cookie.substring(begin + prefix.length, end));
+  } 
+
+function check_if_cookie()
+{
+  var myCookie = getCookie("login");
+  if (myCookie == null) {
+    location.href = "/login";
+  }
+}
+
+window.onload = check_if_cookie()
+
+var myCookie = getCookie("login");
+input = $('<ul><a class="pseudo">' + myCookie + '</a></ul>' +
+'<ul><a class="header_text_menu" href="#" onclick="delete_cookie(\'login\')">Se déconnecter</a></ul>');
+$("#header_list").html(input);
+
+

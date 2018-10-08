@@ -37,7 +37,7 @@ $("#login_button").click(function () {
             data: formData,
             success: function(response){
                 if (response == "OK LOGIN") {
-                    // create cookie
+                    createCookie("login", username, 1000);
                     $("#error_login").remove();
                     cpt_login_error = 0;
                     location.href = final_ip_redirect
@@ -79,3 +79,57 @@ function Get_Path_For_IP()
     var final_ip = "http://" + words_final[2] + ":8080";
     return final_ip;
 }
+
+function createCookie(name, value, minutes)
+{
+    if (minutes) {
+        var date = new Date();
+        date.setTime(date.getTime() + (minutes * 60 * 1000));
+        var expires = "; expires=" + date.toGMTString();
+    }
+    else 
+        var expires = ";"
+    document.cookie = name + "=" + value + expires + "; path=/";
+}
+
+function readCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+}
+
+function delete_cookie(name) {
+    document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    location.reload(true);
+  }
+  
+  function getCookie(name) {
+    var cookie = document.cookie;
+    var prefix = name + "=";
+    var begin = cookie.indexOf("; " + prefix);
+    if (begin == -1) {
+        begin = cookie.indexOf(prefix);
+        if (begin != 0) return null;
+    } else {
+        begin += 2;
+        var end = document.cookie.indexOf(";", begin);
+        if (end == -1) {
+        end = cookie.length;
+        }
+    }
+    return unescape(cookie.substring(begin + prefix.length, end));
+  } 
+  
+  function check_if_cookie()
+  {
+    var myCookie = getCookie("login");
+    if (myCookie != null)
+        location.href = "/dashboard";
+  }
+  
+  window.onload = check_if_cookie();

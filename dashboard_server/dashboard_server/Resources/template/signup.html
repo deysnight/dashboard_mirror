@@ -15,8 +15,7 @@
         <div id="header_nav">
             <h2><a class="header_text_title" href="#">Dashboard</a></h2>
                 <li id="header_list">
-                    <ul><a class="header_text_menu" href="#">Pseudo</a></ul>
-                    <ul><a class="header_text_menu" href="#">Se déconnecter</a></ul>
+                    <ul><a class="header_text_menu" href="#" onclick="delete_cookie('login')">Se déconnecter</a></ul>
                  </li>
          </div>
      </header>
@@ -39,6 +38,7 @@
                     <div class="form-group pass2_div">
                         <input id="signup_pass2" type="password" required placeholder="Confirmer votre mot de passe" />
                     </div>
+                    <a class="redirect_form" href="/login"><br/>Cliquez-ici si vous possedez déjà un compte.</a>
                     <button id="signup_button" class="link_button" type="submit"><span>Créer un compte</span></button>
                 </form>
             </div>

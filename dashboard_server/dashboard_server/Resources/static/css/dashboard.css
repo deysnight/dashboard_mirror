@@ -162,6 +162,11 @@
 
 #widget_list {
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    flex: 7;
+    border: 1px solid rgba(0, 0, 0, 0.300);
+    overflow: auto;
 }
 
 #sortable {
@@ -184,7 +189,8 @@
     flex: 1;
     align-items: flex-end;
     justify-content: center;
-    margin-bottom: 2em;
+    padding-bottom: 2em;
+    
 }
 
 #widget_div {
@@ -194,8 +200,16 @@
 }
 
 #more_data_service {
+    display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	-webkit-box-align: center;
     flex: 1;
-    background-color: yellow;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 17%;
 }
 
 #widget_result {
@@ -235,6 +249,30 @@
 
 .services input:checked ~ .checkmark:after {
     display: block;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: rgba(245, 245, 245, 0.500); 
+}
+ 
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+	box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: hsla(220, 4%, 17%, 0.900);
+}
+
+.pseudo {
+    color: rgb(218, 223, 226);    
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    cursor: text;
 }
 
 @-webkit-keyframes animatefromtop {
