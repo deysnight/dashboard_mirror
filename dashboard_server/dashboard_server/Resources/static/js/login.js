@@ -24,11 +24,14 @@ $("#login_button").click(function () {
     }
 
     var hash = EncryptPass(pass1);
+    var my_url_for_ip = Get_Path_For_IP();
+    var final_ip_redirect = my_url_for_ip + "/dashboard"
+    var final_ip_login = my_url_for_ip + "/?/login"
 
-    var formData = username + ':' + pass1;
+    var formData = username + ':' + hash;
     $.ajax(
         {
-            url: "http://localhost:8080/?/login",
+            url: final_ip_login,
             type: "post",
             async: false,
             data: formData,
@@ -37,7 +40,7 @@ $("#login_button").click(function () {
                     // create cookie
                     $("#error_login").remove();
                     cpt_login_error = 0;
-                    location.href = "http://localhost:8080/dashboard"
+                    location.href = final_ip_redirect
                 }
                 else {
                     if (cpt_login_error < 1) {
@@ -64,4 +67,15 @@ function EncryptPass(pass1) {
         hash |= 0;
     }
     return hash;
+}
+
+function Get_Path_For_IP() 
+{
+    var my_current_url = window.location.href;
+
+    var words = my_current_url.split(':');
+    var words_final = words[1].split('/');
+
+    var final_ip = "http://" + words_final[2] + ":8080";
+    return final_ip;
 }

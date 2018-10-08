@@ -90,10 +90,13 @@ $("#signup_button").click(function () {
     var hash = EncryptPass(pass1);
 
     var formData = username + ':' + email + ':' + hash;
+    var my_url_for_ip = Get_Path_For_IP();
+    var final_ip_redirect = my_url_for_ip + "/dashboard"
+    var final_ip_signup = my_url_for_ip + "/?/signup"
 
    $.ajax(
     {
-        url: "http://localhost:8080/?/signup",
+        url: final_ip_signup,
         type: "post",
         async: false,
         data: formData,
@@ -104,7 +107,7 @@ $("#signup_button").click(function () {
                 error_signup_login = 0;
                 $("#error_signup_mail").remove();
                 error_signup_mail = 0;
-                location.href = "http://localhost:8080/dashboard"
+                location.href = final_ip_redirect
             }
             else {
                 if (response == "KO LOGIN") {
@@ -150,4 +153,15 @@ function EncryptPass(pass1) {
         hash |= 0;
     }
     return hash;
+}
+
+function Get_Path_For_IP() 
+{
+    var my_current_url = window.location.href;
+
+    var words = my_current_url.split(':');
+    var words_final = words[1].split('/');
+
+    var final_ip = "http://" + words_final[2] + ":8080";
+    return final_ip;
 }
