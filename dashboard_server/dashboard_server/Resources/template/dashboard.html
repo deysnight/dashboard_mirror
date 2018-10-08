@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Dashboard</title>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <link rel="stylesheet" href="css/base.css" />
     <link rel="stylesheet" href="css/dashboard.css" />
@@ -23,7 +25,19 @@
     <div id="glob" class="dashboard_glob">
 
         <div id="widget_menu">
-
+            <div id="widget_list_title">
+                <p>Vos widgets</p>
+            </div>
+            <div id="widget_list">
+                <ul id="sortable">
+                    <li class="ui-state-default">Widget 1</li>
+                    <li class="ui-state-default">Widget 2</li>
+                    <li class="ui-state-default">Widget 3</li>
+                </ul>
+            </div>
+            <div id="widget_list_button">
+                <button class="service_button">Widget</button>
+            </div>
         </div>
 
         <div id="widget_div">
@@ -43,15 +57,15 @@
                 </div>
                 <div class="modal-body">
                     <div class="services-global">
-                        <div id="service_container">
-                            <div class="services" id="meteo_service"><i class="fas fa-sun"></i>Météo<input name="meteo_check" type="checkbox"></div>
-                            <div class="services" id="steam_service"><i class="fab fa-steam"></i>Steam<input name="steam_check" type="checkbox"></div>
-                            <div class="services" id="twitch_service"><i class="fab fa-twitch"></i>Twitch<input name="twitch_check" type="checkbox"></div>
-                            <div class="services" id="crypto_service"><i class="fab fa-bitcoin"></i>Crypto<input name="crypto_check" type="checkbox"></div>
-                            <div class="services" id="youtube_service"><i class="fab fa-youtube"></i>Youtube<input name="youtube_check" type="checkbox"></div>
-                            <div class="services" id="starcraft_service"><i class="fas fa-gamepad"></i>StarCraft<input name="Starcraft_check" type="checkbox"></div>
-                            <div class="services" id="epitech_service"><i class="fas fa-address-book"></i>Epitech<input name="epitech_check" type="checkbox"></div>
-                        </div>
+                            <div id="service_container">
+                                <div class="services" id="meteo_service"><i class="fas fa-sun"></i>Météo<input name="meteo_check" type="checkbox"><span id="checkmark_meteo" class="checkmark"></span></div>
+                                <div class="services" id="steam_service"><i class="fab fa-steam"></i>Steam<input name="steam_check" type="checkbox"><span id="checkmark_steam" class="checkmark"></span></div>
+                                <div class="services" id="twitch_service"><i class="fab fa-twitch"></i>Twitch<input name="twitch_check" type="checkbox"><span id="checkmark_twitch" class="checkmark"></span></div>
+                                <div class="services" id="crypto_service"><i class="fab fa-bitcoin"></i>Crypto<input name="crypto_check" type="checkbox"><span id="checkmark_crypto" class="checkmark"></span></div>
+                                <div class="services" id="youtube_service"><i class="fab fa-youtube"></i>Youtube<input name="youtube_check" type="checkbox"><span id="checkmark_youtube" class="checkmark"></span></div>
+                                <div class="services" id="starcraft_service"><i class="fas fa-gamepad"></i>StarCraft<input name="starcraft_check" type="checkbox"><span id="checkmark_starcraft" class="checkmark"></span></div>
+                                <div class="services" id="epitech_service"><i class="fas fa-address-book"></i>Epitech<input name="epitech_check" type="checkbox"><span id="checkmark_epitech" class="checkmark"></span></div>
+                            </div>
                         <div id="service_intel_wrap">
                             <div class="service_intel" id="meteo_intel"><p class="widget_intel"><i class="fas fa-caret-right"></i>&nbsp;&nbsp;&nbsp;Widget : Service météo</p><p class="widget_description">Description : x</p></div>
                             <div class="service_intel" id="steam_intel"><p class="widget_intel"><i class="fas fa-caret-right"></i>&nbsp;&nbsp;&nbsp;Widget : Service météo</p><p class="widget_description">Description : x</p></div>

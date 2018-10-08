@@ -143,8 +143,48 @@
 }
 
 #widget_menu {
-    background-color: rebeccapurple;
+    display: flex;
+    flex-direction: column;
     flex: 1;
+    align-items: stretch;
+    background-color: hsla(220, 4%, 17%, 0.950);
+}
+
+#widget_list_title {
+    color: white;
+    text-align: center;
+    font-size: 26px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+#widget_list {
+    text-align: center;
+}
+
+#sortable {
+    list-style-type: none;
+    padding: 0;
+}
+
+#sortable li {
+    color: white;
+    padding: 0;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    background-color: hsla(220, 4%, 17%, 0.950);
+}
+
+#widget_list_button {
+    display: flex;
+    flex: 1;
+    align-items: flex-end;
+    justify-content: center;
+    margin-bottom: 2em;
 }
 
 #widget_div {
@@ -161,6 +201,40 @@
 #widget_result {
     background-color: red;
     flex: 6;
+}
+
+.services i {
+    padding-top: 2px;
+}
+
+.services input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.checkmark {
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 18px;
+    width: 18px;
+    background-color: #eee;
+    border: black solid 1px;
+    border-radius: 50%
+}
+
+.services:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+.services input:checked ~ .checkmark {
+    background-color: black;
+    opacity: 0.70;
+}
+
+.services input:checked ~ .checkmark:after {
+    display: block;
 }
 
 @-webkit-keyframes animatefromtop {
