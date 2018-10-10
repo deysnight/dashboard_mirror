@@ -29,22 +29,11 @@
             </div>
             <div id="widget_list">
                 <ul id="sortable">
-                    <li class="ui-state-default">Widget 1</li>
-                    <li class="ui-state-default">Widget 2</li>
-                    <li class="ui-state-default">Widget 3</li>
-                    <li class="ui-state-default">Widget 3</li>
-                    <li class="ui-state-default">Widget 3</li>
-                    <li class="ui-state-default">Widget 3</li>
-                    <li class="ui-state-default">Widget 3</li>
-                    <li class="ui-state-default">Widget 3</li>
-                    <li class="ui-state-default">Widget 3</li>
-                    <li class="ui-state-default">Widget 3</li>
-                    <li class="ui-state-default">Widget 3</li>
-                    <li class="ui-state-default">Widget 3</li>
+                    <li class="ui-state-default">Widget<i class="fas fa-cog"></i></li>
                 </ul>
             </div>
             <div id="widget_list_button">
-                <button class="service_button">Widget</button>
+                <button id="WidgetButton" onclick="trigger_widget_modal()" class="service_button">Widget</button>
             </div>
         </div>
 
@@ -53,10 +42,9 @@
                 <button id="ServiceButton" class="service_button add_service_button">Mes services</button>
             </div>
             <div id="widget_result">
-
+                    
             </div>
         </div>
-
 
         <div id="ServiceModal" class="modal">
             <div class="modal-content">
@@ -66,13 +54,13 @@
                 <div class="modal-body">
                     <div class="services-global">
                             <div id="service_container">
-                                <div class="services" id="meteo_service"><i class="fas fa-sun"></i>Météo<input name="meteo_check" type="checkbox"><span id="checkmark_meteo" class="checkmark"></span></div>
-                                <div class="services" id="steam_service"><i class="fab fa-steam"></i>Steam<input name="steam_check" type="checkbox"><span id="checkmark_steam" class="checkmark"></span></div>
-                                <div class="services" id="twitch_service"><i class="fab fa-twitch"></i>Twitch<input name="twitch_check" type="checkbox"><span id="checkmark_twitch" class="checkmark"></span></div>
-                                <div class="services" id="crypto_service"><i class="fab fa-bitcoin"></i>Crypto<input name="crypto_check" type="checkbox"><span id="checkmark_crypto" class="checkmark"></span></div>
-                                <div class="services" id="youtube_service"><i class="fab fa-youtube"></i>Youtube<input name="youtube_check" type="checkbox"><span id="checkmark_youtube" class="checkmark"></span></div>
-                                <div class="services" id="starcraft_service"><i class="fas fa-gamepad"></i>StarCraft<input name="starcraft_check" type="checkbox"><span id="checkmark_starcraft" class="checkmark"></span></div>
-                                <div class="services" id="epitech_service"><i class="fas fa-address-book"></i>Epitech<input name="epitech_check" type="checkbox"><span id="checkmark_epitech" class="checkmark"></span></div>
+                                <div class="services" id="meteo_service"><i class="fas fa-sun"></i>Météo<input id="meteo_checkbox" name="meteo_check" type="checkbox"><span onclick="display_meteo()" id="checkmark_meteo" class="checkmark"></span></div>
+                                <div class="services" id="steam_service"><i class="fab fa-steam"></i>Steam<input id="steam_checkbox" name="steam_check" type="checkbox"><span onclick="display_steam()" id="checkmark_steam" class="checkmark"></span></div>
+                                <div class="services" id="twitch_service"><i class="fab fa-twitch"></i>Twitch<input id="twitch_checkbox" name="twitch_check" type="checkbox"><span onclick="display_twitch()" id="checkmark_twitch" class="checkmark"></span></div>
+                                <div class="services" id="crypto_service"><i class="fab fa-bitcoin"></i>Crypto<input id="crypto_checkbox" name="crypto_check" type="checkbox"><span onclick="display_crypto()" id="checkmark_crypto" class="checkmark"></span></div>
+                                <div class="services" id="youtube_service"><i class="fab fa-youtube"></i>Youtube<input id="youtube_checkbox" name="youtube_check" type="checkbox"><span onclick="display_youtube()" id="checkmark_youtube" class="checkmark"></span></div>
+                                <div class="services" id="starcraft_service"><i class="fas fa-gamepad"></i>StarCraft<input id="stacraft_checkbox" name="starcraft_check" type="checkbox"><span id="checkmark_starcraft" class="checkmark"></span></div>
+                                <div class="services" id="epitech_service"><i class="fas fa-address-book"></i>Epitech<input id="epitech_checkbox" name="epitech_check" type="checkbox"><span id="checkmark_epitech" class="checkmark"></span></div>
                             </div>
                         <div id="service_intel_wrap">
                             <div class="service_intel" id="meteo_intel"><p class="widget_intel"><i class="fas fa-caret-right"></i>&nbsp;&nbsp;&nbsp;Widget : Service météo</p><p class="widget_description">Description : x</p></div>
@@ -86,11 +74,38 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="CloseServiceModal service_button">Validez</button>
+                    <button id="ServiceButtonValide" class="CloseServiceModal service_button">Validez</button>
+                </div>
+            </div>
+        </div>  
+        <div id="WidgetModal" class="modal">
+            <div class="modal-content_widget">
+                <div class="modal-header">
+                    <p id="global_title">Sélectionner un widget !</p>
+                </div>
+                <div class="modal-body">
+                    <div class="services-global">
+                        <div id="widget_container">
+                            <div id="meteo_widget_modal">
+                            </div>
+                            <div id="steam_widget_modal">
+                            </div>
+                            <div id="twitch_widget_modal">                                        
+                            </div>
+                            <div id="crypto_widget_modal">
+                            </div>
+                            <div id="youtube_widget_modal">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="CloseWidgetModal service_button">Validez</button>
                 </div>
             </div>
         </div>
     </div>
+</div>
     <script src="js/dashboard.js"></script>
 </body>
 </html>

@@ -1,17 +1,37 @@
-var modal = document.getElementById('ServiceModal');
+var modal_service = document.getElementById('ServiceModal');
 
-var button = document.getElementById("ServiceButton");
+var button_service = document.getElementById("ServiceButton");
 
-var closebutton = document.getElementsByClassName("CloseServiceModal")[0];
+var closebutton_service = document.getElementsByClassName("CloseServiceModal")[0];
 
-button.onclick = function() {
-    modal.style.display = "block";
+button_service.onclick = function() {
+    modal_service.style.display = "block";
 };
 
-closebutton.onclick = function() {
-    modal.style.display = "none";
+closebutton_service.onclick = function() {
+    modal_service.style.display = "none";
 };
 
+
+
+var modal_widget = document.getElementById('WidgetModal');
+
+var button_widget = document.getElementById("WidgetButton");
+
+var closebutton_widget = document.getElementsByClassName("CloseWidgetModal")[0];
+
+button_widget.onclick = function() {
+    modal_widget.style.display = "block";
+};
+
+closebutton_widget.onclick = function() {
+    modal_widget.style.display = "none";
+};
+
+function trigger_widget_modal() 
+{
+    modal_widget.style.display = "block";
+}
 
 $('#checkmark_meteo').click(function () {
 
@@ -174,11 +194,207 @@ function check_if_cookie()
   }
 }
 
-window.onload = check_if_cookie()
+function show_widg (){
+    var checkbox = document.getElementById("meteo_checkbox");
+    if (checkbox.checked == true) {
+        input = $('<div id="widget_modal_meteo_data">' +
+        '<p class="widget_modal_title">Widget Météo</p>' +
+        '<div class="widget_in_modal">' +
+        '<p class="widget_modal" id="widget_01_meteo">Météo par ville</p>' +
+        '</div>' +
+        '</div>')
+    $("#meteo_widget_modal").html(input);
+    }
+    var checkbox = document.getElementById("steam_checkbox");
+    if (checkbox.checked == true) {
+        input = $('<div id="widget_modal_steam_data">' +
+            '<p class="widget_modal_title">Widget Steam</p>' +
+            '<div class="widget_in_modal">' +
+            '<p class="widget_modal" id="widget_01_steam">Joueurs sur un jeu</p>' +
+            '</div>' +
+            '<div class="widget_in_modal">' +
+            '<p class="widget_modal" id="widget_02_steam">Liste d\'ami d\'un utilisateur</p>' +
+            '</div>' +
+            '</div>');
+        $("#steam_widget_modal").html(input);
+    }
+    var checkbox = document.getElementById("twitch_checkbox");
+    if (checkbox.checked == true) {
+        input = $('<div id="widget_modal_twitch_data">' +
+            '<p class="widget_modal_title">Widget Twitch</p>' +
+            '<div class="widget_in_modal">' +
+            '<p class="widget_modal" id="widget_01_twitch">Info sur une chaîne</p>' +
+            '</div>' +
+            '<div class="widget_in_modal">' +
+            '<p class="widget_modal" id="widget_02_twitch">Info sur un jeu</p>' +
+            '</div>' +
+            '</div>'
+        );
+        $("#twitch_widget_modal").html(input);
+    }
+    var checkbox = document.getElementById("crypto_checkbox");
+    if (checkbox.checked == true) {
+        input = $(
+            '<div id="widget_modal_crypto_data">' +
+            '<p class="widget_modal_title">Widget Crypto</p>' +
+            '<div class="widget_in_modal">' +
+            '<p class="widget_modal" id="widget_01_crypto">Cours d\'une monnaie</p>' +
+            '</div>' +
+            '</div>'
+        );
+        $("#crypto_widget_modal").html(input);
+    }
+    var checkbox = document.getElementById("youtube_checkbox");
+    if (checkbox.checked == true) {
+        input = $(
+            '<div id="widget_modal_youtube_data">' +
+            '<p class="widget_modal_title">Widget Youtube</p>' +
+            '<div class="widget_in_modal">' +
+            '<p class="widget_modal" id="widget_01_youtube">Infos d\'un Youtuber</p>' +
+            '</div>' +
+            '<div class="widget_in_modal">' +
+            '<p class="widget_modal" id="widget_02_youtube">Infos sur une vidéo</p>' +
+            '</div>'
+        );
+        $("#youtube_widget_modal").html(input);
+    }
+}
+
+function check_if_something_checked()
+{
+    var val= $("input:checked").length
+    if (val > 0) {
+        $("#WidgetButton").css("background-color", "#EA3D3D");
+        $("#WidgetButton").css("border-color", "#EA3D3D");
+        $("#WidgetButton").css("cursor", "pointer");
+        $("#WidgetButton").attr("onclick", "trigger_widget_modal()");
+    }
+    if (val == 0) {
+        $("#WidgetButton").css("background-color", "grey");
+        $("#WidgetButton").css("border-color", "grey");
+        $("#WidgetButton").css("cursor", "default");
+        $("#WidgetButton").attr("onclick", "return false;");
+    }  
+}
+
+function onload_function()
+{
+    check_if_cookie();
+    show_widg();
+    check_if_something_checked();
+}
+
+window.onload = onload_function()
 
 var myCookie = getCookie("login");
 input = $('<ul><a class="pseudo">' + myCookie + '</a></ul>' +
 '<ul><a class="header_text_menu" href="#" onclick="delete_cookie(\'login\')">Se déconnecter</a></ul>');
 $("#header_list").html(input);
 
+function display_meteo() {
+    var Checkbox = document.getElementById('meteo_checkbox')
+    if (Checkbox.checked == false) {
+        input = $('<div id="widget_modal_meteo_data">' +
+            '<p class="widget_modal_title">Widget Météo</p>' +
+            '<div class="widget_in_modal">' +
+            '<p class="widget_modal" id="widget_01_meteo">Météo par ville</p>' +
+            '</div>' +
+            '</div>')
+        $("#meteo_widget_modal").html(input);
+    }
+    else {
+        $("#widget_modal_meteo_data").empty();
+    }
+};
 
+function display_steam() {
+    var Checkbox = document.getElementById('steam_checkbox')
+    if (Checkbox.checked == false) {
+        input = $('<div id="widget_modal_steam_data">' +
+            '<p class="widget_modal_title">Widget Steam</p>' +
+            '<div class="widget_in_modal">' +
+            '<p class="widget_modal" id="widget_01_steam">Joueurs sur un jeu</p>' +
+            '</div>' +
+            '<div class="widget_in_modal">' +
+            '<p class="widget_modal" id="widget_02_steam">Liste d\'ami d\'un utilisateur</p>' +
+            '</div>' +
+            '</div>');
+        $("#steam_widget_modal").html(input);
+    }
+    else {
+        $("#widget_modal_steam_data").empty();
+    }
+};
+
+function display_twitch() {
+    var Checkbox = document.getElementById('twitch_checkbox')
+    if (Checkbox.checked == false) {
+        input = $('<div id="widget_modal_twitch_data">' +
+            '<p class="widget_modal_title">Widget Twitch</p>' +
+            '<div class="widget_in_modal">' +
+            '<p class="widget_modal" id="widget_01_twitch">Info sur une chaîne</p>' +
+            '</div>' +
+            '<div class="widget_in_modal">' +
+            '<p class="widget_modal" id="widget_02_twitch">Info sur un jeu</p>' +
+            '</div>' +
+            '</div>'
+        );
+        $("#twitch_widget_modal").html(input);
+    }
+    else {
+        $("#widget_modal_twitch_data").empty();
+    }
+};
+
+function display_crypto() {
+    var Checkbox = document.getElementById('crypto_checkbox')
+    if (Checkbox.checked == false) {
+        input = $(
+            '<div id="widget_modal_crypto_data">' +
+            '<p class="widget_modal_title">Widget Crypto</p>' +
+            '<div class="widget_in_modal">' +
+            '<p class="widget_modal" id="widget_01_crypto">Cours d\'une monnaie</p>' +
+            '</div>' +
+            '</div>'
+        );
+        $("#crypto_widget_modal").html(input);
+    }
+    else {
+        $("#widget_modal_crypto_data").empty();
+    }
+};
+
+function display_youtube() {
+    var Checkbox = document.getElementById('youtube_checkbox')
+    if (Checkbox.checked == false) {
+        input = $(
+            '<div id="widget_modal_youtube_data">' +
+            '<p class="widget_modal_title">Widget Youtube</p>' +
+            '<div class="widget_in_modal">' +
+            '<p class="widget_modal" id="widget_01_youtube">Infos d\'un Youtuber</p>' +
+            '</div>' +
+            '<div class="widget_in_modal">' +
+            '<p class="widget_modal" id="widget_02_youtube">Infos sur une vidéo</p>' +
+            '</div>'
+        );
+        $("#youtube_widget_modal").html(input);
+    }
+    else {
+        $("#widget_modal_youtube_data").empty();
+    }
+};
+
+$('#ServiceButtonValide').click(function () {
+    var val= $("input:checked").length
+    if (val > 0) {
+        $("#WidgetButton").css("background-color", "#EA3D3D");
+        $("#WidgetButton").css("border-color", "#EA3D3D");
+        $("#WidgetButton").css("cursor", "pointer");
+        $("#WidgetButton").attr("onclick", "trigger_widget_modal()");
+    }
+    if (val == 0) {
+        $("#WidgetButton").css("background-color", "grey");
+        $("#WidgetButton").css("border-color", "grey");
+        $("#WidgetButton").css("cursor", "default");
+        $("#WidgetButton").attr("onclick", "return false;");
+}});
