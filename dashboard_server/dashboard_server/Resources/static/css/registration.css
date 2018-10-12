@@ -55,6 +55,7 @@ textarea {
 	-o-transition: transform 0.5s;
 	-ms-transition: transform 0.5s;
     cursor: pointer;
+    margin-top: 2em;
 }
 
 .link_button span {
@@ -80,6 +81,14 @@ textarea {
 .link_button:hover span:after {
     opacity: 1;
     right: 0;
+}
+
+.redirect_form {
+    color: black;
+    font-size: 15px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    text-align: center;
 }
 
 @media (max-width: 790px) {
