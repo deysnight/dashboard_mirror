@@ -514,6 +514,10 @@ $('.CloseConfigMeteoModalCancel').click(function() {
 });
 
 $('.CloseConfigMeteoModalValidate').click(function() {
+    var widg_n = $("#name_meteo").val();
+    var ville_n = $("#ville_meteo").val();
+    var timer = $("#timer_meteo").val();
+    obj_meteo(ville_n, timer, widg_n);
     $("#name_meteo").val("");
     $("#ville_meteo").val("");
     $("#timer_meteo").val("");
@@ -537,6 +541,10 @@ $('.CloseConfigSteam01Cancel').click(function() {
 });
 
 $('.CloseConfigSteam01Validate').click(function() {
+    var steam_id = $("#steam_id01").val();
+    var widg_n = $("#name_steam01").val();
+    var timer = $("#timer_steam01").val("");
+    obj_steam01(steam_id, widg_n, timer)
     $("#name_steam01").val("");
     $("#steam_id01").val("");
     $("#timer_steam01").val("");
@@ -559,6 +567,10 @@ $('.CloseConfigSteam02Cancel').click(function() {
 });
 
 $('.CloseConfigSteam02Validate').click(function() {
+    var steam_id = $("#steam_id02").val();
+    var widg_n = $("#name_steam02").val();
+    var timer = $("#timer_steam02").val("");
+    obj_steam02(steam_id, widg_n, timer)
     $("#name_steam02").val("");
     $("#steam_id02").val("");
     $("#timer_steam02").val("");
@@ -581,6 +593,10 @@ $('.CloseConfigTwitch01Cancel').click(function() {
 });
 
 $('.CloseConfigTwitch01Validate').click(function() {
+    var widg_n = $("#name_twitch01").val();
+    var twitch_streamer = $("#twitch_streamer").val();
+    var timer = $("#timer_twitch01").val("");
+    obj_twitch01(widg_n, twitch_streamer, timer);
     $("#name_twitch01").val("");
     $("#twitch_streamer").val("");
     $("#timer_twitch01").val("");
@@ -601,6 +617,10 @@ $('.CloseConfigTwitch02Cancel').click(function() {
 });
 
 $('.CloseConfigTwitch02Validate').click(function() {
+    var widg_n = $("#name_twitch02").val();
+    var twitch_game = $("#twitch_game").val();
+    var timer = $("#timer_twitch02").val("");
+    obj_twitch02(widg_n, twitch_game, timer)
     $("#name_twitch02").val("");
     $("#twitch_game").val("");
     $("#timer_twitch02").val("");
@@ -696,3 +716,4 @@ $('.CloseConfigYoutubeValidate02').click(function() {
     $("#timer_starcraft").val("");
     document.getElementById("ConfigStarcraft").style.display = "none";
 });
+
