@@ -80,6 +80,10 @@
               {
                 "name": "sc2id",
                 "type": "integer"
+              },
+              {
+                "name": "sc2user",
+                "type": "string"
               }
             ]
           }
@@ -123,25 +127,6 @@
             "params": [
               {
                 "name": "video_url",
-                "type": "string"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "name": "intranet",
-        "widgets": [
-          {
-            "name": "student_data",
-            "description": "Affiche des informations sur un etudiant epitech",
-            "params": [
-              {
-                "name": "365mail",
-                "type": "string"
-              },
-              {
-                "name": "365pass",
                 "type": "string"
               }
             ]
