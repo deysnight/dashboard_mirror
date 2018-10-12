@@ -152,21 +152,20 @@ namespace WebServer
             route_map.Add(new Route("/dashboard", Routes.Dashboard));
             route_map.Add(new Route("/404", Routes.Error404)); 
 
-
             route_map.Add(new Route("/css/base.css", Routes.Css_Base));
             route_map.Add(new Route("/css/registration.css", Routes.Css_Registration));
             route_map.Add(new Route("/css/dashboard.css", Routes.Css_Dashboard));
             route_map.Add(new Route("/css/header.css", Routes.Css_Header));
             route_map.Add(new Route("/css/404.css", Routes.Css_404));
   
-
             route_map.Add(new Route("/js/dashboard.js", Routes.Js_Dashboard));
             route_map.Add(new Route("/js/signup.js", Routes.Js_Signup));
             route_map.Add(new Route("/js/login.js", Routes.Js_Login));
+            route_map.Add(new Route("/js/widgets.js", Routes.Js_Widgets));
 
             route_map.Add(new Route("/?/signup", Serialize_data.Process_signup));
             route_map.Add(new Route("/?/login", Serialize_data.Process_login));
-
+            route_map.Add(new Route("/?/user_config", Serialize_data.Process_login));
 
             routeAsync_map.Add(new RouteAsync("/API/meteo", Widgets.MeteoAsync));
             routeAsync_map.Add(new RouteAsync("/API/crypto", Widgets.CryptoAsync));

@@ -147,5 +147,14 @@ namespace WebServer
             string login_page = File.ReadAllText(filePath);
             return (login_page);
         }
+
+        public static string Js_Widgets(HttpListenerRequest request)
+        {
+            var projectPath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
+            string filePath = Path.Combine(Path.GetFullPath(@"..\..\"), "Resources");
+            filePath += "\\static\\js\\widgets.js";
+            string login_page = File.ReadAllText(filePath);
+            return (login_page);
+        }
     }
 }
