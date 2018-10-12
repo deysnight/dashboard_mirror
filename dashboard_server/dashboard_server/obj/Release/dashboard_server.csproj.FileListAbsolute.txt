@@ -1,0 +1,14 @@
+C:\Users\louison.harizi\Desktop\dashboard_mirror\dashboard_server\dashboard_server\bin\Release\dashboard_server.exe.config
+C:\Users\louison.harizi\Desktop\dashboard_mirror\dashboard_server\dashboard_server\bin\Release\dashboard_server.exe.manifest
+C:\Users\louison.harizi\Desktop\dashboard_mirror\dashboard_server\dashboard_server\bin\Release\dashboard_server.application
+C:\Users\louison.harizi\Desktop\dashboard_mirror\dashboard_server\dashboard_server\bin\Release\dashboard_server.exe
+C:\Users\louison.harizi\Desktop\dashboard_mirror\dashboard_server\dashboard_server\bin\Release\dashboard_server.pdb
+C:\Users\louison.harizi\Desktop\dashboard_mirror\dashboard_server\dashboard_server\bin\Release\Newtonsoft.Json.dll
+C:\Users\louison.harizi\Desktop\dashboard_mirror\dashboard_server\dashboard_server\bin\Release\Newtonsoft.Json.xml
+C:\Users\louison.harizi\Desktop\dashboard_mirror\dashboard_server\dashboard_server\obj\Release\dashboard_server.csprojAssemblyReference.cache
+C:\Users\louison.harizi\Desktop\dashboard_mirror\dashboard_server\dashboard_server\obj\Release\dashboard_server.csproj.CoreCompileInputs.cache
+C:\Users\louison.harizi\Desktop\dashboard_mirror\dashboard_server\dashboard_server\obj\Release\dashboard_server.exe.manifest
+C:\Users\louison.harizi\Desktop\dashboard_mirror\dashboard_server\dashboard_server\obj\Release\dashboard_server.application
+C:\Users\louison.harizi\Desktop\dashboard_mirror\dashboard_server\dashboard_server\obj\Release\dashboard_server.csproj.CopyComplete
+C:\Users\louison.harizi\Desktop\dashboard_mirror\dashboard_server\dashboard_server\obj\Release\dashboard_server.exe
+C:\Users\louison.harizi\Desktop\dashboard_mirror\dashboard_server\dashboard_server\obj\Release\dashboard_server.pdb

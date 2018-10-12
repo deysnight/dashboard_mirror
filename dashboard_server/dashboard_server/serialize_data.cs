@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,9 +20,26 @@ namespace WebServer
 
     class Serialize_data
     {
+        static string HashPass(string password)
+        {
+            SHA256 sha = new SHA256CryptoServiceProvider();
 
-        
+            //compute hash from the bytes of text
+            sha.ComputeHash(ASCIIEncoding.ASCII.GetBytes(password));
 
+            //get hash result after compute it
+            byte[] result = sha.Hash;
+
+            StringBuilder strBuilder = new StringBuilder();
+            for (int i = 0; i < result.Length; i++)
+            {
+                //change it into 2 hexadecimal digits
+                //for each byte
+                strBuilder.Append(result[i].ToString("x2"));
+            }
+
+            return strBuilder.ToString();
+        }
 
         public static string Process_login(HttpListenerRequest request)
         {
@@ -47,6 +65,8 @@ namespace WebServer
             s = s.Replace("%3A", ":");
 
             string[] words = s.Split(':');
+
+            words[1] = HashPass(words[1]);
 
             //parcour voir si user exist 
             foreach (Users u in all_users)
@@ -101,7 +121,7 @@ namespace WebServer
             Users user = new Users();
             user.login = words[0];
             user.mail = words[1];
-            user.password = words[2];
+            user.password = HashPass(words[2]);
             user.ID = "0";
 
             all_users.Add(user);

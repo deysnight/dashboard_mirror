@@ -4,6 +4,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace WebServer
 {
@@ -105,9 +106,22 @@ namespace WebServer
         }
     }
 
+    public class RouteAsync
+    {
+        public string my_route { get; set; }
+        public Func<HttpListenerRequest, Task<string>> functionPTR { get; set; }
+
+        public RouteAsync(string key, Func<HttpListenerRequest, Task<string>> value)
+        {
+            my_route = key;
+            functionPTR = value;
+        }
+    }
+
     internal class Program
     {
-        static private List<Route> route_map = new List<Route>(); 
+        static private List<Route> route_map = new List<Route>();
+        static private List<RouteAsync> routeAsync_map = new List<RouteAsync>();
 
         public static string Process_request(HttpListenerRequest request)
         {
@@ -118,7 +132,15 @@ namespace WebServer
                     return element.functionPTR(request);
                 }
             }
-            return ("J'sais pas comment trigger le fichier 404 dans templates mdr");
+            foreach (RouteAsync element in routeAsync_map)
+            {
+                if (request.RawUrl.Contains(element.my_route))
+                {
+                    var ret = element.functionPTR(request);
+                    return (ret.Result);
+                }
+            }
+            return (Routes.Error404(request));
         }
 
         private static void Main(string[] args)
@@ -144,6 +166,17 @@ namespace WebServer
 
             route_map.Add(new Route("/?/signup", Serialize_data.Process_signup));
             route_map.Add(new Route("/?/login", Serialize_data.Process_login));
+
+
+            routeAsync_map.Add(new RouteAsync("/API/meteo", Widgets.MeteoAsync));
+            routeAsync_map.Add(new RouteAsync("/API/crypto", Widgets.CryptoAsync));
+            routeAsync_map.Add(new RouteAsync("/API/YTB/channel", Widgets.YTB_statsAsync));
+            routeAsync_map.Add(new RouteAsync("/API/YTB/vod", Widgets.YTB_vodAsync));
+            routeAsync_map.Add(new RouteAsync("/API/twitch/streamer", Widgets.twitch_streamerAsync));
+            routeAsync_map.Add(new RouteAsync("/API/twitch/game", Widgets.twitch_gameAsync));
+            routeAsync_map.Add(new RouteAsync("/API/steam/game", Widgets.steam_gameAsync));
+            routeAsync_map.Add(new RouteAsync("/API/steam/user", Widgets.steam_friendAsync));
+            routeAsync_map.Add(new RouteAsync("/API/sc2/profile", Widgets.blizzard_sc2_profilAsync));
 
             var ws = new WebServer(Process_request, "http://+:8080/"); // "http://localhost:8080/");
             ws.Run();
