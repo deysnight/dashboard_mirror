@@ -543,7 +543,7 @@ $('.CloseConfigSteam01Cancel').click(function() {
 $('.CloseConfigSteam01Validate').click(function() {
     var steam_id = $("#steam_id01").val();
     var widg_n = $("#name_steam01").val();
-    var timer = $("#timer_steam01").val("");
+    var timer = $("#timer_steam01").val();
     obj_steam01(steam_id, widg_n, timer)
     $("#name_steam01").val("");
     $("#steam_id01").val("");
@@ -569,7 +569,7 @@ $('.CloseConfigSteam02Cancel').click(function() {
 $('.CloseConfigSteam02Validate').click(function() {
     var steam_id = $("#steam_id02").val();
     var widg_n = $("#name_steam02").val();
-    var timer = $("#timer_steam02").val("");
+    var timer = $("#timer_steam02").val();
     obj_steam02(steam_id, widg_n, timer)
     $("#name_steam02").val("");
     $("#steam_id02").val("");
@@ -595,7 +595,7 @@ $('.CloseConfigTwitch01Cancel').click(function() {
 $('.CloseConfigTwitch01Validate').click(function() {
     var widg_n = $("#name_twitch01").val();
     var twitch_streamer = $("#twitch_streamer").val();
-    var timer = $("#timer_twitch01").val("");
+    var timer = $("#timer_twitch01").val();
     obj_twitch01(widg_n, twitch_streamer, timer);
     $("#name_twitch01").val("");
     $("#twitch_streamer").val("");
@@ -619,7 +619,7 @@ $('.CloseConfigTwitch02Cancel').click(function() {
 $('.CloseConfigTwitch02Validate').click(function() {
     var widg_n = $("#name_twitch02").val();
     var twitch_game = $("#twitch_game").val();
-    var timer = $("#timer_twitch02").val("");
+    var timer = $("#timer_twitch02").val();
     obj_twitch02(widg_n, twitch_game, timer)
     $("#name_twitch02").val("");
     $("#twitch_game").val("");
@@ -638,16 +638,19 @@ $('.CloseConfigCryptoCancel').click(function() {
     $("#crypto_initial").val("");
     $("#crypto_final").val("");
     $("#timer_crypto").val("");
-
     document.getElementById("ConfigCrypto").style.display = "none";
 });
 
 $('.CloseConfigCryptoValidate').click(function() {
+    var widg_n = $("#name_crypto").val();
+    var fsym = $("#crypto_initial").val().toUpperCase();
+    var tsym = $("#crypto_final").val().toUpperCase();
+    var timer = $("#timer_crypto").val();
+    obj_crypto(widg_n, fsym, tsym, timer)
     $("#name_crypto").val("");
     $("#crypto_initial").val("");
     $("#crypto_final").val("");
     $("#timer_crypto").val("");
-
     document.getElementById("ConfigCrypto").style.display = "none";
 });
 
@@ -661,15 +664,17 @@ $('.CloseConfigYoutubeCancel01').click(function() {
     $("#name_youtube01").val("");
     $("#youtuber").val("");
     $("#timer_youtube01").val("");
-
     document.getElementById("ConfigYoutube01").style.display = "none";
 });
 
 $('.CloseConfigYoutubeValidate01').click(function() {
+    var widg_n = $("#name_youtube01").val();
+    var ytb_channel = $("#youtuber").val();
+    var timer = $("#timer_youtube01").val();
+    obj_youtube01(widg_n, ytb_channel, timer)
     $("#name_youtube01").val("");
     $("#youtuber").val("");
     $("#timer_youtube01").val("");
-
     document.getElementById("ConfigYoutube01").style.display = "none";
 });
 
@@ -683,15 +688,17 @@ $('.CloseConfigYoutubeCancel02').click(function() {
     $("#name_youtube02").val("");
     $("#youtube_video").val("");
     $("#timer_youtube02").val("");
-
     document.getElementById("ConfigYoutube02").style.display = "none";
 });
 
 $('.CloseConfigYoutubeValidate02').click(function() {
+    var widg_n = $("#name_youtube02").val();
+    var ytb_video = $("#youtube_video").val();
+    var timer = $("#timer_youtube02").val();
+    obj_youtube02(widg_n, ytb_video, timer)
     $("#name_youtube02").val("");
     $("#youtube_video").val("");
     $("#timer_youtube02").val("");
-
     document.getElementById("ConfigYoutube02").style.display = "none";
 });
 
