@@ -1,22 +1,24 @@
-var Dashboard_Data = {
-    "ss": {
-        "s01": true,
-        "s02": true,
-        "s03": true,
-        "s04": true,
-        "s05": true,
-    },
+//delete_cookie("login");
+
+function onload_function()
+{
+    check_if_cookie();
+    ask_data();
+    read_json();
+    show_widg();
+    check_if_something_checked();
 }
+
+window.onload = onload_function()
 
 function send_data()
 {
     var my_url_for_ip = Get_Path_For_IP();
-    console.log(my_url_for_ip);
     var final_ip = my_url_for_ip + "/?/set_user_config";
     var login = getCookie("login");
     var Json_to_send = JSON.stringify(Dashboard_Data);
     var Data = login + "$" + Json_to_send;
-    console.log(final_ip);
+    console.log(Json_to_send);
     $.ajax(
         {
             url: final_ip,
@@ -40,11 +42,13 @@ function ask_data()
             url: final_ip,
             type: "post",
             async: false,
-            contentType:"application/json; charset=utf-8",
-            dataType: "json",
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
             data: Data,
             success: function(response) {
                 Dashboard_Data = response;
+                Dashboard_Data = JSON.parse(Dashboard_Data.config);
+                console.log(Dashboard_Data);
             }
         }
     )
@@ -52,27 +56,27 @@ function ask_data()
 
 function read_json()
 {
-    if (Dashboard_Data.ss.s01 == true) {
+    if (Dashboard_Data.config.ss.s01 == true) {
         $("#meteo_checkbox").attr("checked", "checked");
     }
     else
         $("#meteo_checkbox").removeAttr("checked");
-    if (Dashboard_Data.ss.s02 == true) {
+    if (Dashboard_Data.config.ss.s02 == true) {
         $("#steam_checkbox").attr("checked", "checked");
     }
     else
         $("#steam_checkbox").removeAttr("checked");
-    if (Dashboard_Data.ss.s03 == true) {
+    if (Dashboard_Data.config.ss.s03 == true) {
         $("#twitch_checkbox").attr("checked", "checked");
     }
     else
         $("#twitch_checkbox").removeAttr("checked");
-    if (Dashboard_Data.ss.s04 == true) {
+    if (Dashboard_Data.config.ss.s04 == true) {
         $("#crypto_checkbox").attr("checked", "checked");
     }
     else
         $("#crypto_checkbox").removeAttr("checked");
-    if (Dashboard_Data.ss.s05 == true) {
+    if (Dashboard_Data.config.ss.s05 == true) {
         $("#youtube_checkbox").attr("checked", "checked");
     }
     else
@@ -82,42 +86,42 @@ function read_json()
 
 $("#checkmark_meteo").click(function () {
     if ($("#meteo_checkbox").prop('checked') == true) {
-        Dashboard_Data.ss.s01 = false;
+        Dashboard_Data.config.ss.s01 = false;
     }
     else if ($("#meteo_checkbox").prop('checked') == false) {
-        Dashboard_Data.ss.s01 = true;
+        Dashboard_Data.config.ss.s01 = true;
     }
 });
 $("#checkmark_steam").click(function () {
     if ($("#steam_checkbox").prop('checked') == true) {
-        Dashboard_Data.ss.s02 = false;
+        Dashboard_Data.config.ss.s02 = false;
     }
     else if ($("#steam_checkbox").prop('checked') == false) {
-        Dashboard_Data.ss.s02 = true;
+        Dashboard_Data.config.ss.s02 = true;
     }
 });
 $("#checkmark_twitch").click(function () {
     if ($("#twitch_checkbox").prop('checked') == true) {
-        Dashboard_Data.ss.s03 = false;
+        Dashboard_Data.config.ss.s03 = false;
     }
     else if ($("#twitch_checkbox").prop('checked') == false) {
-        Dashboard_Data.ss.s03 = true;
+        Dashboard_Data.config.ss.s03 = true;
     }
 });
 $("#checkmark_crypto").click(function () {
     if ($("#crypto_checkbox").prop('checked') == true) {
-        Dashboard_Data.ss.s04 = false;
+        Dashboard_Data.config.ss.s04 = false;
     }
-    else if ($("#crypo_checkbox").prop('checked') == false) {
-        Dashboard_Data.ss.s04 = true;
+    else if ($("#crypto_checkbox").prop('checked') == false) {
+        Dashboard_Data.config.ss.s04 = true;
     }
 });
 $("#checkmark_youtube").click(function () {
     if ($("#youtube_checkbox").prop('checked') == true) {
-        Dashboard_Data.ss.s05 = false;
+        Dashboard_Data.config.ss.s05 = false;
     }
     else if ($("#youtube_checkbox").prop('checked') == false) {
-        Dashboard_Data.ss.s05 = true;
+        Dashboard_Data.config.ss.s05 = true;
     }
 });
 
@@ -392,17 +396,6 @@ function check_if_something_checked()
         $("#WidgetButton").attr("onclick", "return false;");
     }
 }
-
-function onload_function()
-{
-    check_if_cookie();
-    ask_data();
-    read_json();
-    show_widg();
-    check_if_something_checked();
-}
-
-window.onload = onload_function()
 
 var myCookie = getCookie("login");
 input = $('<ul><a class="pseudo">' + myCookie + '</a></ul>' +
