@@ -120,7 +120,7 @@ namespace WebServer
             user.login = words[0];
             user.mail = words[1];
             user.password = HashPass(words[2]);
-            user.config = "";
+            user.config = "{\"ss\": {\"s01\": false,\"s02\": false,\"s03\": false,\"s04\": false,\"s05\": false,}}";
 
             all_users.Add(user);
 
