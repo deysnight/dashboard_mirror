@@ -151,7 +151,7 @@ namespace WebServer
                 return (JsonConvert.SerializeObject(response));
             foreach (dynamic user in all_users)
             {
-                if (user.login == temp_user)
+                if (user.login == temp_user && user.config != "")
                 {
                     response.exist = true;
                     response.config = user.config;
