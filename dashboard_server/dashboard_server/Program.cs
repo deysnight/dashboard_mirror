@@ -165,7 +165,7 @@ namespace WebServer
 
             route_map.Add(new Route("/?/signup", Serialize_data.Process_signup));
             route_map.Add(new Route("/?/login", Serialize_data.Process_login));
-            route_map.Add(new Route("/?/user_config", Serialize_data.Process_login));
+            route_map.Add(new Route("/?/user_config", Serialize_data.Get_User_Config));
 
             routeAsync_map.Add(new RouteAsync("/API/meteo", Widgets.MeteoAsync));
             routeAsync_map.Add(new RouteAsync("/API/crypto", Widgets.CryptoAsync));
@@ -175,7 +175,6 @@ namespace WebServer
             routeAsync_map.Add(new RouteAsync("/API/twitch/game", Widgets.twitch_gameAsync));
             routeAsync_map.Add(new RouteAsync("/API/steam/game", Widgets.steam_gameAsync));
             routeAsync_map.Add(new RouteAsync("/API/steam/user", Widgets.steam_friendAsync));
-            routeAsync_map.Add(new RouteAsync("/API/sc2/profile", Widgets.blizzard_sc2_profilAsync));
 
             var ws = new WebServer(Process_request, "http://+:8080/"); // "http://localhost:8080/");
             ws.Run();

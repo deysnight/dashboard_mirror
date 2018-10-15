@@ -200,36 +200,5 @@ namespace WebServer
             response.friends = JsonConvert.DeserializeObject(JsonConvert.SerializeObject(friend));
             return (JsonConvert.SerializeObject(response));
         }
-
-        public static async Task<string> blizzard_sc2_profilAsync(HttpListenerRequest request)
-        {
-            //http://10.18.207.243:8080/API/steam/user=76561198033121295           
-            string[] tmp = request.RawUrl.Split('=');
-            //string query = string.Format(steam_userid_api, tmp[1]);
-            string query = "https://eu.api.blizzard.com/sc2/profile/669709/1/GedFenir/";
-            var uri = new Uri(query);
-            var hc = new HttpClient();
-            hc.DefaultRequestHeaders.Add("Authorization", "Bearer EUlt6n85i3cA10KvvHsV277FGPt2J6Kn4Q");
-            var result = await hc.GetStringAsync(uri);
-            Console.Write(result);
-            dynamic json = JsonConvert.DeserializeObject(result);
-
-
-
-            /*json = json.friendslist.friends;
-            dynamic response = JsonConvert.DeserializeObject("{\"countfriend\":" + json.Count + "}");
-            List<string> friend = new List<string>();
-            foreach (dynamic element in json)
-            {
-                query = string.Format(steam_username_api, element.steamid);
-                uri = new Uri(query);
-                result = await hc.GetStringAsync(uri);
-                dynamic temp = JsonConvert.DeserializeObject(result);
-                friend.Add(temp.response.players[0].personaname.ToString());
-            }
-            response.friends = JsonConvert.DeserializeObject(JsonConvert.SerializeObject(friend));
-            return (JsonConvert.SerializeObject(response));*/
-            return (result);
-        }
     }
 }

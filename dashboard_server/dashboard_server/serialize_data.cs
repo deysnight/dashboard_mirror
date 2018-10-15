@@ -15,7 +15,7 @@ namespace WebServer
         public string login { get; set; }
         public string mail { get; set; }
         public string password { get; set; }
-        public string ID { get; set; }
+        public string config { get; set; }
     }
 
     class Serialize_data
@@ -58,8 +58,6 @@ namespace WebServer
             string s = reader.ReadToEnd();
             body.Close();
             reader.Close();
-
-            Console.WriteLine(s);
 
             s = s.Replace("data=", "");
             s = s.Replace("%3A", ":");
@@ -122,7 +120,7 @@ namespace WebServer
             user.login = words[0];
             user.mail = words[1];
             user.password = HashPass(words[2]);
-            user.ID = "0";
+            user.config = "";
 
             all_users.Add(user);
 
@@ -132,6 +130,43 @@ namespace WebServer
             tw.Close();
 
             return ("OK USER REGISTER");
+        }
+
+        public static string Get_User_Config(HttpListenerRequest request)
+        {
+            Stream body = request.InputStream;
+            Encoding encoding = request.ContentEncoding;
+            StreamReader reader = new StreamReader(body, encoding);
+            string temp_user = reader.ReadToEnd();
+
+            Console.Write(temp_user);
+
+
+
+
+            dynamic response = JsonConvert.DeserializeObject("{\"exist\": false}");
+            string path = Directory.GetCurrentDirectory() + "\\users.json";
+            dynamic all_users;
+            if (File.Exists(path))
+            {
+                string temp = File.ReadAllText(path);
+                all_users = JsonConvert.DeserializeObject(temp);
+            }
+            else
+                return (JsonConvert.SerializeObject(response));
+
+            foreach (dynamic user in all_users)
+            {
+                if (user.login == temp_user)
+                {
+                    response.exist = true;
+                    response.config = user.config;
+                    break;
+                }
+            }
+
+            Console.Write(response);
+            return JsonConvert.SerializeObject(response);
         }
     }
 }
