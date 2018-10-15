@@ -6,19 +6,16 @@ var Dashboard_Data = {
         "s04": true,
         "s05": true,
     },
-    "wid": {
-        
-    }
 }
 
 function send_data()
 {
     var my_url_for_ip = Get_Path_For_IP();
     console.log(my_url_for_ip);
-    var final_ip = my_url_for_ip + "/?/user_config";
+    var final_ip = my_url_for_ip + "/?/set_user_config";
     var login = getCookie("login");
     var Json_to_send = JSON.stringify(Dashboard_Data);
-    var Data = login + "?" + Json_to_send;
+    var Data = login + "$" + Json_to_send;
     console.log(final_ip);
     $.ajax(
         {
@@ -36,7 +33,7 @@ function send_data()
 function ask_data()
 {
     var my_url_for_ip = Get_Path_For_IP();
-    var final_ip = my_url_for_ip + "/?/get_config";
+    var final_ip = my_url_for_ip + "/?/get_user_config";
     var Data = getCookie("login");
     $.ajax(
         {
@@ -568,20 +565,15 @@ $('.CloseConfigMeteoModalValidate').click(function() {
     var ville_n = $("#ville_meteo").val();
     var timer = $("#timer_meteo").val();
     obj_meteo(ville_n, timer, widg_n);
-
-    console.log(Dashboard_Data);
+    var newdata = {};
+    newdata['meteo'] = {"name": widg_n, "town": ville_n, "timer": timer};
+    $.extend(true, Dashboard_Data, newdata);
+    send_data();
     $("#name_meteo").val("");
     $("#ville_meteo").val("");
     $("#timer_meteo").val("");
     document.getElementById("ConfigMeteo").style.display = "none";
 });
-
-// type: meteo
-// id:
-// name:
-// town:
-// timer:
-
 
 function display_steam_widget01_modal()
 {
@@ -605,6 +597,11 @@ $('.CloseConfigSteam01Validate').click(function() {
     var widg_n = $("#name_steam01").val();
     var timer = $("#timer_steam01").val();
     obj_steam01(steam_id, widg_n, timer)
+    var newdata = {};
+    newdata['steam01'] = {"name": widg_n, "steam_id": steam_id, "timer": timer};
+    $.extend(true, Dashboard_Data, newdata);
+    console.log(Dashboard_Data);
+    send_data();
     $("#name_steam01").val("");
     $("#steam_id01").val("");
     $("#timer_steam01").val("");
@@ -635,6 +632,11 @@ $('.CloseConfigSteam02Validate').click(function() {
     var widg_n = $("#name_steam02").val();
     var timer = $("#timer_steam02").val();
     obj_steam02(steam_id, widg_n, timer)
+    var newdata = {};
+    newdata['steam02'] = {"name": widg_n, "steam_id": steam_id, "timer": timer};
+    $.extend(true, Dashboard_Data, newdata);
+    console.log(Dashboard_Data);
+    send_data();
     $("#name_steam02").val("");
     $("#steam_id02").val("");
     $("#timer_steam02").val("");
@@ -665,6 +667,11 @@ $('.CloseConfigTwitch01Validate').click(function() {
     var twitch_streamer = $("#twitch_streamer").val();
     var timer = $("#timer_twitch01").val();
     obj_twitch01(widg_n, twitch_streamer, timer);
+    var newdata = {};
+    newdata['twitch01'] = {"name": widg_n, "twitch_streamer": twitch_streamer, "timer": timer};
+    $.extend(true, Dashboard_Data, newdata);
+    console.log(Dashboard_Data);
+    send_data();
     $("#name_twitch01").val("");
     $("#twitch_streamer").val("");
     $("#timer_twitch01").val("");
@@ -693,6 +700,11 @@ $('.CloseConfigTwitch02Validate').click(function() {
     var twitch_game = $("#twitch_game").val();
     var timer = $("#timer_twitch02").val();
     obj_twitch02(widg_n, twitch_game, timer)
+    var newdata = {};
+    newdata['twitch02'] = {"name": widg_n, "twitch_game": twitch_game, "timer": timer};
+    $.extend(true, Dashboard_Data, newdata);
+    console.log(Dashboard_Data);
+    send_data();
     $("#name_twitch02").val("");
     $("#twitch_game").val("");
     $("#timer_twitch02").val("");
@@ -723,6 +735,11 @@ $('.CloseConfigCryptoValidate').click(function() {
     var tsym = $("#crypto_final").val().toUpperCase();
     var timer = $("#timer_crypto").val();
     obj_crypto(widg_n, fsym, tsym, timer)
+    var newdata = {};
+    newdata['crypto'] = {"name": widg_n, "fsym": fsym, "tsym": tsym, "timer": timer};
+    $.extend(true, Dashboard_Data, newdata);
+    console.log(Dashboard_Data);
+    send_data();
     $("#name_crypto").val("");
     $("#crypto_initial").val("");
     $("#crypto_final").val("");
@@ -752,6 +769,11 @@ $('.CloseConfigYoutubeValidate01').click(function() {
     var ytb_channel = $("#youtuber").val();
     var timer = $("#timer_youtube01").val();
     obj_youtube01(widg_n, ytb_channel, timer)
+    var newdata = {};
+    newdata['youtube01'] = {"name": widg_n, "ytb_channel": ytb_channel, "timer": timer};
+    $.extend(true, Dashboard_Data, newdata);
+    console.log(Dashboard_Data);
+    send_data();
     $("#name_youtube01").val("");
     $("#youtuber").val("");
     $("#timer_youtube01").val("");
@@ -780,6 +802,11 @@ $('.CloseConfigYoutubeValidate02').click(function() {
     var ytb_video = $("#youtube_video").val();
     var timer = $("#timer_youtube02").val();
     obj_youtube02(widg_n, ytb_video, timer)
+    var newdata = {};
+    newdata['youtube02'] = {"name": widg_n, "ytb_video": ytb_video, "timer": timer};
+    $.extend(true, Dashboard_Data, newdata);
+    console.log(Dashboard_Data);
+    send_data();
     $("#name_youtube02").val("");
     $("#youtube_video").val("");
     $("#timer_youtube02").val("");
