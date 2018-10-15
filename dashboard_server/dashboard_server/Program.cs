@@ -165,12 +165,14 @@ namespace WebServer
 
             route_map.Add(new Route("/?/signup", Serialize_data.Process_signup));
             route_map.Add(new Route("/?/login", Serialize_data.Process_login));
-            route_map.Add(new Route("/?/user_config", Serialize_data.Get_User_Config));
+            route_map.Add(new Route("/?/get_user_config", Serialize_data.Get_User_Config));
+            route_map.Add(new Route("/?/set_user_config", Serialize_data.Set_User_Config));
 
             routeAsync_map.Add(new RouteAsync("/API/meteo", Widgets.MeteoAsync));
             routeAsync_map.Add(new RouteAsync("/API/crypto", Widgets.CryptoAsync));
             routeAsync_map.Add(new RouteAsync("/API/YTB/channel", Widgets.YTB_statsAsync));
             routeAsync_map.Add(new RouteAsync("/API/YTB/vod", Widgets.YTB_vodAsync));
+            routeAsync_map.Add(new RouteAsync("/API/YTB/comment", Widgets.YTB_commentAsync));
             routeAsync_map.Add(new RouteAsync("/API/twitch/streamer", Widgets.twitch_streamerAsync));
             routeAsync_map.Add(new RouteAsync("/API/twitch/game", Widgets.twitch_gameAsync));
             routeAsync_map.Add(new RouteAsync("/API/steam/game", Widgets.steam_gameAsync));

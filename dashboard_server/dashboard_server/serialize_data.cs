@@ -139,11 +139,6 @@ namespace WebServer
             StreamReader reader = new StreamReader(body, encoding);
             string temp_user = reader.ReadToEnd();
 
-            Console.Write(temp_user);
-
-
-
-
             dynamic response = JsonConvert.DeserializeObject("{\"exist\": false}");
             string path = Directory.GetCurrentDirectory() + "\\users.json";
             dynamic all_users;
@@ -154,7 +149,6 @@ namespace WebServer
             }
             else
                 return (JsonConvert.SerializeObject(response));
-
             foreach (dynamic user in all_users)
             {
                 if (user.login == temp_user)
@@ -164,8 +158,39 @@ namespace WebServer
                     break;
                 }
             }
+            return JsonConvert.SerializeObject(response);
+        }
 
-            Console.Write(response);
+        public static string Set_User_Config(HttpListenerRequest request)
+        {
+            Stream body = request.InputStream;
+            Encoding encoding = request.ContentEncoding;
+            StreamReader reader = new StreamReader(body, encoding);
+            string[] user_data = reader.ReadToEnd().Split('$');
+
+            dynamic response = JsonConvert.DeserializeObject("{\"success\": false}");
+            string path = Directory.GetCurrentDirectory() + "\\users.json";
+            dynamic all_users;
+            if (File.Exists(path))
+            {
+                string temp = File.ReadAllText(path);
+                all_users = JsonConvert.DeserializeObject(temp);
+            }
+            else
+                return (JsonConvert.SerializeObject(response));
+            foreach (dynamic user in all_users)
+            {
+                if (user.login == user_data[0])
+                {
+                    response.success = true;
+                    user.config = user_data[1];
+                    break;
+                }
+            }
+            string output = JsonConvert.SerializeObject(all_users);
+            TextWriter tw = new StreamWriter(path);
+            tw.WriteLine(output);
+            tw.Close();
             return JsonConvert.SerializeObject(response);
         }
     }
