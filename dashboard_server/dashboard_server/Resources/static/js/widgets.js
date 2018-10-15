@@ -51,6 +51,8 @@ class Widgets {
                     this.objso = response;
                     if (self.name == "crypto")
                         create_crypto(this.objso, tsym);
+                    else if (self.name == "youtube03")
+                        create_youtube03(this.objso, self.widg_param.widg_na);
                 }
             })
         }   
@@ -89,12 +91,12 @@ function create_meteo(resp_jso, widg_n){
    var nom = resp_jso.location.name;
    var text = resp_jso.current.condition.text;
    var icon = resp_jso.current.condition.icon;
-   alert(icon);
    var template = "<div id=\"meteo_widget\">" +
     "<p class=\"title_widget\"><i class=\"fas fa-sun\"></i><br/>Météo</p>" +
     "<div id=\"meteo_data\">" +
     "<div id=\"region_div\">" +
     "<div id=\"region_data\">" +
+    "<p>Pays: " + pays + "</p>" +
     "<p>Ville: " + nom + "</p>" +
     "<p>Région: " + region + "</p>" +
     "<p>Température: " + temp_c + "</p>" +
@@ -105,7 +107,7 @@ function create_meteo(resp_jso, widg_n){
     "<img src=\"" + icon + "\">" +
     "</div>" + "</div>" + "<p></p>" + "</div>" + "</div>";
     document.getElementById("widget_result").innerHTML = template;
-    var widget_field_template = "<li class=\"ui-state-default\">" + widg_n + "<i class=\"fas fa-cog\"></i></li>";
+    var widget_field_template = "<li id=\"field_meteo_template\" class=\"ui-state-default\">" + widg_n + "<i class=\"fas fa-cog\"></i></li>";
     document.getElementById("widg_mete").innerHTML = widget_field_template;
 } 
 
@@ -192,6 +194,16 @@ function create_twitch02(resp_jso, widg_n) {
     document.getElementById("widg_youtube02").innerHTML = widget_field_template;
  }
 
+function create_youtube03(resp_jso, widg_n) {
+    // des trucs
+
+
+
+    document.getElementById("widget_result").innerHTML = template;
+    var widget_field_template = "<li class=\"ui-state-default\">" + widg_n + "<i class=\"fas fa-cog\"></i></li>";
+    document.getElementById("widg_youtube03").innerHTML = widget_field_template;
+}
+
 function obj_meteo(ville_name, timer, widg_n){
     var my_url_for_ip = Get_Path_For_IP();
     var final_ip = my_url_for_ip + "/API/meteo";
@@ -258,6 +270,14 @@ function obj_youtube02(widg_n, ytb_video, timer){
     var source = "vod";
     widg_youtube02 = new Widgets({url: final_ip, widg_param: ytb_video, src: source, widg_na:  widg_n}, "youtube02")
     widg_youtube02.send_request();
+}
+
+function obj_youtube03(widg_n, ytb_video, max_comment, timer) {
+    var my_url_for_ip = Get_Path_For_IP();
+    var final_ip = my_url_for_ip + "/API/YTB/comment";
+    var my_param = "max=" + max_comment + "&vod=" + ytb_video;
+    widg_youtube02 = new Widgets({ url: final_ip, widg_param: my_param, widg_na: widg_n }, "youtube03")
+    widg_youtube02.send_request_crypto();
 }
 
 function Get_Path_For_IP() 

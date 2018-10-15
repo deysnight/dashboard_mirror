@@ -1,5 +1,7 @@
 //delete_cookie("login");
 
+var Dashboard_Data;
+
 function onload_function()
 {
     check_if_cookie();
@@ -215,7 +217,6 @@ document.getElementById('meteo_service').onclick = function(event) {
     document.getElementById('twitch_intel').style.display = "none";
     document.getElementById('crypto_intel').style.display = "none";
     document.getElementById('youtube_intel').style.display = "none";
-    document.getElementById('starcraft_intel').style.display = "none";
 }
 
 document.getElementById('steam_service').onclick = function(event) {
@@ -224,7 +225,6 @@ document.getElementById('steam_service').onclick = function(event) {
     document.getElementById('twitch_intel').style.display = "none";
     document.getElementById('crypto_intel').style.display = "none";
     document.getElementById('youtube_intel').style.display = "none";
-    document.getElementById('starcraft_intel').style.display = "none";
 }
 
 document.getElementById('twitch_service').onclick = function(event) {
@@ -233,7 +233,6 @@ document.getElementById('twitch_service').onclick = function(event) {
     document.getElementById('twitch_intel').style.display = "block";
     document.getElementById('crypto_intel').style.display = "none";
     document.getElementById('youtube_intel').style.display = "none";
-    document.getElementById('starcraft_intel').style.display = "none";
 }
 
 document.getElementById('crypto_service').onclick = function(event) {
@@ -242,7 +241,6 @@ document.getElementById('crypto_service').onclick = function(event) {
     document.getElementById('twitch_intel').style.display = "none";
     document.getElementById('crypto_intel').style.display = "block";
     document.getElementById('youtube_intel').style.display = "none";
-    document.getElementById('starcraft_intel').style.display = "none";
 }
 
 document.getElementById('youtube_service').onclick = function(event) {
@@ -251,16 +249,6 @@ document.getElementById('youtube_service').onclick = function(event) {
     document.getElementById('twitch_intel').style.display = "none";
     document.getElementById('crypto_intel').style.display = "none";
     document.getElementById('youtube_intel').style.display = "block";
-    document.getElementById('starcraft_intel').style.display = "none";
-}
-
-document.getElementById('starcraft_service').onclick = function(event) {
-    document.getElementById('meteo_intel').style.display = "none";
-    document.getElementById('steam_intel').style.display = "none";
-    document.getElementById('twitch_intel').style.display = "none";
-    document.getElementById('crypto_intel').style.display = "none";
-    document.getElementById('youtube_intel').style.display = "none";
-    document.getElementById('starcraft_intel').style.display = "block";
 }
 
 $(function() {
@@ -362,21 +350,12 @@ function show_widg (){
                 '<div class="widget_in_modal">' +
                     '<p class="widget_modal" id="widget_02_youtube" onclick="display_youtube02_modal()">Informations sur une vidéo Youtube</p>' +
                 '</div>' +
-            '</div>'
-        );
-        $("#youtube_widget_modal").html(input);
-    }
-    var checkbox = document.getElementById("starcraft_checkbox");
-    if (checkbox.checked == true) {
-        input = $(
-            '<div id="widget_modal_starcraft_data">' +
-                '<p class="widget_modal_title">Widget StarCraft</p>' +
                 '<div class="widget_in_modal">' +
-                    '<p class="widget_modal" id="widget_starcraft" onclick="display_starcraft_modal()">Informations sur un profil StarCraft</p>' +
+                    '<p class="widget_modal" id="widget_03_youtube" onclick="display_youtube03_modal()">Commentaires sur une vidéos Youtube</p>' +
                 '</div>' +
             '</div>'
         );
-        $("#starcraft_widget_modal").html(input);
+        $("#youtube_widget_modal").html(input);
     }
 }
 
@@ -490,30 +469,15 @@ function display_youtube() {
                 '<div class="widget_in_modal">' +
                     '<p class="widget_modal" id="widget_02_youtube" onclick="display_youtube02_modal()">Informationss sur une vidéo Youtube</p>' +
                 '</div>' +
+                '<div class="widget_in_modal">' +
+                    '<p class="widget_modal" id="widget_03_youtube" onclick="display_youtube03_modal()">Commentaires sur une vidéos Youtube</p>' +
+                '</div>' +
             '</div>'
         );
         $("#youtube_widget_modal").html(input);
     }
     else {
         $("#widget_modal_youtube_data").empty();
-    }
-};
-
-function display_starcraft() {
-    var Checkbox = document.getElementById('starcraft_checkbox')
-    if (Checkbox.checked == false) {
-        input = $(
-            '<div id="widget_modal_starcraft_data">' +
-                '<p class="widget_modal_title">Widget StarCraft</p>' +
-                '<div class="widget_in_modal">' +
-                    '<p class="widget_modal" id="widget_starcraft" onclick="display_starcraft_modal()">Informations sur un profil StarCraft</p>' +
-                '</div>' +
-            '</div>'
-        );
-        $("#starcraft_widget_modal").html(input);
-    }
-    else {
-        $("#widget_modal_starcraft_data").empty();
     }
 };
 
@@ -531,10 +495,31 @@ $('#ServiceButtonValide').click(function() {
         $("#WidgetButton").css("cursor", "default");
         $("#WidgetButton").attr("onclick", "return false;");
     }
+    if ($("#meteo_checkbox").prop('checked') == false) {
+        delete Dashboard_Data['meteo'];
+        $("#meteo_widget").empty();
+        $("#field_meteo_template").empty();
+    }
+    if ($("#steam_checkbox").prop('checked') == false) {
+        delete Dashboard_Data['steam01'];
+        delete Dashboard_Data['steam02'];
+    }
+    if ($("#twitch_checkbox").prop('checked') == false) {
+        delete Dashboard_Data['twitch01'];
+        delete Dashboard_Data['twitch02'];
+    }
+    if ($("#crypto_checkbox").prop('checked') == false) {
+        delete Dashboard_Data['crytp'];
+    }
+    if ($("#youtube_checkbox").prop('checked') == false) {
+        delete Dashboard_Data['youtube01'];
+        delete Dashboard_Data['youtube02'];
+        delete Dashboard_Data['youtube03'];
+    }
+    console.log(Dashboard_Data);
     send_data();
 });
 
-// ONCLICK SUR UN WIDGET ON OUVRE UNE MODAL LIE AU WIDGET ET UNE FOIS LES INFOS REMPLIS ON CREE UN OBJET ET ON AJOUTE LE WIDGET A LA LISTE
 
 function display_meteo_widget_modal()
 {
@@ -804,6 +789,41 @@ $('.CloseConfigYoutubeValidate02').click(function() {
     $("#youtube_video").val("");
     $("#timer_youtube02").val("");
     document.getElementById("ConfigYoutube02").style.display = "none";
+});
+
+function display_youtube03_modal() {
+    modal_widget.style.display = "none";
+    document.getElementById("ConfigYoutube03").style.display = "block";
+}
+
+$('.CloseConfigYoutubeCancel03').click(function () {
+    $("#name_youtube03").val("");
+    $("#youtube_video_03").val("");
+    $("#nb_comment").val("");
+    $("#timer_youtube03").val("");
+    document.getElementById("ConfigYoutube03").style.display = "none";
+});
+
+$('.CloseConfigYoutubeValidate03').click(function () {
+    if ($("#name_youtube03").val() == "" || $("#youtube_video_03").val() == "" || $("#nb_comment").val() == "" || $("#timer_youtube03").val() == "")
+        return false;
+    if ($.isNumeric($("#timer_youtube03").val()) == false || $.isNumeric($("#nb_comment").val()) == false)
+        return false;
+    var widg_n = $("#name_youtube03").val();
+    var ytb_video = $("#youtube_video_03").val();
+    var max_comment = $("#nb_comment").val();
+    var timer = $("#timer_youtube03").val();
+    obj_youtube03(widg_n, ytb_video, max_comment, timer)
+    var newdata = {};
+    newdata['youtube03'] = { "name": widg_n, "ytb_video": ytb_video, "max_comment": max_comment, "timer": timer };
+    $.extend(true, Dashboard_Data, newdata);
+    console.log(Dashboard_Data);
+    send_data();
+    $("#name_youtube03").val("");
+    $("#youtube_video_03").val("");
+    $("#nb_comment").val("");
+    $("#timer_youtube03").val("");
+    document.getElementById("ConfigYoutube03").style.display = "none";
 });
 
 function Get_Path_For_IP()
