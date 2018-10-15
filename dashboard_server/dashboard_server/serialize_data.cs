@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,7 +16,7 @@ namespace WebServer
         public string login { get; set; }
         public string mail { get; set; }
         public string password { get; set; }
-        public string config { get; set; }
+        public dynamic config { get; set; }
     }
 
     class Serialize_data
@@ -120,10 +121,9 @@ namespace WebServer
             user.login = words[0];
             user.mail = words[1];
             user.password = HashPass(words[2]);
-            user.config = "{\"ss\": {\"s01\": false,\"s02\": false,\"s03\": false,\"s04\": false,\"s05\": false,}}";
-
+            dynamic test = JsonConvert.DeserializeObject("{\"ss\": {\"s01\": false,\"s02\": false,\"s03\": false,\"s04\": false,\"s05\": false}}");
+            user.config = test;
             all_users.Add(user);
-
             string output = JsonConvert.SerializeObject(all_users);
             TextWriter tw = new StreamWriter(path);
             tw.WriteLine(output);
