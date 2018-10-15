@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -12,26 +13,20 @@ namespace WebServer
     {
         public static string Default_index(HttpListenerRequest request)
         {
-
-            var response = "<HTML><BODY>TA GEULE PUTAIN.<br>" + DateTime.Now;
-
-            response += "<br><br>KeepAlive: " + request.KeepAlive;
-            response += "<br>Local end point: " + request.LocalEndPoint.ToString();
-            response += "<br>Remote end point: " + request.RemoteEndPoint.ToString();
-            response += "<br>Is local? " + request.IsLocal;
-            response += "<br>HTTP method: " + request.HttpMethod;
-            response += "<br>Protocol version: " + request.ProtocolVersion;
-            response += "<br>Is authenticated: " + request.IsAuthenticated;
-            response += "<br>Is secure: " + request.IsSecureConnection;
-            response += "</BODY></HTML>";
-
-            return string.Format(response);
+            return (Login(request));
         }
 
         public static string About_json(HttpListenerRequest request)
         {
-            var response = "ON A PAS ENCORE FAIT CALMES TOI FDP";
-            return string.Format(response);
+            var projectPath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
+            string filePath = Path.Combine(Path.GetFullPath(@"..\..\"), "Resources");
+            filePath += "\\about.json";
+            dynamic about = JsonConvert.DeserializeObject(File.ReadAllText(filePath));
+            about.client.host = request.RemoteEndPoint.ToString().Split(':')[0];
+            TimeSpan t = DateTime.UtcNow - new DateTime(1970, 1, 1);
+            int secondsSinceEpoch = (int)t.TotalSeconds;
+            about.server.current_time = secondsSinceEpoch;
+            return JsonConvert.SerializeObject(about);
         }
 
         public static string Login(HttpListenerRequest request)

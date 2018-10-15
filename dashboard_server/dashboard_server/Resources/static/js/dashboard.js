@@ -1,49 +1,126 @@
-var json = 
-    {
-        "service": {
-            "service01": true,
-            "service02": true,
-            "service03": true,
-            "service04": true,
-            "service05": true,
-            "service06": true,
-    }
+var Dashboard_Data = {
+    "ss": {
+        "s01": true,
+        "s02": true,
+        "s03": true,
+        "s04": true,
+        "s05": true,
+    },
+}
+
+function send_data()
+{
+    var my_url_for_ip = Get_Path_For_IP();
+    console.log(my_url_for_ip);
+    var final_ip = my_url_for_ip + "/?/set_user_config";
+    var login = getCookie("login");
+    var Json_to_send = JSON.stringify(Dashboard_Data);
+    var Data = login + "$" + Json_to_send;
+    console.log(final_ip);
+    $.ajax(
+        {
+            url: final_ip,
+            type: "post",
+            async: false,
+            data: Data,
+            success: function(response) {
+                console.log(response);
+            }
+        }
+    )
+}
+
+function ask_data()
+{
+    var my_url_for_ip = Get_Path_For_IP();
+    var final_ip = my_url_for_ip + "/?/get_user_config";
+    var Data = getCookie("login");
+    $.ajax(
+        {
+            url: final_ip,
+            type: "post",
+            async: false,
+            contentType:"application/json; charset=utf-8",
+            dataType: "json",
+            data: Data,
+            success: function(response) {
+                Dashboard_Data = response;
+            }
+        }
+    )
 }
 
 function read_json()
 {
-    if (json.service.service01 == true) {
+    if (Dashboard_Data.ss.s01 == true) {
         $("#meteo_checkbox").attr("checked", "checked");
     }
     else
         $("#meteo_checkbox").removeAttr("checked");
-    if (json.service.service02 == true) {
+    if (Dashboard_Data.ss.s02 == true) {
         $("#steam_checkbox").attr("checked", "checked");
     }
     else
         $("#steam_checkbox").removeAttr("checked");
-    if (json.service.service03 == true) {
+    if (Dashboard_Data.ss.s03 == true) {
         $("#twitch_checkbox").attr("checked", "checked");
     }
     else
-        $("#twitch_checkbox").removeAttr("checked");    
-    if (json.service.service04 == true) {
+        $("#twitch_checkbox").removeAttr("checked");
+    if (Dashboard_Data.ss.s04 == true) {
         $("#crypto_checkbox").attr("checked", "checked");
     }
     else
         $("#crypto_checkbox").removeAttr("checked");
-    if (json.service.service05 == true) {
+    if (Dashboard_Data.ss.s05 == true) {
         $("#youtube_checkbox").attr("checked", "checked");
     }
     else
         $("#youtube_checkbox").removeAttr("checked");
-    if (json.service.service06 == true) {
-        $("#starcraft_checkbox").attr("checked", "checked");
-    }
-    else
-        $("#starcraft_checkbox").removeAttr("checked");
     // boucle pour les widgets
 }
+
+$("#checkmark_meteo").click(function () {
+    if ($("#meteo_checkbox").prop('checked') == true) {
+        Dashboard_Data.ss.s01 = false;
+    }
+    else if ($("#meteo_checkbox").prop('checked') == false) {
+        Dashboard_Data.ss.s01 = true;
+    }
+});
+$("#checkmark_steam").click(function () {
+    if ($("#steam_checkbox").prop('checked') == true) {
+        Dashboard_Data.ss.s02 = false;
+    }
+    else if ($("#steam_checkbox").prop('checked') == false) {
+        Dashboard_Data.ss.s02 = true;
+    }
+});
+$("#checkmark_twitch").click(function () {
+    if ($("#twitch_checkbox").prop('checked') == true) {
+        Dashboard_Data.ss.s03 = false;
+    }
+    else if ($("#twitch_checkbox").prop('checked') == false) {
+        Dashboard_Data.ss.s03 = true;
+    }
+});
+$("#checkmark_crypto").click(function () {
+    if ($("#crypto_checkbox").prop('checked') == true) {
+        Dashboard_Data.ss.s04 = false;
+    }
+    else if ($("#crypo_checkbox").prop('checked') == false) {
+        Dashboard_Data.ss.s04 = true;
+    }
+});
+$("#checkmark_youtube").click(function () {
+    if ($("#youtube_checkbox").prop('checked') == true) {
+        Dashboard_Data.ss.s05 = false;
+    }
+    else if ($("#youtube_checkbox").prop('checked') == false) {
+        Dashboard_Data.ss.s05 = true;
+    }
+});
+
 
 var modal_service = document.getElementById('ServiceModal');
 
@@ -75,7 +152,7 @@ closebutton_widget.onclick = function() {
     modal_widget.style.display = "none";
 };
 
-function trigger_widget_modal() 
+function trigger_widget_modal()
 {
     modal_widget.style.display = "block";
 }
@@ -207,7 +284,7 @@ function getCookie(name) {
         }
     }
     return unescape(cookie.substring(begin + prefix.length, end));
-  } 
+  }
 
 function check_if_cookie()
 {
@@ -313,12 +390,13 @@ function check_if_something_checked()
         $("#WidgetButton").css("border-color", "grey");
         $("#WidgetButton").css("cursor", "default");
         $("#WidgetButton").attr("onclick", "return false;");
-    }  
+    }
 }
 
 function onload_function()
 {
     check_if_cookie();
+    ask_data();
     read_json();
     show_widg();
     check_if_something_checked();
@@ -460,42 +538,7 @@ $('#ServiceButtonValide').click(function() {
         $("#WidgetButton").css("cursor", "default");
         $("#WidgetButton").attr("onclick", "return false;");
     }
-    if ($('#meteo_checkbox').is(':checked')) {
-        json.service.service01 = true;
-    }
-    else {
-        json.service.service01 = false;
-    }
-    if ($('#steam_checkbox').is(':checked')) {
-        json.service.service02 = true;
-    }
-    else {
-        json.service.service02 = false;
-    }
-    if ($('#twitch_checkbox').is(':checked')) {
-        json.service.service03 = true;
-    }
-    else {
-        json.service.service03 = false;
-    }
-    if ($('#crypto_checkbox').is(':checked')) {
-        json.service.service04 = true;
-    }
-    else {
-        json.service.service04 = false;
-    }
-    if ($('#youtube_checkbox').is(':checked')) {
-        json.service.service05 = true;
-    }
-    else {
-        json.service.service05 = false;
-    }
-    if ($('#starcraft_checkbox').is(':checked')) {
-        json.service.service06 = true;
-    }
-    else {
-        json.service.service06 = false;
-    }
+    send_data();
 });
 
 // ONCLICK SUR UN WIDGET ON OUVRE UNE MODAL LIE AU WIDGET ET UNE FOIS LES INFOS REMPLIS ON CREE UN OBJET ET ON AJOUTE LE WIDGET A LA LISTE
@@ -514,18 +557,23 @@ $('.CloseConfigMeteoModalCancel').click(function() {
 });
 
 $('.CloseConfigMeteoModalValidate').click(function() {
+    if ($("#name_meteo").val() == "" || $("#ville_meteo").val() == "" || $("#timer_meteo").val() == "")
+        return false;
+    if ($.isNumeric($("#timer_meteo").val()) == false)
+        return false;
     var widg_n = $("#name_meteo").val();
     var ville_n = $("#ville_meteo").val();
     var timer = $("#timer_meteo").val();
     obj_meteo(ville_n, timer, widg_n);
+    var newdata = {};
+    newdata['meteo'] = {"name": widg_n, "town": ville_n, "timer": timer};
+    $.extend(true, Dashboard_Data, newdata);
+    send_data();
     $("#name_meteo").val("");
     $("#ville_meteo").val("");
     $("#timer_meteo").val("");
     document.getElementById("ConfigMeteo").style.display = "none";
 });
-
-
-
 
 function display_steam_widget01_modal()
 {
@@ -541,10 +589,19 @@ $('.CloseConfigSteam01Cancel').click(function() {
 });
 
 $('.CloseConfigSteam01Validate').click(function() {
+    if ($("#steam_id01").val() == "" || $("#name_steam01").val() == "" || $("#timer_steam01").val() == "")
+        return false;
+    if ($.isNumeric($("#timer_steam01").val()) == false)
+        return false;
     var steam_id = $("#steam_id01").val();
     var widg_n = $("#name_steam01").val();
     var timer = $("#timer_steam01").val();
     obj_steam01(steam_id, widg_n, timer)
+    var newdata = {};
+    newdata['steam01'] = {"name": widg_n, "steam_id": steam_id, "timer": timer};
+    $.extend(true, Dashboard_Data, newdata);
+    console.log(Dashboard_Data);
+    send_data();
     $("#name_steam01").val("");
     $("#steam_id01").val("");
     $("#timer_steam01").val("");
@@ -567,10 +624,19 @@ $('.CloseConfigSteam02Cancel').click(function() {
 });
 
 $('.CloseConfigSteam02Validate').click(function() {
+    if ($("#steam_id02").val() == "" || $("#name_steam02").val() == "" || $("#timer_steam02").val() == "")
+        return false;
+    if ($.isNumeric($("#timer_steam02").val()) == false)
+        return false;
     var steam_id = $("#steam_id02").val();
     var widg_n = $("#name_steam02").val();
     var timer = $("#timer_steam02").val();
     obj_steam02(steam_id, widg_n, timer)
+    var newdata = {};
+    newdata['steam02'] = {"name": widg_n, "steam_id": steam_id, "timer": timer};
+    $.extend(true, Dashboard_Data, newdata);
+    console.log(Dashboard_Data);
+    send_data();
     $("#name_steam02").val("");
     $("#steam_id02").val("");
     $("#timer_steam02").val("");
@@ -593,10 +659,19 @@ $('.CloseConfigTwitch01Cancel').click(function() {
 });
 
 $('.CloseConfigTwitch01Validate').click(function() {
+    if ($("#name_twitch01").val() == "" || $("#twitch_streamer").val() == "" || $("#timer_twitch01").val() == "")
+        return false;
+    if ($.isNumeric($("#timer_twitch01").val()) == false)
+        return false;
     var widg_n = $("#name_twitch01").val();
     var twitch_streamer = $("#twitch_streamer").val();
     var timer = $("#timer_twitch01").val();
     obj_twitch01(widg_n, twitch_streamer, timer);
+    var newdata = {};
+    newdata['twitch01'] = {"name": widg_n, "twitch_streamer": twitch_streamer, "timer": timer};
+    $.extend(true, Dashboard_Data, newdata);
+    console.log(Dashboard_Data);
+    send_data();
     $("#name_twitch01").val("");
     $("#twitch_streamer").val("");
     $("#timer_twitch01").val("");
@@ -617,10 +692,19 @@ $('.CloseConfigTwitch02Cancel').click(function() {
 });
 
 $('.CloseConfigTwitch02Validate').click(function() {
+    if ($("#name_twitch02").val() == "" || $("#twitch_game").val() == "" || $("#timer_twitch02").val() == "")
+        return false;
+    if ($.isNumeric($("#timer_twitch02").val()) == false)
+        return false;
     var widg_n = $("#name_twitch02").val();
     var twitch_game = $("#twitch_game").val();
     var timer = $("#timer_twitch02").val();
     obj_twitch02(widg_n, twitch_game, timer)
+    var newdata = {};
+    newdata['twitch02'] = {"name": widg_n, "twitch_game": twitch_game, "timer": timer};
+    $.extend(true, Dashboard_Data, newdata);
+    console.log(Dashboard_Data);
+    send_data();
     $("#name_twitch02").val("");
     $("#twitch_game").val("");
     $("#timer_twitch02").val("");
@@ -642,11 +726,20 @@ $('.CloseConfigCryptoCancel').click(function() {
 });
 
 $('.CloseConfigCryptoValidate').click(function() {
+    if ($("#name_crypto").val() == "" || $("#crypto_initial").val() == "" || $("#crypto_final").val() == "" || $("#timer_crypto").val() == "")
+        return false;
+    if ($.isNumeric($("#timer_crypto").val()) == false)
+        return false;
     var widg_n = $("#name_crypto").val();
     var fsym = $("#crypto_initial").val().toUpperCase();
     var tsym = $("#crypto_final").val().toUpperCase();
     var timer = $("#timer_crypto").val();
     obj_crypto(widg_n, fsym, tsym, timer)
+    var newdata = {};
+    newdata['crypto'] = {"name": widg_n, "fsym": fsym, "tsym": tsym, "timer": timer};
+    $.extend(true, Dashboard_Data, newdata);
+    console.log(Dashboard_Data);
+    send_data();
     $("#name_crypto").val("");
     $("#crypto_initial").val("");
     $("#crypto_final").val("");
@@ -668,10 +761,19 @@ $('.CloseConfigYoutubeCancel01').click(function() {
 });
 
 $('.CloseConfigYoutubeValidate01').click(function() {
+    if ($("#name_youtube01").val() == "" || $("#youtuber").val() == "" || $("#timer_youtube01").val() == "")
+        return false;
+    if ($.isNumeric($("#timer_youtube01").val()) == false)
+        return false;
     var widg_n = $("#name_youtube01").val();
     var ytb_channel = $("#youtuber").val();
     var timer = $("#timer_youtube01").val();
     obj_youtube01(widg_n, ytb_channel, timer)
+    var newdata = {};
+    newdata['youtube01'] = {"name": widg_n, "ytb_channel": ytb_channel, "timer": timer};
+    $.extend(true, Dashboard_Data, newdata);
+    console.log(Dashboard_Data);
+    send_data();
     $("#name_youtube01").val("");
     $("#youtuber").val("");
     $("#timer_youtube01").val("");
@@ -692,35 +794,32 @@ $('.CloseConfigYoutubeCancel02').click(function() {
 });
 
 $('.CloseConfigYoutubeValidate02').click(function() {
+    if ($("#name_youtube02").val() == "" || $("#youtube_video").val() == "" || $("#timer_youtube02").val() == "")
+        return false;
+    if ($.isNumeric($("#timer_youtube02").val()) == false)
+        return false;
     var widg_n = $("#name_youtube02").val();
     var ytb_video = $("#youtube_video").val();
     var timer = $("#timer_youtube02").val();
     obj_youtube02(widg_n, ytb_video, timer)
+    var newdata = {};
+    newdata['youtube02'] = {"name": widg_n, "ytb_video": ytb_video, "timer": timer};
+    $.extend(true, Dashboard_Data, newdata);
+    console.log(Dashboard_Data);
+    send_data();
     $("#name_youtube02").val("");
     $("#youtube_video").val("");
     $("#timer_youtube02").val("");
     document.getElementById("ConfigYoutube02").style.display = "none";
 });
 
-function display_starcraft_modal()
+function Get_Path_For_IP()
 {
-    modal_widget.style.display = "none";
-    document.getElementById("ConfigStarcraft").style.display = "block";
+    var my_current_url = window.location.href;
+
+    var words = my_current_url.split(':');
+    var words_final = words[1].split('/');
+
+    var final_ip = "http://" + words_final[2] + ":8080";
+    return final_ip;
 }
-
-$('.CloseConfigYoutubeCancel02').click(function() {
-    $("#name_starcraft").val("");
-    $("#starcraft_id").val("");
-    $("#starcraft_username").val("");
-    $("#timer_starcraft").val("");
-    document.getElementById("ConfigStarcraft").style.display = "none";
-});
-
-$('.CloseConfigYoutubeValidate02').click(function() {
-    $("#name_starcraft").val("");
-    $("#starcraft_id").val("");
-    $("#starcraft_username").val("");
-    $("#timer_starcraft").val("");
-    document.getElementById("ConfigStarcraft").style.display = "none";
-});
-
