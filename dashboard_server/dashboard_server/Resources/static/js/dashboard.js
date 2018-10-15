@@ -1,25 +1,24 @@
-var Dashboard_Data = {
-    "ss": {
-        "s01": true,
-        "s02": true,
-        "s03": true,
-        "s04": true,
-        "s05": true,
-    },
-    "wid": {
-        
-    }
+//delete_cookie("login");
+
+function onload_function()
+{
+    check_if_cookie();
+    ask_data();
+    read_json();
+    show_widg();
+    check_if_something_checked();
 }
+
+window.onload = onload_function()
 
 function send_data()
 {
     var my_url_for_ip = Get_Path_For_IP();
-    console.log(my_url_for_ip);
-    var final_ip = my_url_for_ip + "/?/user_config";
+    var final_ip = my_url_for_ip + "/?/set_user_config";
     var login = getCookie("login");
     var Json_to_send = JSON.stringify(Dashboard_Data);
-    var Data = login + "?" + Json_to_send;
-    console.log(final_ip);
+    var Data = login + "$" + Json_to_send;
+    console.log(Json_to_send);
     $.ajax(
         {
             url: final_ip,
@@ -36,18 +35,20 @@ function send_data()
 function ask_data()
 {
     var my_url_for_ip = Get_Path_For_IP();
-    var final_ip = my_url_for_ip + "/?/get_config";
+    var final_ip = my_url_for_ip + "/?/get_user_config";
     var Data = getCookie("login");
     $.ajax(
         {
             url: final_ip,
             type: "post",
             async: false,
-            contentType:"application/json; charset=utf-8",
-            dataType: "json",
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
             data: Data,
             success: function(response) {
                 Dashboard_Data = response;
+                Dashboard_Data = JSON.parse(Dashboard_Data.config);
+                console.log(Dashboard_Data);
             }
         }
     )
@@ -55,27 +56,27 @@ function ask_data()
 
 function read_json()
 {
-    if (Dashboard_Data.ss.s01 == true) {
+    if (Dashboard_Data.config.ss.s01 == true) {
         $("#meteo_checkbox").attr("checked", "checked");
     }
     else
         $("#meteo_checkbox").removeAttr("checked");
-    if (Dashboard_Data.ss.s02 == true) {
+    if (Dashboard_Data.config.ss.s02 == true) {
         $("#steam_checkbox").attr("checked", "checked");
     }
     else
         $("#steam_checkbox").removeAttr("checked");
-    if (Dashboard_Data.ss.s03 == true) {
+    if (Dashboard_Data.config.ss.s03 == true) {
         $("#twitch_checkbox").attr("checked", "checked");
     }
     else
         $("#twitch_checkbox").removeAttr("checked");
-    if (Dashboard_Data.ss.s04 == true) {
+    if (Dashboard_Data.config.ss.s04 == true) {
         $("#crypto_checkbox").attr("checked", "checked");
     }
     else
         $("#crypto_checkbox").removeAttr("checked");
-    if (Dashboard_Data.ss.s05 == true) {
+    if (Dashboard_Data.config.ss.s05 == true) {
         $("#youtube_checkbox").attr("checked", "checked");
     }
     else
@@ -85,42 +86,42 @@ function read_json()
 
 $("#checkmark_meteo").click(function () {
     if ($("#meteo_checkbox").prop('checked') == true) {
-        Dashboard_Data.ss.s01 = false;
+        Dashboard_Data.config.ss.s01 = false;
     }
     else if ($("#meteo_checkbox").prop('checked') == false) {
-        Dashboard_Data.ss.s01 = true;
+        Dashboard_Data.config.ss.s01 = true;
     }
 });
 $("#checkmark_steam").click(function () {
     if ($("#steam_checkbox").prop('checked') == true) {
-        Dashboard_Data.ss.s02 = false;
+        Dashboard_Data.config.ss.s02 = false;
     }
     else if ($("#steam_checkbox").prop('checked') == false) {
-        Dashboard_Data.ss.s02 = true;
+        Dashboard_Data.config.ss.s02 = true;
     }
 });
 $("#checkmark_twitch").click(function () {
     if ($("#twitch_checkbox").prop('checked') == true) {
-        Dashboard_Data.ss.s03 = false;
+        Dashboard_Data.config.ss.s03 = false;
     }
     else if ($("#twitch_checkbox").prop('checked') == false) {
-        Dashboard_Data.ss.s03 = true;
+        Dashboard_Data.config.ss.s03 = true;
     }
 });
 $("#checkmark_crypto").click(function () {
     if ($("#crypto_checkbox").prop('checked') == true) {
-        Dashboard_Data.ss.s04 = false;
+        Dashboard_Data.config.ss.s04 = false;
     }
-    else if ($("#crypo_checkbox").prop('checked') == false) {
-        Dashboard_Data.ss.s04 = true;
+    else if ($("#crypto_checkbox").prop('checked') == false) {
+        Dashboard_Data.config.ss.s04 = true;
     }
 });
 $("#checkmark_youtube").click(function () {
     if ($("#youtube_checkbox").prop('checked') == true) {
-        Dashboard_Data.ss.s05 = false;
+        Dashboard_Data.config.ss.s05 = false;
     }
     else if ($("#youtube_checkbox").prop('checked') == false) {
-        Dashboard_Data.ss.s05 = true;
+        Dashboard_Data.config.ss.s05 = true;
     }
 });
 
@@ -396,17 +397,6 @@ function check_if_something_checked()
     }
 }
 
-function onload_function()
-{
-    check_if_cookie();
-    ask_data();
-    read_json();
-    show_widg();
-    check_if_something_checked();
-}
-
-window.onload = onload_function()
-
 var myCookie = getCookie("login");
 input = $('<ul><a class="pseudo">' + myCookie + '</a></ul>' +
 '<ul><a class="header_text_menu" href="#" onclick="delete_cookie(\'login\')">Se déconnecter</a></ul>');
@@ -568,20 +558,15 @@ $('.CloseConfigMeteoModalValidate').click(function() {
     var ville_n = $("#ville_meteo").val();
     var timer = $("#timer_meteo").val();
     obj_meteo(ville_n, timer, widg_n);
-
-    console.log(Dashboard_Data);
+    var newdata = {};
+    newdata['meteo'] = {"name": widg_n, "town": ville_n, "timer": timer};
+    $.extend(true, Dashboard_Data, newdata);
+    send_data();
     $("#name_meteo").val("");
     $("#ville_meteo").val("");
     $("#timer_meteo").val("");
     document.getElementById("ConfigMeteo").style.display = "none";
 });
-
-// type: meteo
-// id:
-// name:
-// town:
-// timer:
-
 
 function display_steam_widget01_modal()
 {
@@ -605,6 +590,11 @@ $('.CloseConfigSteam01Validate').click(function() {
     var widg_n = $("#name_steam01").val();
     var timer = $("#timer_steam01").val();
     obj_steam01(steam_id, widg_n, timer)
+    var newdata = {};
+    newdata['steam01'] = {"name": widg_n, "steam_id": steam_id, "timer": timer};
+    $.extend(true, Dashboard_Data, newdata);
+    console.log(Dashboard_Data);
+    send_data();
     $("#name_steam01").val("");
     $("#steam_id01").val("");
     $("#timer_steam01").val("");
@@ -635,6 +625,11 @@ $('.CloseConfigSteam02Validate').click(function() {
     var widg_n = $("#name_steam02").val();
     var timer = $("#timer_steam02").val();
     obj_steam02(steam_id, widg_n, timer)
+    var newdata = {};
+    newdata['steam02'] = {"name": widg_n, "steam_id": steam_id, "timer": timer};
+    $.extend(true, Dashboard_Data, newdata);
+    console.log(Dashboard_Data);
+    send_data();
     $("#name_steam02").val("");
     $("#steam_id02").val("");
     $("#timer_steam02").val("");
@@ -665,6 +660,11 @@ $('.CloseConfigTwitch01Validate').click(function() {
     var twitch_streamer = $("#twitch_streamer").val();
     var timer = $("#timer_twitch01").val();
     obj_twitch01(widg_n, twitch_streamer, timer);
+    var newdata = {};
+    newdata['twitch01'] = {"name": widg_n, "twitch_streamer": twitch_streamer, "timer": timer};
+    $.extend(true, Dashboard_Data, newdata);
+    console.log(Dashboard_Data);
+    send_data();
     $("#name_twitch01").val("");
     $("#twitch_streamer").val("");
     $("#timer_twitch01").val("");
@@ -693,6 +693,11 @@ $('.CloseConfigTwitch02Validate').click(function() {
     var twitch_game = $("#twitch_game").val();
     var timer = $("#timer_twitch02").val();
     obj_twitch02(widg_n, twitch_game, timer)
+    var newdata = {};
+    newdata['twitch02'] = {"name": widg_n, "twitch_game": twitch_game, "timer": timer};
+    $.extend(true, Dashboard_Data, newdata);
+    console.log(Dashboard_Data);
+    send_data();
     $("#name_twitch02").val("");
     $("#twitch_game").val("");
     $("#timer_twitch02").val("");
@@ -723,6 +728,11 @@ $('.CloseConfigCryptoValidate').click(function() {
     var tsym = $("#crypto_final").val().toUpperCase();
     var timer = $("#timer_crypto").val();
     obj_crypto(widg_n, fsym, tsym, timer)
+    var newdata = {};
+    newdata['crypto'] = {"name": widg_n, "fsym": fsym, "tsym": tsym, "timer": timer};
+    $.extend(true, Dashboard_Data, newdata);
+    console.log(Dashboard_Data);
+    send_data();
     $("#name_crypto").val("");
     $("#crypto_initial").val("");
     $("#crypto_final").val("");
@@ -752,6 +762,11 @@ $('.CloseConfigYoutubeValidate01').click(function() {
     var ytb_channel = $("#youtuber").val();
     var timer = $("#timer_youtube01").val();
     obj_youtube01(widg_n, ytb_channel, timer)
+    var newdata = {};
+    newdata['youtube01'] = {"name": widg_n, "ytb_channel": ytb_channel, "timer": timer};
+    $.extend(true, Dashboard_Data, newdata);
+    console.log(Dashboard_Data);
+    send_data();
     $("#name_youtube01").val("");
     $("#youtuber").val("");
     $("#timer_youtube01").val("");
@@ -780,6 +795,11 @@ $('.CloseConfigYoutubeValidate02').click(function() {
     var ytb_video = $("#youtube_video").val();
     var timer = $("#timer_youtube02").val();
     obj_youtube02(widg_n, ytb_video, timer)
+    var newdata = {};
+    newdata['youtube02'] = {"name": widg_n, "ytb_video": ytb_video, "timer": timer};
+    $.extend(true, Dashboard_Data, newdata);
+    console.log(Dashboard_Data);
+    send_data();
     $("#name_youtube02").val("");
     $("#youtube_video").val("");
     $("#timer_youtube02").val("");

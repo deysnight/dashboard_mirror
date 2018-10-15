@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,7 +16,7 @@ namespace WebServer
         public string login { get; set; }
         public string mail { get; set; }
         public string password { get; set; }
-        public string config { get; set; }
+        public dynamic config { get; set; }
     }
 
     class Serialize_data
@@ -120,10 +121,9 @@ namespace WebServer
             user.login = words[0];
             user.mail = words[1];
             user.password = HashPass(words[2]);
-            user.config = "";
-
+            dynamic test = JsonConvert.DeserializeObject("{\"ss\": {\"s01\": false,\"s02\": false,\"s03\": false,\"s04\": false,\"s05\": false}}");
+            user.config = test;
             all_users.Add(user);
-
             string output = JsonConvert.SerializeObject(all_users);
             TextWriter tw = new StreamWriter(path);
             tw.WriteLine(output);
@@ -139,11 +139,6 @@ namespace WebServer
             StreamReader reader = new StreamReader(body, encoding);
             string temp_user = reader.ReadToEnd();
 
-            Console.Write(temp_user);
-
-
-
-
             dynamic response = JsonConvert.DeserializeObject("{\"exist\": false}");
             string path = Directory.GetCurrentDirectory() + "\\users.json";
             dynamic all_users;
@@ -154,7 +149,6 @@ namespace WebServer
             }
             else
                 return (JsonConvert.SerializeObject(response));
-
             foreach (dynamic user in all_users)
             {
                 if (user.login == temp_user)
@@ -164,8 +158,39 @@ namespace WebServer
                     break;
                 }
             }
+            return JsonConvert.SerializeObject(response);
+        }
 
-            Console.Write(response);
+        public static string Set_User_Config(HttpListenerRequest request)
+        {
+            Stream body = request.InputStream;
+            Encoding encoding = request.ContentEncoding;
+            StreamReader reader = new StreamReader(body, encoding);
+            string[] user_data = reader.ReadToEnd().Split('$');
+
+            dynamic response = JsonConvert.DeserializeObject("{\"success\": false}");
+            string path = Directory.GetCurrentDirectory() + "\\users.json";
+            dynamic all_users;
+            if (File.Exists(path))
+            {
+                string temp = File.ReadAllText(path);
+                all_users = JsonConvert.DeserializeObject(temp);
+            }
+            else
+                return (JsonConvert.SerializeObject(response));
+            foreach (dynamic user in all_users)
+            {
+                if (user.login == user_data[0])
+                {
+                    response.success = true;
+                    user.config = user_data[1];
+                    break;
+                }
+            }
+            string output = JsonConvert.SerializeObject(all_users);
+            TextWriter tw = new StreamWriter(path);
+            tw.WriteLine(output);
+            tw.Close();
             return JsonConvert.SerializeObject(response);
         }
     }

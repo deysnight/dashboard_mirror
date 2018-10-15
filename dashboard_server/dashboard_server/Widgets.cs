@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,7 @@ namespace WebServer
         public static string ytb_getpic_api = "https://www.googleapis.com/youtube/v3/channels?part=snippet&id={0}&fields=items%2Fsnippet%2Fthumbnails&key=AIzaSyBdZCKH5Ol54YuvVU5WyyQY4Wi00mlY7y0";
         public static string ytb_getvod_api = "https://www.googleapis.com/youtube/v3/search/?key=AIzaSyBdZCKH5Ol54YuvVU5WyyQY4Wi00mlY7y0&part=snippet&q={0}";
         public static string ytb_getview_api = "https://www.googleapis.com/youtube/v3/videos?part=statistics&id={0}&key=AIzaSyBdZCKH5Ol54YuvVU5WyyQY4Wi00mlY7y0";
+        public static string ytb_getcom_api = "https://www.googleapis.com/youtube/v3/commentThreads?key=AIzaSyBdZCKH5Ol54YuvVU5WyyQY4Wi00mlY7y0&textFormat=plainText&part=snippet&videoId={0}&maxResults={1}";
         public static string twitch_streamer_api = "https://api.twitch.tv/kraken/streams/{0}";
         public static string twitch_game_api = "https://api.twitch.tv/kraken/streams/summary?game={0}";
         public static string steam_gamename_api = "https://api.steampowered.com/ISteamApps/GetAppList/v2/";
@@ -102,6 +104,29 @@ namespace WebServer
             response.likeCount = json.items[0].statistics.likeCount;
             response.dislikeCount = json.items[0].statistics.dislikeCount;
             response.commentCount = json.items[0].statistics.commentCount;
+            return (JsonConvert.SerializeObject(response));
+        }
+
+        public static async Task<string> YTB_commentAsync(HttpListenerRequest request)
+        {
+            //http://10.18.207.77:8080/API/YTB/max=10&vod=https://www.youtube.com/watch?v=20_KIKlYdEo
+            string[] tmp = request.RawUrl.Split(new Char[] { '=', '&'});
+            string query = string.Format(ytb_getcom_api, tmp[4], tmp[1]);
+
+            var uri = new Uri(query);
+            var hc = new HttpClient();
+            var result = await hc.GetStringAsync(uri);
+            dynamic json = JsonConvert.DeserializeObject(result);
+            dynamic response = JsonConvert.DeserializeObject("{" + "\"videoID\"" + ": \"" + tmp[4] + "\", \"comments\" : []}");
+            foreach (dynamic element in json.items)
+            {
+                dynamic new_com = new JObject();
+                new_com.authorDisplayName = element.snippet.topLevelComment.snippet.authorDisplayName;
+                new_com.authorProfileImageUrl = element.snippet.topLevelComment.snippet.authorProfileImageUrl;
+                new_com.textDisplay = element.snippet.topLevelComment.snippet.textDisplay;
+                JArray item = (JArray)response.comments;
+                item.Add(new_com);
+            }            
             return (JsonConvert.SerializeObject(response));
         }
 
