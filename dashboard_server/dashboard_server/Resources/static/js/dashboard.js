@@ -893,6 +893,7 @@ $('.CloseConfigYoutubeValidate03').click(function () {
     document.getElementById("ConfigYoutube03").style.display = "none";
 });
 
+
 function Get_Path_For_IP()
 {
     var my_current_url = window.location.href;
@@ -903,3 +904,373 @@ function Get_Path_For_IP()
     var final_ip = "http://" + words_final[2] + ":8080";
     return final_ip;
 }
+
+
+function display_meteo_widget_reconfig_modal()
+{
+    document.getElementById("reconfig_meteo").style.display = "block";
+}
+
+$('.CloseReconfigMeteoModalCancel').click(function() {
+    $("#reconfig_name_meteo").val("");
+    $("#reconfig_ville_meteo").val("");
+    $("#reconfig_timer_meteo").val("");
+    document.getElementById("reconfig_meteo").style.display = "none";
+});
+
+$('.CloseReconfigMeteoModalValidate').click(function() {
+    if ($("#reconfig_name_meteo").val() == "" || $("#reconfig_ville_meteo").val() == "" || $("#reconfig_timer_meteo").val() == "")
+        return false;
+    if ($.isNumeric($("#reconfig_timer_meteo").val()) == false)
+        return false;
+    var widg_n = $("#reconfig_name_meteo").val();
+    var ville_n = $("#reconfig_ville_meteo").val();
+    var timer = $("#reconfig_timer_meteo").val();
+    obj_meteo(ville_n, timer, widg_n);
+    var newdata = {};
+    newdata['meteo'] = {"name": widg_n, "town": ville_n, "timer": timer};
+    $.extend(true, Dashboard_Data, newdata);
+    send_data();
+    $("#reconfig_name_meteo").val("");
+    $("#reconfig_ville_meteo").val("");
+    $("#reconfig_timer_meteo").val("");
+    document.getElementById("reconfig_meteo").style.display = "none";
+});
+
+$('.CloseReconfigMeteoModalDelete').click(function() {
+    // remove l'objet de la page + du json
+    $("#reconfig_name_meteo").val("");
+    $("#reconfig_ville_meteo").val("");
+    $("#reconfig_timer_meteo").val("");
+    document.getElementById("reconfig_meteo").style.display = "none";
+});
+
+function display_steam_widget01_reconfig_modal()
+{
+    document.getElementById("reconfig_steam01").style.display = "block";
+}
+
+$('.CloseReconfigSteam01Cancel').click(function() {
+    $("#reconfig_name_steam01").val("");
+    $("#reconfig_steam_id01").val("");
+    $("#reconfig_timer_steam01").val("");
+    document.getElementById("reconfig_steam01").style.display = "none";
+});
+
+$('.CloseReconfigSteam01Validate').click(function() {
+    if ($("#reconfig_steam_id01").val() == "" || $("#reconfig_name_steam01").val() == "" || $("#reconfig_timer_steam01").val() == "")
+        return false;
+    if ($.isNumeric($("#reconfig_timer_steam01").val()) == false)
+        return false;
+    var steam_id = $("#reconfig_steam_id01").val();
+    var widg_n = $("#reconfig_name_steam01").val();
+    var timer = $("#reconfig_timer_steam01").val();
+    obj_steam01(steam_id, widg_n, timer)
+    var newdata = {};
+    newdata['steam01'] = {"name": widg_n, "steam_id": steam_id, "timer": timer};
+    $.extend(true, Dashboard_Data, newdata);
+    console.log(Dashboard_Data);
+    send_data();
+    $("#reconfig_name_steam01").val("");
+    $("#reconfig_steam_id01").val("");
+    $("#reconfig_timer_steam01").val("");
+    document.getElementById("reconfig_steam01").style.display = "none";
+});
+
+$('.CloseReconfigSteam01Delete').click(function() {
+    // remove l'objet de la page + du json
+    $("#reconfig_name_meteo").val("");
+    $("#reconfig_ville_meteo").val("");
+    $("#reconfig_timer_meteo").val("");
+    document.getElementById("reconfig_meteo").style.display = "none";
+});
+
+
+
+function display_steam_widget02_reconfig_modal()
+{
+    document.getElementById("reconfig_steam02").style.display = "block";
+}
+
+$('.CloseReconfigSteam02Cancel').click(function() {
+    $("#reconfig_name_steam02").val("");
+    $("#reconfig_steam_id02").val("");
+    $("#reconfig_timer_steam02").val("");
+    document.getElementById("reconfig_steam02").style.display = "none";
+});
+
+$('.CloseReconfigSteam02Validate').click(function() {
+    if ($("#reconfig_steam_id02").val() == "" || $("#reconfig_name_steam02").val() == "" || $("#reconfig_timer_steam02").val() == "")
+        return false;
+    if ($.isNumeric($("#reconfig_timer_steam02").val()) == false)
+        return false;
+    var steam_id = $("#reconfig_steam_id02").val();
+    var widg_n = $("#reconfig_name_steam02").val();
+    var timer = $("#reconfig_timer_steam02").val();
+    obj_steam01(steam_id, widg_n, timer)
+    var newdata = {};
+    newdata['steam02'] = {"name": widg_n, "steam_id": steam_id, "timer": timer};
+    $.extend(true, Dashboard_Data, newdata);
+    console.log(Dashboard_Data);
+    send_data();
+    $("#reconfig_name_steam02").val("");
+    $("#reconfig_steam_id02").val("");
+    $("#reconfig_timer_steam02").val("");
+    document.getElementById("reconfig_steam02").style.display = "none";
+});
+
+$('.CloseReconfigSteam02Delete').click(function() {
+    // remove l'objet de la page + du json
+    $("#reconfig_steam_id02").val("");
+    $("#reconfig_name_steam02").val("");
+    $("#reconfig_timer_steam02").val("");
+    document.getElementById("reconfig_steam02").style.display = "none";
+});
+
+
+function display_twitch_widget01_reconfig_modal()
+{
+    document.getElementById("reconfig_twitch01").style.display = "block";
+}
+
+$('.CloseReconfigTwitch01Cancel ').click(function() {
+    $("#reconfig_name_twitch01").val("");
+    $("#reconfig_twitch_streamer").val("");
+    $("#reconfig_timer_twitch01").val("");
+    document.getElementById("reconfig_twitch01").style.display = "none";
+});
+
+$('.CloseReconfigTwitch01Validate ').click(function() {
+    if ($("#reconfig_name_twitch01").val() == "" || $("#reconfig_twitch_streamer").val() == "" || $("#reconfig_timer_twitch01").val() == "")
+        return false;
+    if ($.isNumeric($("#reconfig_timer_twitch01").val()) == false)
+        return false;
+    var widg_n = $("#reconfig_name_twitch01").val();
+    var twitch_streamer = $("#reconfig_twitch_streamer").val();
+    var timer = $("#reconfig_timer_twitch01").val();
+    obj_twitch01(widg_n, twitch_streamer, timer);
+    var newdata = {};
+    newdata['twitch01'] = {"name": widg_n, "reconfig_twitch_streamer": twitch_streamer, "timer": timer};
+    $.extend(true, Dashboard_Data, newdata);
+    console.log(Dashboard_Data);
+    send_data();
+    $("#reconfig_name_twitch01").val("");
+    $("#reconfig_twitch_streamer").val("");
+    $("#reconfig_timer_twitch01").val("");
+    document.getElementById("reconfig_twitch01").style.display = "none";
+});
+
+$('.CloseReconfigTwitch01Delete').click(function() {
+    // remove l'objet de la page + du json
+    $("#reconfig_name_twitch01").val("");
+    $("#reconfig_twitch_streamer").val("");
+    $("#reconfig_timer_twitch01").val("");
+    document.getElementById("reconfig_twitch01").style.display = "none";
+});
+
+function display_twitch_widget02_reconfig_modal()
+{
+    document.getElementById("reconfig_twitch02").style.display = "block";
+}
+
+$('.CloseConfigTwitch02Cancel').click(function() {
+    $("#reconfig_name_twitch02").val("");
+    $("#reconfig_twitch_game").val("");
+    $("#reconfig_timer_twitch02").val("");
+    document.getElementById("reconfig_twitch02").style.display = "none";
+});
+
+$('.CloseConfigTwitch02Validate').click(function() {
+    if ($("#reconfig_name_twitch02").val() == "" || $("#reconfig_twitch_game").val() == "" || $("#reconfig_timer_twitch02").val() == "")
+        return false;
+    if ($.isNumeric($("#reconfig_timer_twitch02").val()) == false)
+        return false;
+    var widg_n = $("#reconfig_name_twitch02").val();
+    var twitch_game = $("#reconfig_twitch_game").val();
+    var timer = $("#reconfig_timer_twitch02").val();
+    obj_twitch02(widg_n, twitch_game, timer)
+    var newdata = {};
+    newdata['twitch02'] = {"name": widg_n, "reconfig_twitch_game": twitch_game, "timer": timer};
+    $.extend(true, Dashboard_Data, newdata);
+    console.log(Dashboard_Data);
+    send_data();
+    $("#reconfig_name_twitch02").val("");
+    $("#reconfig_twitch_game").val("");
+    $("#reconfig_timer_twitch02").val("");
+    document.getElementById("reconfig_twitch02").style.display = "none";
+});
+
+$('.CloseReconfigTwitch02Delete').click(function() {
+    // remove l'objet de la page + du json
+    $("#reconfig_name_twitch02").val("");
+    $("#reconfig_twitch_game").val("");
+    $("#reconfig_timer_twitch02").val("");
+    document.getElementById("reconfig_twitch02").style.display = "none";
+});
+
+function display_crypto_widget_reconfig_modal()
+{
+    document.getElementById("reconfig_crypto").style.display = "block";
+}
+
+$('.CloseReconfigCryptoCancel').click(function() {
+    $("#reconfig_name_crypto").val("");
+    $("#crypto_initial").val("");
+    $("#crypto_final").val("");
+    $("#timer_crypto").val("");
+    document.getElementById("reconfig_crypto").style.display = "none";
+});
+
+$('.CloseReconfigCryptoValidate').click(function() {
+    if ($("#reconfig_name_crypto").val() == "" || $("#reconfig_crypto_initial").val() == "" || $("#reconfig_crypto_final").val() == "" || $("#reconfig_timer_crypto").val() == "")
+        return false;
+    if ($.isNumeric($("#reconfig_timer_crypto").val()) == false)
+        return false;
+    var widg_n = $("#reconfig_name_crypto").val();
+    var fsym = $("#reconfig_crypto_initial").val().toUpperCase();
+    var tsym = $("#reconfig_crypto_final").val().toUpperCase();
+    var timer = $("#reconfig_timer_crypto").val();
+    obj_crypto(widg_n, fsym, tsym, timer)
+    var newdata = {};
+    newdata['crypto'] = {"name": widg_n, "fsym": fsym, "tsym": tsym, "timer": timer};
+    $.extend(true, Dashboard_Data, newdata);
+    console.log(Dashboard_Data);
+    send_data();
+    $("#reconfig_name_crypto").val("");
+    $("#reconfig_crypto_initial").val("");
+    $("#reconfig_crypto_final").val("");
+    $("#reconfig_timer_crypto").val("");
+    document.getElementById("reconfig_crypto").style.display = "none";
+});
+
+$('.CloseReconfigCryptoDelete').click(function() {
+    // remove l'objet de la page + du json
+    $("#reconfig_name_crypto").val("");
+    $("#crypto_initial").val("");
+    $("#crypto_final").val("");
+    $("#timer_crypto").val("");
+    document.getElementById("reconfig_crypto").style.display = "none";
+});
+
+function display_youtube01_reconfig_modal()
+{
+    document.getElementById("reconfig_youtube01").style.display = "block";
+}
+
+$('.CloseReconfigYoutubeCancel01').click(function() {
+    $("#reconfig_name_youtube01").val("");
+    $("#reconfig_youtuber").val("");
+    $("#reconfig_timer_youtube01").val("");
+    document.getElementById("reconfig_youtube01").style.display = "none";
+});
+
+$('.CloseReconfigYoutubeValidate01').click(function() {
+    if ($("#reconfig_name_youtube01").val() == "" || $("#reconfig_youtuber").val() == "" || $("#reconfig_timer_youtube01").val() == "")
+        return false;
+    if ($.isNumeric($("#reconfig_timer_youtube01").val()) == false)
+        return false;
+    var widg_n = $("#reconfig_name_youtube01").val();
+    var ytb_channel = $("#reconfig_youtuber").val();
+    var timer = $("#reconfig_timer_youtube01").val();
+    obj_youtube01(widg_n, ytb_channel, timer)
+    var newdata = {};
+    newdata['youtube01'] = {"name": widg_n, "ytb_channel": ytb_channel, "timer": timer};
+    $.extend(true, Dashboard_Data, newdata);
+    console.log(Dashboard_Data);
+    send_data();
+    $("#reconfig_name_youtube01").val("");
+    $("#reconfig_youtuber").val("");
+    $("#reconfig_timer_youtube01").val("");
+    document.getElementById("reconfig_youtube01").style.display = "none";
+});
+
+$('.CloseReconfigYoutubeDelete01').click(function() {
+    // remove l'objet de la page + du json
+    $("#reconfig_name_youtube01").val("");
+    $("#reconfig_youtuber").val("");
+    $("#reconfig_timer_youtube01").val("");
+    document.getElementById("reconfig_youtube01").style.display = "none";
+});
+
+function display_youtube02_reconfig_modal()
+{
+    document.getElementById("reconfig_youtube02").style.display = "block";
+}
+
+$('.CloseReconfigYoutubeCancel02').click(function() {
+    $("#reconfig_name_youtube02").val("");
+    $("#reconfig_youtube_video").val("");
+    $("#reconfig_timer_youtube02").val("");
+    document.getElementById("reconfig_youtube02").style.display = "none";
+});
+
+$('.CloseReconfigYoutubeValidate02').click(function() {
+    if ($("#reconfig_name_youtube02").val() == "" || $("#reconfig_youtube_video").val() == "" || $("#reconfig_timer_youtube02").val() == "")
+        return false;
+    if ($.isNumeric($("#reconfig_timer_youtube02").val()) == false)
+        return false;
+    var widg_n = $("#reconfig_name_youtube02").val();
+    var ytb_video = $("#reconfig_youtube_video").val();
+    var timer = $("#reconfig_timer_youtube02").val();
+    obj_youtube02(widg_n, ytb_video, timer)
+    var newdata = {};
+    newdata['youtube02'] = {"name": widg_n, "ytb_video": ytb_video, "timer": timer};
+    $.extend(true, Dashboard_Data, newdata);
+    console.log(Dashboard_Data);
+    send_data();
+    $("#reconfig_name_youtube02").val("");
+    $("#reconfig_youtube_video").val("");
+    $("#reconfig_timer_youtube02").val("");
+    document.getElementById("reconfig_youtube02").style.display = "none";
+});
+
+$('.CloseReconfigYoutubeDelete02').click(function() {
+    // remove l'objet de la page + du json
+    $("#reconfig_name_youtube02").val("");
+    $("#reconfig_youtube_video").val("");
+    $("#reconfig_timer_youtube02").val("");
+    document.getElementById("reconfig_youtube02").style.display = "none";
+});
+
+function display_youtube03_reconfig_modal() {
+    document.getElementById("reconfig_youtube03").style.display = "block";
+}
+
+$('.CloseReconfigYoutubeCancel03').click(function () {
+    $("#reconfig_name_youtube03").val("");
+    $("#reconfig_youtube_video_03").val("");
+    $("#reconfig_nb_comment").val("");
+    $("#reconfig_timer_youtube03").val("");
+    document.getElementById("reconfig_youtube03").style.display = "none";
+});
+
+$('.CloseReconfigYoutubeValidate03').click(function () {
+    if ($("#reconfig_name_youtube03").val() == "" || $("#reconfig_youtube_video_03").val() == "" || $("#reconfig_nb_comment").val() == "" || $("#reconfig_timer_youtube03").val() == "")
+        return false;
+    if ($.isNumeric($("#reconfig_timer_youtube03").val()) == false || $.isNumeric($("#nb_comment").val()) == false)
+        return false;
+    var widg_n = $("#reconfig_name_youtube03").val();
+    var ytb_video = $("#reconfig_youtube_video_03").val();
+    var max_comment = $("#reconfig_nb_comment").val();
+    var timer = $("#reconfig_timer_youtube03").val();
+    obj_youtube03(widg_n, ytb_video, max_comment, timer)
+    var newdata = {};
+    newdata['youtube03'] = { "name": widg_n, "ytb_video": ytb_video, "max_comment": max_comment, "timer": timer };
+    $.extend(true, Dashboard_Data, newdata);
+    console.log(Dashboard_Data);
+    send_data();
+    $("#reconfig_name_youtube03").val("");
+    $("#reconfig_youtube_video_03").val("");
+    $("#reconfig_nb_comment").val("");
+    $("#reconfig_timer_youtube03").val("");
+    document.getElementById("reconfig_youtube03").style.display = "none";
+});
+
+$('.CloseReconfigYoutubeDelete02').click(function() {
+    // remove l'objet de la page + du json
+    $("#reconfig_name_youtube03").val("");
+    $("#reconfig_youtube_video_03").val("");
+    $("#reconfig_nb_comment").val("");
+    $("#reconfig_timer_youtube03").val("");
+    document.getElementById("reconfig_youtube03").style.display = "none";
+});
