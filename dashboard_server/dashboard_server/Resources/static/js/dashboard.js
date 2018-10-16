@@ -582,6 +582,10 @@ $('.CloseConfigMeteoModalValidate').click(function() {
 
 function display_steam_widget01_modal()
 {
+    if (Dashboard_Data.hasOwnProperty("steam01") == true) {
+        return false;
+    }
+
     modal_widget.style.display = "none";
     document.getElementById("ConfigSteam01").style.display = "block";
 }
@@ -618,6 +622,10 @@ $('.CloseConfigSteam01Validate').click(function() {
 
 function display_steam_widget02_modal()
 {
+    if (Dashboard_Data.hasOwnProperty("steam02") == true) {
+        return false;
+    }
+
     modal_widget.style.display = "none";
     document.getElementById("ConfigSteam02").style.display = "block";
 }
@@ -654,6 +662,10 @@ $('.CloseConfigSteam02Validate').click(function() {
 
 function display_twitch01_modal()
 {
+    if (Dashboard_Data.hasOwnProperty("twitch01") == true) {
+        return false;
+    }
+
     modal_widget.style.display = "none";
     document.getElementById("ConfigTwitch01").style.display = "block";
 }
@@ -688,6 +700,10 @@ $('.CloseConfigTwitch01Validate').click(function() {
 
 function display_twitch02_modal()
 {
+    if (Dashboard_Data.hasOwnProperty("twitch02") == true) {
+        return false;
+    }
+
     modal_widget.style.display = "none";
     document.getElementById("ConfigTwitch02").style.display = "block";
 }
@@ -722,6 +738,10 @@ $('.CloseConfigTwitch02Validate').click(function() {
 
 function display_crypto_modal()
 {
+    if (Dashboard_Data.hasOwnProperty("crypto") == true) {
+        return false;
+    }
+
     modal_widget.style.display = "none";
     document.getElementById("ConfigCrypto").style.display = "block";
 }
@@ -759,6 +779,10 @@ $('.CloseConfigCryptoValidate').click(function() {
 
 function display_youtube01_modal()
 {
+    if (Dashboard_Data.hasOwnProperty("youtube01") == true) {
+        return false;
+    }
+
     modal_widget.style.display = "none";
     document.getElementById("ConfigYoutube01").style.display = "block";
 }
@@ -793,6 +817,10 @@ $('.CloseConfigYoutubeValidate01').click(function() {
 
 function display_youtube02_modal()
 {
+    if (Dashboard_Data.hasOwnProperty("youtube02") == true) {
+        return false;
+    }
+
     modal_widget.style.display = "none";
     document.getElementById("ConfigYoutube02").style.display = "block";
 }
@@ -826,6 +854,10 @@ $('.CloseConfigYoutubeValidate02').click(function() {
 });
 
 function display_youtube03_modal() {
+    if (Dashboard_Data.hasOwnProperty("youtube03") == true) {
+        return false;
+    }
+
     modal_widget.style.display = "none";
     document.getElementById("ConfigYoutube03").style.display = "block";
 }
