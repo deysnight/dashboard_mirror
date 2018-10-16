@@ -24,10 +24,8 @@ class Widgets {
                        create_steam02(this.objso, self.widg_param.widg_na);
                     else if (self.name == "twitch01")
                         create_twitch01(this.objso, self.widg_param.widg_na, self.widg_param.widg_param);
-                    else if (self.name == "twitch01")
-                        create_twitch01(this.objso, self.widg_param.widg_na);
                     else if (self.name == "twitch02")
-                        create_twitch02(this.objso, self.widg_param.widg_na);
+                        create_twitch02(this.objso, self.widg_param.widg_na, self.widg_param.widg_param);
                     else if (self.name == "crypto")
                         create_crypto(this.objso, self.widg_param.widg_na);
                     else if (self.name == "youtube01")
@@ -121,7 +119,7 @@ function create_twitch01(resp_jso, widg_n, stream_n) {
     var viewers = resp_jso.viewers;
     var url = resp_jso.url;
     var template = 
-    "<div id=\"twitch_widget\">" +
+    "<div id=\"twitch01_widget\">" +
         "<p class=\"title_widget\"><i class=\"fab fa-twitch\"></i><br/>Twitch<br/>" + stream_n + "</p>" +
         "<div id=\"twitch_widget1_container\">" +
         "<img src=\""+ pic +"\">" +                  
@@ -148,15 +146,23 @@ function create_twitch01(resp_jso, widg_n, stream_n) {
     document.getElementById("widg_twitch01").innerHTML = widget_field_template;
 }
 
-function create_twitch02(resp_jso, widg_n) {
+function create_twitch02(resp_jso, widg_n, game_name) {
     var channels = resp_jso.channels;
-    var vierwers = resp_jso.viewers;
-
-
-
+    var viewers = resp_jso.viewers;
+    var template = 
+    "<div id=\"twitch02_widget\">" +
+        "<p class=\"title_widget\"><i class=\"fab fa-twitch\"></i><br/>Twitch " + game_name + "</p>" +
+        "<div id=\"twitch_widget2_container\">" +
+                "<div id=\"data_twitch_channel_02\">" +
+                    "<p id=\"title_twitch\">" + game_name + "</p>" +
+                    "<hr>" + "<p>Viewers: " + viewers + "</p>" +
+                    "<hr>" + "<p>Channels: " + channels + "</p>" +
+                "</div>" +
+        "</div>" + 
+    "</div>";
     document.getElementById("widget_result").innerHTML = template;
     var widget_field_template = "<li class=\"ui-state-default\">" + widg_n + "<i class=\"fas fa-cog\"></i></li>";
-    document.getElementById("twitch02").innerHTML = widget_field_template;
+    document.getElementById("widg_twitch02").innerHTML = widget_field_template;
  }
 
  function create_crypto(resp_jso, tsym, widg_n) {
