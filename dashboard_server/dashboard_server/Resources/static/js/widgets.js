@@ -5,16 +5,20 @@ class Widgets {
        this.name = name;
    }
    send_request() {
+       "use strict";
        var self = this;
        $.get(
            {
-               url: this.widg_param.url,
-               data: this.widg_param.src + "=" + this.widg_param.widg_param,
+            //this[my_widget].widg_param.url
+               url: this.widg_twitch01.widg_param.url,
+               data: this.widg_twitch01.widg_param.src + "=" + this.widg_twitch01.widg_param.widg_param,
                dataType: 'json',
                async: false,
                contentType: "application/json; charset=utf-8",
                success: function(response){
                     console.log(response);
+                    console.log(self);
+
                     this.objso = response;
                     if (self.name == "meteo")
                        create_meteo(this.objso, self.widg_param.widg_na);
@@ -22,8 +26,8 @@ class Widgets {
                        create_steam01(this.objso, self.widg_param.widg_na);
                     else if (self.name == "steam02")
                        create_steam02(this.objso, self.widg_param.widg_na);
-                    else if (self.name == "twitch01")
-                        create_twitch01(this.objso, self.widg_param.widg_na, self.widg_param.widg_param);
+                    else if (self.widg_twitch01.name == "twitch01")
+                        create_twitch01(this.objso, self.widg_twitch01.widg_param.widg_na, self.widg_twitch01.widg_param.widg_param);
                     else if (self.name == "twitch02")
                         create_twitch02(this.objso, self.widg_param.widg_na, self.widg_param.widg_param);
                     else if (self.name == "crypto")
@@ -32,6 +36,8 @@ class Widgets {
                         create_youtube01(this.objso, self.widg_param.widg_na);
                     else if (self.name == "youtube02")
                         create_youtube02(this.objso, self.widg_param.widg_na);
+                    else
+                    console.log("marche po");
                 }
             })
         }   
@@ -56,7 +62,7 @@ class Widgets {
         }   
    time(refresh_interv, widg){ // fonction pour le timer , prend un temps en minute en param
        this.refresh_interv = refresh_interv * 1000; // convertit temsp en ms pour la fct setinterv
-       setInterval(widg.send_request(), this.refresh_interv);
+       setInterval(widg.send_request, this.refresh_interv);
    }
 }
 
@@ -242,7 +248,8 @@ function obj_twitch01(widg_n, twitch_streamer, timer){
     var my_url_for_ip = Get_Path_For_IP();
     var final_ip = my_url_for_ip + "/API/twitch/streamer";
     var source = "streamer";
-    widg_twitch01 = new Widgets({url: final_ip, widg_param: twitch_streamer, src: source, widg_na:  widg_n}, "twitch01")    
+    widg_twitch01 = new Widgets({url: final_ip, widg_param: twitch_streamer, src: source, widg_na:  widg_n}, "twitch01")
+    //widg_twitch01.send_request();
     widg_twitch01.time(timer, widg_twitch01);
 }
 
