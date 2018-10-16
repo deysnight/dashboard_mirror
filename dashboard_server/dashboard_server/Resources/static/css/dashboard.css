@@ -643,7 +643,7 @@
     flex-wrap: wrap;
 }
 
-#meteo_widget_modal, #steam_widget_modal, #twitch_widget_modal, #crypto_widget_modal, #youtube_widget_modal, #starcraft_widget_modal {
+#meteo_widget_modal, #steam_widget_modal, #twitch_widget_modal, #crypto_widget_modal, #youtube_widget_modal {
     margin-left: 5%;
     margin-right: 5%;
     text-align: center;
@@ -670,6 +670,21 @@
     padding: 1em;
     border-radius: 6px;
     margin-bottom: 10px;
+}
+
+#reconfig_meteo, #reconfig_steam01, #reconfig_steam02, #reconfig_twitch01, #reconfig_twitch02, #reconfig_crypto,
+ #reconfig_youtube01, #reconfig_youtube02, #reconfig_youtube03 {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
 }
 
 @-webkit-keyframes animatefromtop {

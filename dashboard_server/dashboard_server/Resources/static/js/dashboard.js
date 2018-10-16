@@ -9,9 +9,31 @@ function onload_function()
     read_json();
     show_widg();
     check_if_something_checked();
+    check_if_widget_exist();
 }
 
 window.onload = onload_function()
+
+function check_if_widget_exist() {
+    if (Dashboard_Data.hasOwnProperty("meteo") == true)
+        $("#widget_01_meteo").css("background-color", "rgb(230, 230, 230)");
+    if (Dashboard_Data.hasOwnProperty("steam01") == true)
+        $("#widget_01_steam").css("background-color", "rgb(230, 230, 230)");
+    if (Dashboard_Data.hasOwnProperty("steam02") == true)
+        $("#widget_02_steam").css("background-color", "rgb(230, 230, 230)");
+    if (Dashboard_Data.hasOwnProperty("twitch01") == true)
+        $("#widget_01_twitch").css("background-color", "rgb(230, 230, 230)");
+    if (Dashboard_Data.hasOwnProperty("twitch02") == true)
+        $("#widget_02_twitch").css("background-color", "rgb(230, 230, 230)");
+    if (Dashboard_Data.hasOwnProperty("crypto") == true)
+        $("#widget_01_crypto").css("background-color", "rgb(230, 230, 230)");
+    if (Dashboard_Data.hasOwnProperty("youtube01") == true)
+        $("#widget_01_youtube").css("background-color", "rgb(230, 230, 230)");
+    if (Dashboard_Data.hasOwnProperty("youtube02") == true)
+        $("#widget_02_youtube").css("background-color", "rgb(230, 230, 230)");
+    if (Dashboard_Data.hasOwnProperty("youtube03") == true)
+        $("#widget_03_youtube").css("background-color", "rgb(230, 230, 230)");
+} 
 
 function send_data()
 {
@@ -83,7 +105,7 @@ function read_json()
     }
     else
         $("#youtube_checkbox").removeAttr("checked");
-    // boucle pour les widgets
+    // widgets part 
 }
 
 $("#checkmark_meteo").click(function () {
@@ -523,6 +545,10 @@ $('#ServiceButtonValide').click(function() {
 
 function display_meteo_widget_modal()
 {
+    if (Dashboard_Data.hasOwnProperty("meteo") == true) {
+        return false;
+    }
+
     modal_widget.style.display = "none";
     document.getElementById("ConfigMeteo").style.display = "block";
 }
@@ -535,6 +561,7 @@ $('.CloseConfigMeteoModalCancel').click(function() {
 });
 
 $('.CloseConfigMeteoModalValidate').click(function() {
+    $("#widget_01_meteo").css("background-color", "rgb(230, 230, 230)");
     if ($("#name_meteo").val() == "" || $("#ville_meteo").val() == "" || $("#timer_meteo").val() == "")
         return false;
     if ($.isNumeric($("#timer_meteo").val()) == false)
@@ -567,6 +594,7 @@ $('.CloseConfigSteam01Cancel').click(function() {
 });
 
 $('.CloseConfigSteam01Validate').click(function() {
+    $("#widget_01_steam").css("background-color", "rgb(230, 230, 230)");
     if ($("#steam_id01").val() == "" || $("#name_steam01").val() == "" || $("#timer_steam01").val() == "")
         return false;
     if ($.isNumeric($("#timer_steam01").val()) == false)
@@ -602,6 +630,7 @@ $('.CloseConfigSteam02Cancel').click(function() {
 });
 
 $('.CloseConfigSteam02Validate').click(function() {
+    $("#widget_02_steam").css("background-color", "rgb(230, 230, 230)");
     if ($("#steam_id02").val() == "" || $("#name_steam02").val() == "" || $("#timer_steam02").val() == "")
         return false;
     if ($.isNumeric($("#timer_steam02").val()) == false)
@@ -637,6 +666,7 @@ $('.CloseConfigTwitch01Cancel').click(function() {
 });
 
 $('.CloseConfigTwitch01Validate').click(function() {
+    $("#widget_01_twitch").css("background-color", "rgb(230, 230, 230)");
     if ($("#name_twitch01").val() == "" || $("#twitch_streamer").val() == "" || $("#timer_twitch01").val() == "")
         return false;
     if ($.isNumeric($("#timer_twitch01").val()) == false)
@@ -670,6 +700,7 @@ $('.CloseConfigTwitch02Cancel').click(function() {
 });
 
 $('.CloseConfigTwitch02Validate').click(function() {
+    $("#widget_02_twitch").css("background-color", "rgb(230, 230, 230)");
     if ($("#name_twitch02").val() == "" || $("#twitch_game").val() == "" || $("#timer_twitch02").val() == "")
         return false;
     if ($.isNumeric($("#timer_twitch02").val()) == false)
@@ -704,6 +735,7 @@ $('.CloseConfigCryptoCancel').click(function() {
 });
 
 $('.CloseConfigCryptoValidate').click(function() {
+    $("#widget_01_crypto").css("background-color", "rgb(230, 230, 230)");
     if ($("#name_crypto").val() == "" || $("#crypto_initial").val() == "" || $("#crypto_final").val() == "" || $("#timer_crypto").val() == "")
         return false;
     if ($.isNumeric($("#timer_crypto").val()) == false)
@@ -739,6 +771,7 @@ $('.CloseConfigYoutubeCancel01').click(function() {
 });
 
 $('.CloseConfigYoutubeValidate01').click(function() {
+    $("#widget_01_youtube").css("background-color", "rgb(230, 230, 230)");
     if ($("#name_youtube01").val() == "" || $("#youtuber").val() == "" || $("#timer_youtube01").val() == "")
         return false;
     if ($.isNumeric($("#timer_youtube01").val()) == false)
@@ -772,6 +805,7 @@ $('.CloseConfigYoutubeCancel02').click(function() {
 });
 
 $('.CloseConfigYoutubeValidate02').click(function() {
+    $("#widget_02_youtube").css("background-color", "rgb(230, 230, 230)");
     if ($("#name_youtube02").val() == "" || $("#youtube_video").val() == "" || $("#timer_youtube02").val() == "")
         return false;
     if ($.isNumeric($("#timer_youtube02").val()) == false)
@@ -805,6 +839,7 @@ $('.CloseConfigYoutubeCancel03').click(function () {
 });
 
 $('.CloseConfigYoutubeValidate03').click(function () {
+    $("#widget_03_youtube").css("background-color", "rgb(230, 230, 230)");
     if ($("#name_youtube03").val() == "" || $("#youtube_video_03").val() == "" || $("#nb_comment").val() == "" || $("#timer_youtube03").val() == "")
         return false;
     if ($.isNumeric($("#timer_youtube03").val()) == false || $.isNumeric($("#nb_comment").val()) == false)
