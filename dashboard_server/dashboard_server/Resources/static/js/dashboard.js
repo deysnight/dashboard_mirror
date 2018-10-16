@@ -911,14 +911,15 @@ function display_meteo_widget_reconfig_modal()
     document.getElementById("reconfig_meteo").style.display = "block";
 }
 
-$('.CloseReconfigMeteoModalCancel').click(function() {
+function cancel_meteo_widget_reconfig_modal() {
+    console.log("test");
     $("#reconfig_name_meteo").val("");
     $("#reconfig_ville_meteo").val("");
     $("#reconfig_timer_meteo").val("");
     document.getElementById("reconfig_meteo").style.display = "none";
-});
+};
 
-$('.CloseReconfigMeteoModalValidate').click(function() {
+function validate_meteo_widget_reconfig_modal() {
     if ($("#reconfig_name_meteo").val() == "" || $("#reconfig_ville_meteo").val() == "" || $("#reconfig_timer_meteo").val() == "")
         return false;
     if ($.isNumeric($("#reconfig_timer_meteo").val()) == false)
@@ -935,15 +936,15 @@ $('.CloseReconfigMeteoModalValidate').click(function() {
     $("#reconfig_ville_meteo").val("");
     $("#reconfig_timer_meteo").val("");
     document.getElementById("reconfig_meteo").style.display = "none";
-});
+};
 
-$('.CloseReconfigMeteoModalDelete').click(function() {
+function delete_meteo_widget_reconfig_modal() {
     // remove l'objet de la page + du json
     $("#reconfig_name_meteo").val("");
     $("#reconfig_ville_meteo").val("");
     $("#reconfig_timer_meteo").val("");
     document.getElementById("reconfig_meteo").style.display = "none";
-});
+};
 
 function display_steam_widget01_reconfig_modal()
 {

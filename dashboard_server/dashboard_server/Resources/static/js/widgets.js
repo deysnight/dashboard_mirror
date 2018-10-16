@@ -10,15 +10,12 @@ class Widgets {
        $.get(
            {
             //this[my_widget].widg_param.url
-               url: this.widg_twitch01.widg_param.url,
-               data: this.widg_twitch01.widg_param.src + "=" + this.widg_twitch01.widg_param.widg_param,
+               url: this.widg_param.url,
+               data: this.widg_param.src + "=" + this.widg_param.widg_param,
                dataType: 'json',
                async: false,
                contentType: "application/json; charset=utf-8",
                success: function(response){
-                    console.log(response);
-                    console.log(self);
-
                     this.objso = response;
                     if (self.name == "meteo")
                        create_meteo(this.objso, self.widg_param.widg_na);
@@ -26,8 +23,8 @@ class Widgets {
                        create_steam01(this.objso, self.widg_param.widg_na);
                     else if (self.name == "steam02")
                        create_steam02(this.objso, self.widg_param.widg_na);
-                    else if (self.widg_twitch01.name == "twitch01")
-                        create_twitch01(this.objso, self.widg_twitch01.widg_param.widg_na, self.widg_twitch01.widg_param.widg_param);
+                    else if (self.name == "twitch01")
+                        create_twitch01(this.objso, self.widg_param.widg_na, self.widg_param.widg_param);
                     else if (self.name == "twitch02")
                         create_twitch02(this.objso, self.widg_param.widg_na, self.widg_param.widg_param);
                     else if (self.name == "crypto")
@@ -71,8 +68,6 @@ function create_steam01(resp_jso, widg_n) {
     var nb_player = resp_jso.player;
 
 
-
-
     document.getElementById("widget_result").innerHTML = template;
     var widget_field_template = "<li class=\"ui-state-default\">" + widg_n + "<i class=\"fas fa-cog\"></i></li>";
     document.getElementById("widg_steam01").innerHTML = widget_field_template;
@@ -95,23 +90,54 @@ function create_meteo(resp_jso, widg_n){
    var nom = resp_jso.location.name;
    var text = resp_jso.current.condition.text;
    var icon = resp_jso.current.condition.icon;
-   var template = "<div id=\"meteo_widget\">" +
-    "<p class=\"title_widget\"><i class=\"fas fa-sun\"></i><br/>Météo</p>" +
-    "<div id=\"meteo_data\">" +
-    "<div id=\"region_div\">" +
-    "<div id=\"region_data\">" +
-    "<p>Pays: " + pays + "</p>" +
-    "<p>Ville: " + nom + "</p>" +
-    "<p>Région: " + region + "</p>" +
-    "<p>Température: " + temp_c + "</p>" +
-    "</div>" + "</div>" +
-    "<div id=\"weather_div\">" +
-    "<div id=\"weather_data\">" +
-    "<p>" + text + "<p>" +
-    "<img src=\"" + icon + "\">" +
-    "</div>" + "</div>" + "<p></p>" + "</div>" + "</div>";
+   var template = 
+   "<div id=\"meteo_widget\">" +
+        "<p class=\"title_widget\"><i class=\"fas fa-sun\"></i><br/>Météo</p>" +
+        "<div id=\"meteo_data\">" +
+            "<div id=\"region_div\">" +
+                "<div id=\"region_data\">" +
+                    "<p>Pays: " + pays + "</p>" +
+                    "<p>Ville: " + nom + "</p>" +
+                    "<p>Région: " + region + "</p>" +
+                    "<p>Température: " + temp_c + "</p>" +
+                "</div>" + "</div>" +
+                "<div id=\"weather_div\">" +
+                    "<div id=\"weather_data\">" +
+                        "<p>" + text + "<p>" +
+                        "<img src=\"" + icon + "\">" +
+                    "</div>" + 
+                "</div>" + 
+            "</div>" + 
+        "</div>" +
+    "</div>" +
+    "<div id=\"reconfig_meteo\" class=\"modal\">" +
+    "<div class=\"modal-content_widget\">" +
+    "<div class=\"modal-header\">" +
+    "<p id=\"global_title\">Modification Météo</p>" +
+    "</div>" +
+    "<div class=\"modal-body\">" +
+    "<div>" +
+    "<div class=\"form-group\">" +
+    "<input id=\"reconfig_name_meteo\" type=\"text\" placeholder=\"Nom du widget\" />" +
+    "</div>" +
+    "<div class=\"form-group\">" +
+    "<input id=\"reconfig_ville_meteo\" type=\"text\" placeholder=\"Ville\" />" +
+    "</div>" +
+    "<div class=\"form-group\">" +
+    "<input type=\"number\" id=\"reconfig_timer_meteo\" placeholder=\"Timer\" />" +
+    "</div>" +
+    "</div>" +
+    "</div>" +
+    "<div class=\"modal-footer\">" +
+    "<button onclick=\"cancel_meteo_widget_reconfig_modal()\" class=\"CloseReconfigMeteoModalCancel link_button\">Annulez</button>" +
+    "<button onclick=\"validate_meteo_widget_reconfig_modal()\" class=\"CloseReconfigMeteoModalValidate link_button\">Validez</button>" +
+    "<button onclick=\"delete_meteo_widget_reconfig_modal()\" class=\"CloseReconfigMeteoModalDelete link_button\">Supprimer</button>" +
+    "</div>" +
+    "</div>" +
+    "</div>";
+
     document.getElementById("widget_result").innerHTML = template;
-    var widget_field_template = "<li id=\"field_meteo_template\" class=\"ui-state-default\">" + widg_n + "<i class=\"fas fa-cog\"></i></li>";
+    var widget_field_template = "<li id=\"field_meteo_template\" class=\"ui-state-default\">" + widg_n + "<i onclick=\"display_meteo_widget_reconfig_modal()\" class=\"fas fa-cog\"></i></li>";
     document.getElementById("widg_mete").innerHTML = widget_field_template;
 } 
 
@@ -249,8 +275,8 @@ function obj_twitch01(widg_n, twitch_streamer, timer){
     var final_ip = my_url_for_ip + "/API/twitch/streamer";
     var source = "streamer";
     widg_twitch01 = new Widgets({url: final_ip, widg_param: twitch_streamer, src: source, widg_na:  widg_n}, "twitch01")
-    //widg_twitch01.send_request();
-    widg_twitch01.time(timer, widg_twitch01);
+    widg_twitch01.send_request();
+    //widg_twitch01.time(timer, widg_twitch01);
 }
 
 function obj_twitch02(widg_n, twitch_game, timer){
