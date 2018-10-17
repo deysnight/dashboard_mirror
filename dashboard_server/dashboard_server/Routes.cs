@@ -65,6 +65,15 @@ namespace WebServer
             return string.Format(login_page);
         }
 
+        public static string B_oauth(HttpListenerRequest request)
+        {
+            string[] tmp = request.RawUrl.Split(new Char[] { '=', '&' });
+            Program.blizzard_token = tmp[1];
+            Console.WriteLine(tmp[1]);
+            string page = "<!DOCTYPE html><html lang='fr'><head><meta charset='UTF - 8'><title>Redirect...</title><script>function Get_Path_For_IP(){var my_current_url = window.location.href;var words = my_current_url.split(':');var words_final = words[1].split('/');var final_ip = 'http://' + words_final[2] + ':8080';return final_ip;}; console.log(Get_Path_For_IP()); location.href = Get_Path_For_IP()</script></head><body></body></html>";
+            return page;
+        }
+
 
         ////////ROUTES CSS
 

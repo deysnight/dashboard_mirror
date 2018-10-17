@@ -123,6 +123,7 @@ namespace WebServer
             user.password = HashPass(words[2]);
             dynamic test = JsonConvert.DeserializeObject("{\"ss\": {\"s01\": false,\"s02\": false,\"s03\": false,\"s04\": false,\"s05\": false}}");
             user.config = test;
+            Console.Write(test);
             all_users.Add(user);
             string output = JsonConvert.SerializeObject(all_users);
             TextWriter tw = new StreamWriter(path);

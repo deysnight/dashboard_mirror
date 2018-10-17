@@ -123,6 +123,8 @@ namespace WebServer
         static private List<Route> route_map = new List<Route>();
         static private List<RouteAsync> routeAsync_map = new List<RouteAsync>();
 
+        static public string blizzard_token { get; set; }
+
         public static string Process_request(HttpListenerRequest request)
         {
             foreach (Route element in route_map)
@@ -131,6 +133,11 @@ namespace WebServer
                 {
                     return element.functionPTR(request);
                 }
+            }
+            if (request.RawUrl.Contains("/blizzard/oauth"))
+            {
+                var ret = Routes.B_oauth(request);
+                return (ret);
             }
             foreach (RouteAsync element in routeAsync_map)
             {
@@ -150,7 +157,8 @@ namespace WebServer
             route_map.Add(new Route("/login", Routes.Login));
             route_map.Add(new Route("/signup", Routes.Signup));
             route_map.Add(new Route("/dashboard", Routes.Dashboard));
-            route_map.Add(new Route("/404", Routes.Error404)); 
+            route_map.Add(new Route("/404", Routes.Error404));
+            //route_map.Add(new Route("/blizzard/oauth", Routes.B_oauth));
 
             route_map.Add(new Route("/css/base.css", Routes.Css_Base));
             route_map.Add(new Route("/css/registration.css", Routes.Css_Registration));
@@ -177,6 +185,7 @@ namespace WebServer
             routeAsync_map.Add(new RouteAsync("/API/twitch/game", Widgets.twitch_gameAsync));
             routeAsync_map.Add(new RouteAsync("/API/steam/game", Widgets.steam_gameAsync));
             routeAsync_map.Add(new RouteAsync("/API/steam/user", Widgets.steam_friendAsync));
+            routeAsync_map.Add(new RouteAsync("/ow/stat", Widgets.ow_statAsync));
 
             var ws = new WebServer(Process_request, "http://+:8080/"); // "http://localhost:8080/");
             ws.Run();

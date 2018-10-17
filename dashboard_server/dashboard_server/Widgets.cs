@@ -25,7 +25,8 @@ namespace WebServer
         public static string steam_gamename_api = "https://api.steampowered.com/ISteamApps/GetAppList/v2/";
         public static string steam_countplayer_api = "https://api.steampowered.com/ISteamUserStats/GetNumberOfCurrentPlayers/v1/?appid={0}";
         public static string steam_userid_api = "https://api.steampowered.com/ISteamUser/GetFriendList/v1/?key=CFA1A0B5703346E31EAF12DD8BEEE247&steamid={0}";
-        public static string steam_username_api ="https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/?key=CFA1A0B5703346E31EAF12DD8BEEE247&steamids={0}";
+        public static string steam_username_api = "https://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/?key=CFA1A0B5703346E31EAF12DD8BEEE247&steamids={0}";
+        public static string overwatch_stat = "https://ow-api.com/v1/stats/pc/eu/{0}/complete";
 
 
 
@@ -224,6 +225,19 @@ namespace WebServer
             }
             response.friends = JsonConvert.DeserializeObject(JsonConvert.SerializeObject(friend));
             return (JsonConvert.SerializeObject(response));
+        }
+
+        public static async Task<string> ow_statAsync(HttpListenerRequest request)
+        {
+            //http://10.18.207.172:8080/ow/stat/btag=orphiucus-2162
+            Console.WriteLine(request.RawUrl);
+            string[] tmp = request.RawUrl.Split('=');
+            string query = string.Format(overwatch_stat, tmp[1]);
+            var uri = new Uri(query);
+            var hc = new HttpClient();
+            var result = await hc.GetStringAsync(uri);
+            dynamic json = JsonConvert.DeserializeObject(result);
+            return (JsonConvert.SerializeObject(json));
         }
     }
 }
