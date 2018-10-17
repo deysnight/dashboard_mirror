@@ -31,7 +31,15 @@
             </div>
             <div id="widget_list">
                 <ul id="sortable">
-                    <li class="ui-state-default">Widget<i class="fas fa-cog"></i></li>
+                    <div id="widg_mete"></div>
+                    <div id="widg_steam01"></div>
+                    <div id="widg_steam02"></div>
+                    <div id="widg_twitch01"></div>
+                    <div id="widg_twitch02"></div>
+                    <div id="widg_crypto"></div>
+                    <div id="widg_youtube01"></div>
+                    <div id="widg_youtube02"></div>
+                    <div id="widg_youtube03"></div>
                 </ul>
             </div>
             <div id="widget_list_button">
@@ -44,7 +52,15 @@
                 <button id="ServiceButton" class="service_button add_service_button">Mes services</button>
             </div>
             <div id="widget_result">
-                    
+                    <div id="meteo_disp"></div>
+                    <div id="steam01_disp"></div>
+                    <div id="steam02_disp"></div>
+                    <div id="twitch01_disp"></div>
+                    <div id="twitch02_disp"></div>
+                    <div id="crypto_disp"></div>
+                    <div id="youtube01_disp"></div>
+                    <div id="youtube02_disp"></div>
+                    <div id="youtube03_disp"></div>
             </div>
         </div>
 
@@ -61,15 +77,13 @@
                             <div class="services" id="twitch_service"><i class="fab fa-twitch"></i>Twitch<input id="twitch_checkbox" name="twitch_check" type="checkbox"><span onclick="display_twitch()" id="checkmark_twitch" class="checkmark"></span></div>
                             <div class="services" id="crypto_service"><i class="fab fa-bitcoin"></i>Crypto<input id="crypto_checkbox" name="crypto_check" type="checkbox"><span onclick="display_crypto()" id="checkmark_crypto" class="checkmark"></span></div>
                             <div class="services" id="youtube_service"><i class="fab fa-youtube"></i>Youtube<input id="youtube_checkbox" name="youtube_check" type="checkbox"><span onclick="display_youtube()" id="checkmark_youtube" class="checkmark"></span></div>
-                            <div class="services" id="starcraft_service"><i class="fas fa-gamepad"></i>StarCraft<input id="starcraft_checkbox" name="starcraft_check" type="checkbox"><span onclick="display_starcraft()" id="checkmark_starcraft" class="checkmark"></span></div>
-                            </div>
+                        </div>
                         <div id="service_intel_wrap">
                             <div class="service_intel" id="meteo_intel"><p class="widget_intel"><i class="fas fa-caret-right"></i>&nbsp;&nbsp;&nbsp;Service météo</p><p class="widget_description">Affiche la météo d'une ville</p></div>
                             <div class="service_intel" id="steam_intel"><p class="widget_intel"><i class="fas fa-caret-right"></i>&nbsp;&nbsp;&nbsp;Service Steam</p><p class="widget_description">Affiche des informations sur un jeu Steam<br/><br/>Affiche la liste d'ami d'un utilisateur</p></div>
                             <div class="service_intel" id="twitch_intel"><p class="widget_intel"><i class="fas fa-caret-right"></i>&nbsp;&nbsp;&nbsp;Service Twitch</p><p class="widget_description">Affiche des informations sur une chaîne Twitch<br/><br/>Affiche des informations sur un jeu</p></div>
                             <div class="service_intel" id="crypto_intel"><p class="widget_intel"><i class="fas fa-caret-right"></i>&nbsp;&nbsp;&nbsp;Service Crypto</p><p class="widget_description">Permet de convertir des crypto monnaies</p></div>
-                            <div class="service_intel" id="youtube_intel"><p class="widget_intel"><i class="fas fa-caret-right"></i>&nbsp;&nbsp;&nbsp;Service Youtube</p><p class="widget_description">Affiche des informations sur une chaînes Youtube<br/><br/>Affiche des informations sur un Youtuber</p></div>
-                            <div class="service_intel" id="starcraft_intel"><p class="widget_intel"><i class="fas fa-caret-right"></i>&nbsp;&nbsp;&nbsp;Service météo</p><p class="widget_description">Affiche des informations sur un profil StarCraft</p></div>
+                            <div class="service_intel" id="youtube_intel"><p class="widget_intel"><i class="fas fa-caret-right"></i>&nbsp;&nbsp;&nbsp;Service Youtube</p><p class="widget_description">Affiche des informations sur une chaînes Youtube<br /><br />Affiche des informations sur un Youtuber<br /><br />Affiche x commentaires sur une vidéo</p></div>
                         </div>
                     </div>
                 </div>
@@ -95,8 +109,6 @@
                             <div id="crypto_widget_modal">
                             </div>
                             <div id="youtube_widget_modal">
-                            </div>
-                            <div id="starcraft_widget_modal">
                             </div>
                         </div>
                     </div>
@@ -140,7 +152,7 @@
                 <div class="modal-body">
                     <div>
                         <div class="form-group">
-                            <input id="name_steam01 type="text" placeholder="Nom du widget" />
+                            <input id="name_steam01" type="text" placeholder="Nom du widget" />
                         </div>
                         <div class="form-group">
                             <input id="steam_id01" type="text" placeholder="Steam ID" />
@@ -304,36 +316,270 @@
                 </div>
             </div>
         </div>
-        <div id="ConfigStarcraft" class="modal">
+        <div id="ConfigYoutube03" class="modal">
             <div class="modal-content_widget">
                 <div class="modal-header">
-                    <p id="global_title">Configuration StarCraft</p>
+                    <p id="global_title">Configuration Youtube 3</p>
                 </div>
                 <div class="modal-body">
                     <div>
                         <div class="form-group">
-                            <input id="name_starcraft" type="text" placeholder="Nom du widget" />
+                            <input id="name_youtube03" type="text" placeholder="Nom du widget" />
                         </div>
                         <div class="form-group">
-                            <input id="starcraft_id" type="text" placeholder="ID d'un profil StarCraft" />
+                            <input id="youtube_video_03" type="text" placeholder="URL d'une vidéo Youtube" />
                         </div>
                         <div class="form-group">
-                            <input id="starcraft_username" type="text" placeholder="Username d'un profil StarCraft" />
+                            <input type="number" id="nb_comment" placeholder="Nombre de commentaires" />
                         </div>
                         <div class="form-group">
-                            <input type="number" id="timer_starcraft" placeholder="Timer" />
+                            <input type="number" id="timer_youtube03" placeholder="Timer" />
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="CloseConfigYoutubeCancel02 link_button">Annulez</button>
-                    <button class="CloseConfigYoutubeValidate02 link_button">Validez</button>
+                    <button class="CloseConfigYoutubeCancel03 link_button">Annulez</button>
+                    <button class="CloseConfigYoutubeValidate03 link_button">Validez</button>
+                </div>
+            </div>
+        </div>
+        <div id="reconfig_meteo" class="modal">
+            <div class="modal-content_widget">
+                <div class="modal-header">
+                    <p id="global_title">Modification Météo</p>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <div class="form-group">
+                            <input id="reconfig_name_meteo" type="text" placeholder="Nom du widget" />
+                        </div>
+                        <div class="form-group">
+                            <input id="reconfig_ville_meteo" type="text" placeholder="Ville" />
+                        </div>
+                        <div class="form-group">
+                            <input type="number" id="reconfig_timer_meteo" placeholder="Timer" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button onclick="cancel_meteo_widget_reconfig_modal()" class="CloseReconfigMeteoModalCancel link_button">Annulez</button>
+                    <button onclick="validate_meteo_widget_reconfig_modal()" class="CloseReconfigMeteoModalValidate link_button">Validez</button>
+                    <button onclick="delete_meteo_widget_reconfig_modal()" class="CloseReconfigMeteoModalDelete link_button">Supprimer</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="reconfig_steam01" class="modal">
+            <div class="modal-content_widget">
+                <div class="modal-header">
+                    <p id="global_title">Modification Steam 1</p>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <div class="form-group">
+                            <input id="reconfig_name_steam01" type="text" placeholder="Nom du widget" />
+                        </div>
+                        <div class="form-group">
+                            <input id="reconfig_steam_id01" type="text" placeholder="Steam ID" />
+                        </div>
+                        <div class="form-group">
+                            <input type="number" id="reconfig_timer_steam01" placeholder="Timer" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button onclick="cancel_steam01_widget_reconfig_modal()" class="CloseReconfigSteam01Cancel link_button">Annulez</button>
+                    <button onclick="validate_steam01_widget_reconfig_modal()" class="CloseReconfigSteam01Validate link_button">Validez</button>
+                    <button onclick="delete_steam01_widget_reconfig_modal()" class="CloseReconfigSteam01Delete link_button">Supprimer</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="reconfig_steam02" class="modal">
+            <div class="modal-content_widget">
+                <div class="modal-header">
+                    <p id="global_title">Modification Steam 2</p>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <div class="form-group">
+                            <input id="reconfig_name_steam02" type="text" placeholder="Nom du widget" />
+                        </div>
+                        <div class="form-group">
+                            <input id="reconfig_steam_id02" type="text" placeholder="Steam ID" />
+                        </div>
+                        <div class="form-group">
+                            <input type="number" id="reconfig_timer_steam02" placeholder="Timer" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button onclick="cancel_steam02_widget_reconfig_modal()" class="CloseReconfigSteam02Cancel link_button">Annulez</button>
+                    <button onclick="validate_steam02_widget_reconfig_modal()" class="CloseReconfigSteam02Validate link_button">Validez</button>
+                    <button onclick="delete_steam02_widget_reconfig_modal()" class="CloseReconfigSteam02Delete link_button">Supprimer</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="reconfig_twitch01" class="modal">
+            <div class="modal-content_widget">
+                <div class="modal-header">
+                    <p id="global_title">Modification Twitch 1</p>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <div class="form-group">
+                                <input id="reconfig_name_twitch01" type="text" placeholder="Nom du widget" />
+                        </div>
+                        <div class="form-group">
+                            <input id="reconfig_twitch_streamer" type="text" placeholder="Chaine Twitch" />
+                        </div>
+                        <div class="form-group">
+                            <input type="number" id="reconfig_timer_twitch01" placeholder="Timer" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button onclick="cancel_twitch01_widget_reconfig_modal()" class="CloseReconfigTwitch01Cancel link_button">Annulez</button>
+                    <button onclick="validate_twitch01_widget_reconfig_modal()" class="CloseReconfigTwitch01Validate link_button">Validez</button>
+                    <button onclick="delete_twitch01_widget_reconfig_modal()" class="CloseReconfigTwitch01Delete link_button">Supprimer</button>
+                </div>
+            </div>
+        </div>
+     
+        <div id="reconfig_twitch02" class="modal">
+            <div class="modal-content_widget">
+                <div class="modal-header">
+                    <p id="global_title">Modification Twitch 2</p>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <div class="form-group">
+                            <input id="reconfig_name_twitch02" type="text" placeholder="Nom du widget" />
+                        </div>
+                        <div class="form-group">
+                            <input id="reconfig_twitch_game" type="text" placeholder="Jeu Twitch" />
+                        </div>
+                        <div class="form-group">
+                            <input type="number" id="reconfig_timer_twitch02" placeholder="Timer" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button onclick="cancel_twitch02_widget_reconfig_modal()" class="CloseReconfigTwitch02Cancel link_button">Annulez</button>
+                    <button onclick="validate_twitch02_widget_reconfig_modal()" class="CloseReconfigTwitch02Validate link_button">Validez</button>
+                    <button onclick="delete_twitch02_widget_reconfig_modal()" class="CloseReconfigTwitch02Delete link_button">Supprimer</button>
+                </div>
+            </div>
+        </div>
+        <div id="reconfig_crypto" class="modal">
+            <div class="modal-content_widget">
+                <div class="modal-header">
+                    <p id="global_title">Configuration Crypto</p>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <div class="form-group lol">
+                            <input id="reconfig_name_crypto" type="text" placeholder="Nom du widget" />
+                        </div>
+                        <div class="form-group">
+                            <input id="reconfig_crypto_initial" type="text" placeholder="Monnaie à convertir" />
+                        </div>
+                        <div class="form-group">
+                            <input id="reconfig_crypto_final" type="text" placeholder="Converti en" />
+                        </div>
+                        <div class="form-group">
+                            <input type="number" id="reconfig_timer_crypto" placeholder="Timer" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button onclick="cancel_crypto_widget_reconfig_modal()" class="CloseReconfigCryptoCancel link_button">Annulez</button>
+                    <button onclick="validate_crypto_widget_reconfig_modal()" class="CloseReconfigCryptoValidate link_button">Validez</button>
+                    <button onclick="delete_crypto_widget_reconfig_modal()" class="CloseReconfigCryptoDelete link_button">Supprimer</button>
+                </div>
+            </div>
+        </div>
+        <div id="reconfig_youtube01" class="modal">
+            <div class="modal-content_widget">
+                <div class="modal-header">
+                    <p id="global_title">Configuration Youtube 1</p>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <div class="form-group">
+                            <input id="reconfig_name_youtube01" type="text" placeholder="Nom du widget" />
+                        </div>
+                        <div class="form-group">
+                            <input id="reconfig_youtuber" type="text" placeholder="Nom d'une chaîne Youtube" />
+                        </div>
+                        <div class="form-group">
+                            <input type="number" id="reconfig_timer_youtube01" placeholder="Timer" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button onclick="cancel_youtube01_widget_reconfig_modal()" class="CloseReconfigYoutubeCancel01 link_button">Annulez</button>
+                    <button onclick="validate_youtube01_widget_reconfig_modal()" class="CloseReconfigYoutubeValidate01 link_button">Validez</button>
+                    <button onclick="delete_youtube01_widget_reconfig_modal()" class="CloseReconfigYoutubeDelete01 link_button">Supprimer</button>
+                </div>
+            </div>
+        </div>
+        <div id="reconfig_youtube02" class="modal">
+            <div class="modal-content_widget">
+                <div class="modal-header">
+                    <p id="global_title">Configuration Youtube 2</p>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <div class="form-group">
+                            <input id="reconfig_name_youtube02" type="text" placeholder="Nom du widget" />
+                        </div>
+                        <div class="form-group">
+                            <input id="reconfig_youtube_video" type="text" placeholder="URL d'une vidéo Youtube" />
+                        </div>
+                        <div class="form-group">
+                            <input type="number" id="reconfig_timer_youtube02" placeholder="Timer" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button onclick="cancel_youtube02_widget_reconfig_modal()" class="CloseReconfigYoutubeCancel02 link_button">Annulez</button>
+                    <button onclick="validate_youtube02_widget_reconfig_modal()" class="CloseReconfigYoutubeValidate02 link_button">Validez</button>
+                    <button onclick="delete_youtube02_widget_reconfig_modal()" class="CloseReconfigYoutubeDelete02 link_button">Supprimer</button>
+                </div>
+            </div>
+        </div>
+        <div id="reconfig_youtube03" class="modal">
+            <div class="modal-content_widget">
+                <div class="modal-header">
+                    <p id="global_title">Configuration Youtube 3</p>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <div class="form-group">
+                            <input id="reconfig_name_youtube03" type="text" placeholder="Nom du widget" />
+                        </div>
+                        <div class="form-group">
+                            <input id="reconfig_youtube_video_03" type="text" placeholder="URL d'une vidéo Youtube" />
+                        </div>
+                        <div class="form-group">
+                            <input type="number" id="reconfig_nb_comment" placeholder="Nombre de commentaires" />
+                        </div>
+                        <div class="form-group">
+                            <input type="number" id="reconfig_timer_youtube03" placeholder="Timer" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button onclick="cancel_youtube03_widget_reconfig_modal()" class="CloseReconfigYoutubeCancel03 link_button">Annulez</button>
+                    <button onclick="validate_youtube03_widget_reconfig_modal()" class="CloseReconfigYoutubeValidate03 link_button">Validez</button>
+                    <button onclick="delete_youtube03_widget_reconfig_modal()" class="CloseReconfigYoutubeDelete03 link_button">Supprimer</button>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<script src="js/dashboard.js"></script>
 <script src="js/widgets.js"></script>
+<script src="js/dashboard.js"></script>
 </body>
 </html>
