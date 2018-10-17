@@ -121,7 +121,7 @@ namespace WebServer
             user.login = words[0];
             user.mail = words[1];
             user.password = HashPass(words[2]);
-            dynamic test = JsonConvert.DeserializeObject("{\"ss\": {\"s01\": false,\"s02\": false,\"s03\": false,\"s04\": false,\"s05\": false}}");
+            dynamic test = JsonConvert.DeserializeObject("{\"ss\": {\"s01\": false,\"s02\": false,\"s03\": false,\"s04\": false,\"s05\": false,\"s06\": false}}");
             user.config = test;
             Console.Write(test);
             all_users.Add(user);
