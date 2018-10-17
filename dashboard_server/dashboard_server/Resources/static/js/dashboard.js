@@ -105,7 +105,62 @@ function read_json()
     }
     else
         $("#youtube_checkbox").removeAttr("checked");
-    // widgets part 
+    if (Dashboard_Data.hasOwnProperty("meteo") == true) {
+        var ville_n = Dashboard_Data.meteo.town;
+        var timer = Dashboard_Data.meteo.timer;
+        var widg_n = Dashboard_Data.meteo.name;
+        obj_meteo(ville_n, timer, widg_n);
+    }
+    if (Dashboard_Data.hasOwnProperty("steam01") == true) {
+        var steam_id = Dashboard_Data.steam01.steam_id;
+        var timer = Dashboard_Data.steam01.timer;
+        var widg_n = Dashboard_Data.steam01.name;
+        obj_steam01(steam_id, widg_n, timer)
+    }
+    if (Dashboard_Data.hasOwnProperty("steam02") == true) {
+        var steam_id = Dashboard_Data.steam02.steam_id;
+        var timer = Dashboard_Data.steam02.timer;
+        var widg_n = Dashboard_Data.steam02.name;
+        obj_steam02(steam_id, widg_n, timer)
+    }
+    if (Dashboard_Data.hasOwnProperty("twitch01") == true) {
+        var twitch_streamer = Dashboard_Data.twitch01.twitch_streamer;
+        var timer = Dashboard_Data.twitch01.timer;
+        var widg_n = Dashboard_Data.twitch01.name;
+        obj_twitch01(widg_n, twitch_streamer, timer);
+    }
+    if (Dashboard_Data.hasOwnProperty("twitch02") == true) {
+        var twitch_game = Dashboard_Data.twitch02.twitch_game;
+        var timer = Dashboard_Data.twitch02.timer;
+        var widg_n = Dashboard_Data.twitch02.name;
+        obj_twitch02(widg_n, twitch_game, timer);
+    }
+    if (Dashboard_Data.hasOwnProperty("crypto") == true) {
+        var fsym = Dashboard_Data.crypto.fsym;
+        var tsym = Dashboard_Data.crypto.tsym;
+        var timer = Dashboard_Data.crypto.timer;
+        var widg_n = Dashboard_Data.crypto.name;
+        obj_crypto(widg_n, fsym, tsym, timer)
+    }
+    if (Dashboard_Data.hasOwnProperty("youtube01") == true) {
+        var ytb_channel = Dashboard_Data.youtube01.ytb_channel;
+        var timer = Dashboard_Data.youtube01.timer;
+        var widg_n = Dashboard_Data.youtube01.name;
+        obj_youtube01(widg_n, ytb_channel, timer)
+    }
+    if (Dashboard_Data.hasOwnProperty("youtube02") == true) {
+        var ytb_video = Dashboard_Data.youtube02.ytb_video;
+        var timer = Dashboard_Data.youtube02.timer;
+        var widg_n = Dashboard_Data.youtube02.name;
+        obj_youtube02(widg_n, ytb_video, timer)
+    }
+    if (Dashboard_Data.hasOwnProperty("youtube03") == true) {
+        var ytb_video = Dashboard_Data.youtube03.ytb_video;
+        var max_comment = Dashboard_Data.youtube03.max_comment;
+        var timer = Dashboard_Data.youtube03.timer;
+        var widg_n = Dashboard_Data.youtube03.name;
+        obj_youtube03(widg_n, ytb_video, max_comment, timer)
+    }
 }
 
 $("#checkmark_meteo").click(function () {
@@ -272,11 +327,6 @@ document.getElementById('youtube_service').onclick = function(event) {
     document.getElementById('crypto_intel').style.display = "none";
     document.getElementById('youtube_intel').style.display = "block";
 }
-
-$(function() {
-    $( "#sortable" ).sortable();
-    $( "#sortable" ).disableSelection();
-  });
 
 function delete_cookie(name) {
     document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
@@ -489,7 +539,7 @@ function display_youtube() {
                     '<p class="widget_modal" id="widget_01_youtube" onclick="display_youtube01_modal()">Informations sur une chaîne Youtube</p>' +
                 '</div>' +
                 '<div class="widget_in_modal">' +
-                    '<p class="widget_modal" id="widget_02_youtube" onclick="display_youtube02_modal()">Informationss sur une vidéo Youtube</p>' +
+                    '<p class="widget_modal" id="widget_02_youtube" onclick="display_youtube02_modal()">Informations sur une vidéo Youtube</p>' +
                 '</div>' +
                 '<div class="widget_in_modal">' +
                     '<p class="widget_modal" id="widget_03_youtube" onclick="display_youtube03_modal()">Commentaires sur une vidéos Youtube</p>' +
@@ -519,8 +569,8 @@ $('#ServiceButtonValide').click(function() {
     }
     if ($("#meteo_checkbox").prop('checked') == false) {
         delete Dashboard_Data['meteo'];
-        $("#meteo_widget").empty();
-        $("#field_meteo_template").empty();
+        $("#meteo_widget").remove();
+        $("#field_meteo_template").remove();
     }
     if ($("#steam_checkbox").prop('checked') == false) {
         delete Dashboard_Data['steam01'];
@@ -529,9 +579,15 @@ $('#ServiceButtonValide').click(function() {
     if ($("#twitch_checkbox").prop('checked') == false) {
         delete Dashboard_Data['twitch01'];
         delete Dashboard_Data['twitch02'];
+        $("#twitch01_widget").remove();
+        $("#twitch02_widget").remove();
+        $("#field_twitch01_template").remove();
+        $("#field_twitch02_template").remove();
     }
     if ($("#crypto_checkbox").prop('checked') == false) {
-        delete Dashboard_Data['crytp'];
+        delete Dashboard_Data['crypto'];
+        $("#crypto_widget").remove();
+        $("#field_crypto_template").remove();
     }
     if ($("#youtube_checkbox").prop('checked') == false) {
         delete Dashboard_Data['youtube01'];
@@ -912,7 +968,6 @@ function display_meteo_widget_reconfig_modal()
 }
 
 function cancel_meteo_widget_reconfig_modal() {
-    console.log("test");
     $("#reconfig_name_meteo").val("");
     $("#reconfig_ville_meteo").val("");
     $("#reconfig_timer_meteo").val("");
@@ -939,11 +994,15 @@ function validate_meteo_widget_reconfig_modal() {
 };
 
 function delete_meteo_widget_reconfig_modal() {
-    // remove l'objet de la page + du json
+    delete Dashboard_Data['meteo'];
+    $("#meteo_widget").remove();
+    $("#field_meteo_template").remove();
     $("#reconfig_name_meteo").val("");
     $("#reconfig_ville_meteo").val("");
     $("#reconfig_timer_meteo").val("");
+    $("#widget_01_meteo").css("background-color", "white");
     document.getElementById("reconfig_meteo").style.display = "none";
+    send_data()
 };
 
 function display_steam_widget01_reconfig_modal()
@@ -951,14 +1010,14 @@ function display_steam_widget01_reconfig_modal()
     document.getElementById("reconfig_steam01").style.display = "block";
 }
 
-$('.CloseReconfigSteam01Cancel').click(function() {
+function cancel_steam01_widget_reconfig_modal() {
     $("#reconfig_name_steam01").val("");
     $("#reconfig_steam_id01").val("");
     $("#reconfig_timer_steam01").val("");
     document.getElementById("reconfig_steam01").style.display = "none";
-});
+};
 
-$('.CloseReconfigSteam01Validate').click(function() {
+function validate_steam01_widget_reconfig_modal() {
     if ($("#reconfig_steam_id01").val() == "" || $("#reconfig_name_steam01").val() == "" || $("#reconfig_timer_steam01").val() == "")
         return false;
     if ($.isNumeric($("#reconfig_timer_steam01").val()) == false)
@@ -976,15 +1035,19 @@ $('.CloseReconfigSteam01Validate').click(function() {
     $("#reconfig_steam_id01").val("");
     $("#reconfig_timer_steam01").val("");
     document.getElementById("reconfig_steam01").style.display = "none";
-});
+};
 
-$('.CloseReconfigSteam01Delete').click(function() {
-    // remove l'objet de la page + du json
-    $("#reconfig_name_meteo").val("");
-    $("#reconfig_ville_meteo").val("");
-    $("#reconfig_timer_meteo").val("");
-    document.getElementById("reconfig_meteo").style.display = "none";
-});
+function delete_steam01_widget_reconfig_modal() {
+    delete Dashboard_Data['steam01'];
+    $("#steam01_widget").remove();
+    $("#field_steam01_template").remove();
+    $("#reconfig_name_steam01").val("");
+    $("#reconfig_steam_id01").val("");
+    $("#reconfig_timer_steam01").val("");
+    $("#widget_01_steam").css("background-color", "white");
+    document.getElementById("reconfig_steam01").style.display = "none";
+    send_data()
+};
 
 
 
@@ -993,14 +1056,14 @@ function display_steam_widget02_reconfig_modal()
     document.getElementById("reconfig_steam02").style.display = "block";
 }
 
-$('.CloseReconfigSteam02Cancel').click(function() {
+function cancel_steam02_widget_reconfig_modal() {
     $("#reconfig_name_steam02").val("");
     $("#reconfig_steam_id02").val("");
     $("#reconfig_timer_steam02").val("");
     document.getElementById("reconfig_steam02").style.display = "none";
-});
+};
 
-$('.CloseReconfigSteam02Validate').click(function() {
+function validate_steam02_widget_reconfig_modal() {
     if ($("#reconfig_steam_id02").val() == "" || $("#reconfig_name_steam02").val() == "" || $("#reconfig_timer_steam02").val() == "")
         return false;
     if ($.isNumeric($("#reconfig_timer_steam02").val()) == false)
@@ -1018,15 +1081,19 @@ $('.CloseReconfigSteam02Validate').click(function() {
     $("#reconfig_steam_id02").val("");
     $("#reconfig_timer_steam02").val("");
     document.getElementById("reconfig_steam02").style.display = "none";
-});
+};
 
-$('.CloseReconfigSteam02Delete').click(function() {
-    // remove l'objet de la page + du json
-    $("#reconfig_steam_id02").val("");
+function delete_steam02_widget_reconfig_modal() {
+    delete Dashboard_Data['steam02'];
+    $("#steam02_widget").remove();
+    $("#field_steam02_template").remove();
     $("#reconfig_name_steam02").val("");
+    $("#reconfig_steam_id02").val("");
     $("#reconfig_timer_steam02").val("");
+    $("#widget_02_steam").css("background-color", "white");
     document.getElementById("reconfig_steam02").style.display = "none";
-});
+    send_data()
+};
 
 
 function display_twitch_widget01_reconfig_modal()
@@ -1034,14 +1101,14 @@ function display_twitch_widget01_reconfig_modal()
     document.getElementById("reconfig_twitch01").style.display = "block";
 }
 
-$('.CloseReconfigTwitch01Cancel ').click(function() {
+function cancel_twitch01_widget_reconfig_modal() {
     $("#reconfig_name_twitch01").val("");
     $("#reconfig_twitch_streamer").val("");
     $("#reconfig_timer_twitch01").val("");
     document.getElementById("reconfig_twitch01").style.display = "none";
-});
+};
 
-$('.CloseReconfigTwitch01Validate ').click(function() {
+function validate_twitch01_widget_reconfig_modal() {
     if ($("#reconfig_name_twitch01").val() == "" || $("#reconfig_twitch_streamer").val() == "" || $("#reconfig_timer_twitch01").val() == "")
         return false;
     if ($.isNumeric($("#reconfig_timer_twitch01").val()) == false)
@@ -1051,7 +1118,7 @@ $('.CloseReconfigTwitch01Validate ').click(function() {
     var timer = $("#reconfig_timer_twitch01").val();
     obj_twitch01(widg_n, twitch_streamer, timer);
     var newdata = {};
-    newdata['twitch01'] = {"name": widg_n, "reconfig_twitch_streamer": twitch_streamer, "timer": timer};
+    newdata['twitch01'] = {"name": widg_n, "twitch_streamer": twitch_streamer, "timer": timer};
     $.extend(true, Dashboard_Data, newdata);
     console.log(Dashboard_Data);
     send_data();
@@ -1059,29 +1126,35 @@ $('.CloseReconfigTwitch01Validate ').click(function() {
     $("#reconfig_twitch_streamer").val("");
     $("#reconfig_timer_twitch01").val("");
     document.getElementById("reconfig_twitch01").style.display = "none";
-});
+};
 
-$('.CloseReconfigTwitch01Delete').click(function() {
-    // remove l'objet de la page + du json
+function delete_twitch01_widget_reconfig_modal() {
+    delete Dashboard_Data['twitch01'];
+    $("#twitch01_widget").remove();
+    $("#field_twitch01_template").remove();
     $("#reconfig_name_twitch01").val("");
     $("#reconfig_twitch_streamer").val("");
     $("#reconfig_timer_twitch01").val("");
     document.getElementById("reconfig_twitch01").style.display = "none";
-});
+    $("#widget_01_twitch").css("background-color", "white");
+    send_data();
+};
 
 function display_twitch_widget02_reconfig_modal()
 {
     document.getElementById("reconfig_twitch02").style.display = "block";
 }
 
-$('.CloseConfigTwitch02Cancel').click(function() {
+function cancel_twitch02_widget_reconfig_modal()
+{
     $("#reconfig_name_twitch02").val("");
     $("#reconfig_twitch_game").val("");
     $("#reconfig_timer_twitch02").val("");
     document.getElementById("reconfig_twitch02").style.display = "none";
-});
+};
 
-$('.CloseConfigTwitch02Validate').click(function() {
+function validate_twitch02_widget_reconfig_modal()
+{
     if ($("#reconfig_name_twitch02").val() == "" || $("#reconfig_twitch_game").val() == "" || $("#reconfig_timer_twitch02").val() == "")
         return false;
     if ($.isNumeric($("#reconfig_timer_twitch02").val()) == false)
@@ -1091,7 +1164,7 @@ $('.CloseConfigTwitch02Validate').click(function() {
     var timer = $("#reconfig_timer_twitch02").val();
     obj_twitch02(widg_n, twitch_game, timer)
     var newdata = {};
-    newdata['twitch02'] = {"name": widg_n, "reconfig_twitch_game": twitch_game, "timer": timer};
+    newdata['twitch02'] = {"name": widg_n, "twitch_game": twitch_game, "timer": timer};
     $.extend(true, Dashboard_Data, newdata);
     console.log(Dashboard_Data);
     send_data();
@@ -1099,30 +1172,34 @@ $('.CloseConfigTwitch02Validate').click(function() {
     $("#reconfig_twitch_game").val("");
     $("#reconfig_timer_twitch02").val("");
     document.getElementById("reconfig_twitch02").style.display = "none";
-});
+};
 
-$('.CloseReconfigTwitch02Delete').click(function() {
-    // remove l'objet de la page + du json
+function delete_twitch02_widget_reconfig_modal() {
+    delete Dashboard_Data['twitch02'];
+    $("#twitch02_widget").remove();
+    $("#field_twitch02_template").remove();
     $("#reconfig_name_twitch02").val("");
     $("#reconfig_twitch_game").val("");
     $("#reconfig_timer_twitch02").val("");
     document.getElementById("reconfig_twitch02").style.display = "none";
-});
+    $("#widget_02_twitch").css("background-color", "white");
+    send_data();
+};
 
 function display_crypto_widget_reconfig_modal()
 {
     document.getElementById("reconfig_crypto").style.display = "block";
 }
 
-$('.CloseReconfigCryptoCancel').click(function() {
+function cancel_crypto_widget_reconfig_modal() {
     $("#reconfig_name_crypto").val("");
     $("#crypto_initial").val("");
     $("#crypto_final").val("");
     $("#timer_crypto").val("");
     document.getElementById("reconfig_crypto").style.display = "none";
-});
+};
 
-$('.CloseReconfigCryptoValidate').click(function() {
+function validate_crypto_widget_reconfig_modal() {
     if ($("#reconfig_name_crypto").val() == "" || $("#reconfig_crypto_initial").val() == "" || $("#reconfig_crypto_final").val() == "" || $("#reconfig_timer_crypto").val() == "")
         return false;
     if ($.isNumeric($("#reconfig_timer_crypto").val()) == false)
@@ -1142,30 +1219,34 @@ $('.CloseReconfigCryptoValidate').click(function() {
     $("#reconfig_crypto_final").val("");
     $("#reconfig_timer_crypto").val("");
     document.getElementById("reconfig_crypto").style.display = "none";
-});
+};
 
-$('.CloseReconfigCryptoDelete').click(function() {
-    // remove l'objet de la page + du json
+function delete_crypto_widget_reconfig_modal() {
+    delete Dashboard_Data['crypto'];
+    $("#crypto_widget").remove();
+    $("#field_crypto_template").remove();
     $("#reconfig_name_crypto").val("");
     $("#crypto_initial").val("");
     $("#crypto_final").val("");
     $("#timer_crypto").val("");
     document.getElementById("reconfig_crypto").style.display = "none";
-});
+    $("#widget_01_crypto").css("background-color", "white");
+    send_data();
+};
 
 function display_youtube01_reconfig_modal()
 {
     document.getElementById("reconfig_youtube01").style.display = "block";
 }
 
-$('.CloseReconfigYoutubeCancel01').click(function() {
+function cancel_youtube01_widget_reconfig_modal() {
     $("#reconfig_name_youtube01").val("");
     $("#reconfig_youtuber").val("");
     $("#reconfig_timer_youtube01").val("");
     document.getElementById("reconfig_youtube01").style.display = "none";
-});
+};
 
-$('.CloseReconfigYoutubeValidate01').click(function() {
+function validate_youtube01_widget_reconfig_modal() {
     if ($("#reconfig_name_youtube01").val() == "" || $("#reconfig_youtuber").val() == "" || $("#reconfig_timer_youtube01").val() == "")
         return false;
     if ($.isNumeric($("#reconfig_timer_youtube01").val()) == false)
@@ -1183,29 +1264,33 @@ $('.CloseReconfigYoutubeValidate01').click(function() {
     $("#reconfig_youtuber").val("");
     $("#reconfig_timer_youtube01").val("");
     document.getElementById("reconfig_youtube01").style.display = "none";
-});
+};
 
-$('.CloseReconfigYoutubeDelete01').click(function() {
-    // remove l'objet de la page + du json
+function delete_youtube01_widget_reconfig_modal() {
+    delete Dashboard_Data['youtube01'];
+    $("#youtube_widget01").remove();
+    $("#field_youtube01_template").remove();
     $("#reconfig_name_youtube01").val("");
     $("#reconfig_youtuber").val("");
     $("#reconfig_timer_youtube01").val("");
     document.getElementById("reconfig_youtube01").style.display = "none";
-});
+    $("#widget_01_youtube").css("background-color", "white");
+    send_data();
+};
 
 function display_youtube02_reconfig_modal()
 {
     document.getElementById("reconfig_youtube02").style.display = "block";
 }
 
-$('.CloseReconfigYoutubeCancel02').click(function() {
+function cancel_youtube02_widget_reconfig_modal() {
     $("#reconfig_name_youtube02").val("");
     $("#reconfig_youtube_video").val("");
     $("#reconfig_timer_youtube02").val("");
     document.getElementById("reconfig_youtube02").style.display = "none";
-});
+};
 
-$('.CloseReconfigYoutubeValidate02').click(function() {
+function validate_youtube02_widget_reconfig_modal() {
     if ($("#reconfig_name_youtube02").val() == "" || $("#reconfig_youtube_video").val() == "" || $("#reconfig_timer_youtube02").val() == "")
         return false;
     if ($.isNumeric($("#reconfig_timer_youtube02").val()) == false)
@@ -1223,29 +1308,33 @@ $('.CloseReconfigYoutubeValidate02').click(function() {
     $("#reconfig_youtube_video").val("");
     $("#reconfig_timer_youtube02").val("");
     document.getElementById("reconfig_youtube02").style.display = "none";
-});
+};
 
-$('.CloseReconfigYoutubeDelete02').click(function() {
-    // remove l'objet de la page + du json
+function delete_youtube02_widget_reconfig_modal() {
+    delete Dashboard_Data['youtube02'];
+    $("#youtube_widget02").remove();
+    $("#field_youtube02_template").remove();
     $("#reconfig_name_youtube02").val("");
     $("#reconfig_youtube_video").val("");
     $("#reconfig_timer_youtube02").val("");
     document.getElementById("reconfig_youtube02").style.display = "none";
-});
+    $("#widget_02_youtube").css("background-color", "white");
+    send_data();
+};
 
 function display_youtube03_reconfig_modal() {
     document.getElementById("reconfig_youtube03").style.display = "block";
 }
 
-$('.CloseReconfigYoutubeCancel03').click(function () {
+function cancel_youtube03_widget_reconfig_modal() {
     $("#reconfig_name_youtube03").val("");
     $("#reconfig_youtube_video_03").val("");
     $("#reconfig_nb_comment").val("");
     $("#reconfig_timer_youtube03").val("");
     document.getElementById("reconfig_youtube03").style.display = "none";
-});
+};
 
-$('.CloseReconfigYoutubeValidate03').click(function () {
+function validate_youtube03_widget_reconfig_modal() {
     if ($("#reconfig_name_youtube03").val() == "" || $("#reconfig_youtube_video_03").val() == "" || $("#reconfig_nb_comment").val() == "" || $("#reconfig_timer_youtube03").val() == "")
         return false;
     if ($.isNumeric($("#reconfig_timer_youtube03").val()) == false || $.isNumeric($("#nb_comment").val()) == false)
@@ -1265,13 +1354,125 @@ $('.CloseReconfigYoutubeValidate03').click(function () {
     $("#reconfig_nb_comment").val("");
     $("#reconfig_timer_youtube03").val("");
     document.getElementById("reconfig_youtube03").style.display = "none";
-});
+};
 
-$('.CloseReconfigYoutubeDelete02').click(function() {
-    // remove l'objet de la page + du json
+function delete_youtube03_widget_reconfig_modal() {
+    delete Dashboard_Data['youtube03'];
+    $("#youtube_widget03").remove();
+    $("#field_youtube03_template").remove();
     $("#reconfig_name_youtube03").val("");
     $("#reconfig_youtube_video_03").val("");
     $("#reconfig_nb_comment").val("");
     $("#reconfig_timer_youtube03").val("");
     document.getElementById("reconfig_youtube03").style.display = "none";
-});
+    $("#widget_03_youtube").css("background-color", "white");
+    send_data();
+};
+
+function Display_Meteo_Widget() {
+    $("#meteo_disp").css("display","block");
+    $("#steam01_disp").css("display","none");
+    $("#steam02_disp").css("display","none");
+    $("#twitch01_disp").css("display","none");
+    $("#twitch02_disp").css("display","none");
+    $("#crypto_disp").css("display","none");
+    $("#youtube01_disp").css("display","none");
+    $("#youtube02_disp").css("display","none");
+    $("#youtube03_disp").css("display","none");
+}
+
+function Display_Steam01_Widget() {
+    $("#meteo_disp").css("display","none");
+    $("#steam01_disp").css("display","block");
+    $("#steam02_disp").css("display","none");
+    $("#twitch01_disp").css("display","none");
+    $("#twitch02_disp").css("display","none");
+    $("#crypto_disp").css("display","none");
+    $("#youtube01_disp").css("display","none");
+    $("#youtube02_disp").css("display","none");
+    $("#youtube03_disp").css("display","none");
+}
+
+function Display_Steam02_Widget() {
+    $("#meteo_disp").css("display","none");
+    $("#steam01_disp").css("display","none");
+    $("#steam02_disp").css("display","block");
+    $("#twitch01_disp").css("display","none");
+    $("#twitch02_disp").css("display","none");
+    $("#crypto_disp").css("display","none");
+    $("#youtube01_disp").css("display","none");
+    $("#youtube02_disp").css("display","none");
+    $("#youtube03_disp").css("display","none");
+}
+
+function Display_Twitch01_Widget() {
+    $("#meteo_disp").css("display","none");
+    $("#steam01_disp").css("display","none");
+    $("#steam02_disp").css("display","none");
+    $("#twitch01_disp").css("display","block");
+    $("#twitch02_disp").css("display","none");
+    $("#crypto_disp").css("display","none");
+    $("#youtube01_disp").css("display","none");
+    $("#youtube02_disp").css("display","none");
+    $("#youtube03_disp").css("display","none");
+}
+
+function Display_Twitch02_Widget() {
+    $("#meteo_disp").css("display","none");
+    $("#steam01_disp").css("display","none");
+    $("#steam02_disp").css("display","none");
+    $("#twitch01_disp").css("display","none");
+    $("#twitch02_disp").css("display","block");
+    $("#crypto_disp").css("display","none");
+    $("#youtube01_disp").css("display","none");
+    $("#youtube02_disp").css("display","none");
+    $("#youtube03_disp").css("display","none");
+}
+
+function Display_Crypto_Widget() {
+    $("#meteo_disp").css("display","none");
+    $("#steam01_disp").css("display","none");
+    $("#steam02_disp").css("display","none");
+    $("#twitch01_disp").css("display","none");
+    $("#twitch02_disp").css("display","none");
+    $("#crypto_disp").css("display","block");
+    $("#youtube01_disp").css("display","none");
+    $("#youtube02_disp").css("display","none");
+    $("#youtube03_disp").css("display","none");
+}
+
+function Display_Youtube01_Widget() {
+    $("#meteo_disp").css("display","none");
+    $("#steam01_disp").css("display","none");
+    $("#steam02_disp").css("display","none");
+    $("#twitch01_disp").css("display","none");
+    $("#twitch02_disp").css("display","none");
+    $("#crypto_disp").css("display","none");
+    $("#youtube01_disp").css("display","block");
+    $("#youtube02_disp").css("display","none");
+    $("#youtube03_disp").css("display","none");
+}
+
+function Display_Youtube02_Widget() {
+    $("#meteo_disp").css("display","none");
+    $("#steam01_disp").css("display","none");
+    $("#steam02_disp").css("display","none");
+    $("#twitch01_disp").css("display","none");
+    $("#twitch02_disp").css("display","none");
+    $("#crypto_disp").css("display","none");
+    $("#youtube01_disp").css("display","none");
+    $("#youtube02_disp").css("display","block");
+    $("#youtube03_disp").css("display","none");
+}
+
+function Display_Youtube03_Widget() {
+    $("#meteo_disp").css("display","none");
+    $("#steam01_disp").css("display","none");
+    $("#steam02_disp").css("display","none");
+    $("#twitch01_disp").css("display","none");
+    $("#twitch02_disp").css("display","none");
+    $("#crypto_disp").css("display","none");
+    $("#youtube01_disp").css("display","none");
+    $("#youtube02_disp").css("display","none");
+    $("#youtube03_disp").css("display","block");
+}

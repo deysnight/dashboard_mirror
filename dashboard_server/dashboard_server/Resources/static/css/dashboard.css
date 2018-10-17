@@ -323,7 +323,6 @@
     font-size: 30px;
     font-weight: 600;
     margin-top: 0;
-    margin-bottom: 20px;
 }
 
 .title_widget .fa-youtube {
@@ -360,7 +359,7 @@
     align-items: center;
     border: 1px solid black;
     border-radius: 5px;
-    padding: 4em;
+    padding: 3em;
 }
 
 #region_div {
@@ -372,7 +371,7 @@
 #region_data {
     display: flex;
     flex-direction: column;
-    font-size: 40px;
+    font-size: 17px;
 }
 
 #weather_div {
@@ -386,7 +385,7 @@
     text-align: center;
     display: flex;
     flex-direction: column;
-    font-size: 40px;
+    font-size: 20px;
 }
 
 #weather_data img {
@@ -454,14 +453,15 @@
     justify-content: center;
     align-items: center;
     border-radius: 5px;
-    padding: 4em;
+    padding: 2em;
     flex-direction: row;
     border: solid black 1px;
 }
+
 #youtube_widget_2_thumb img{
-    width: 100%;
+    width: 80%;
     text-align: center;
-    margin-right: 4em;
+    margin-right: 2em;
 }
 
 #youtube_widget_2_data p {
@@ -474,10 +474,38 @@
 }
 
 #youtube_widget_2_sub p {
-    font-size: 20px;
+    font-size: 17px;
 }
 
 /* YOUTUBE WIDGET 2 END */
+
+/* YOUTUBE WIDGET 3 */
+
+#youtube_widget_3_data {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    padding: 1em;
+    width: 80%;
+    height: 400px;
+    margin: auto;
+    overflow: auto;
+    flex-direction: row;
+    border: solid black 1px;
+}
+
+#user_list {
+    list-style-type: none;
+}
+
+#user_list li {
+    padding: 3px;
+}
+
+/* YOUTUBE WIDGET 3 END */
+
 
 /* STEAM WIDGET 1 */
 
@@ -502,12 +530,8 @@
     font-weight: 500;
 }
 
-#steam_widget_1_sub {
-    margin-left: 4em;
-}
-
 #steam_widget_1_sub p {
-    font-size: 20px;
+    font-size: 17px;
 }
 
 /* STEAM WIDGET 1 END */
@@ -525,39 +549,20 @@
     border: solid black 1px;
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
+    padding: 1em;
 }
 
 #steam_widget_2_data ul {
+    overflow: auto;
+    height: 300px;
     list-style-type: none;
     padding: 0;
 }
 
 #steam_widget_2_data ul li {
+    text-align: center;
     display: flex;
-
-}
-
-#steam_widget_2_data ul li img {
-    height: 30%;
-    width: 30%;
-    padding: 1em;
-}
-
-#steam_widget_2_data ul li a {
-    margin: auto;
-    color: black;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-    font-size: 18px;
-}
-
-
-#steam_widget_2_sub {
-    margin-left: 4em;
-}
-
-#steam_widget_2_sub p {
-    font-size: 20px;
+    justify-content: center;
 }
 
 /* STEAM WIDGET 2 END */
@@ -568,7 +573,6 @@
 #twitch_widget1_container {
     display: flex;
     flex-direction: row;
-    margin-top: 4em;
 }
 
 #title_twitch {
@@ -616,7 +620,6 @@
 #twitch_widget2_container {
     display: flex;
     flex-direction: column;
-    margin-top: 4em;
 }
 
 #data_twitch_channel_02 {
@@ -669,6 +672,11 @@
     padding: 1em;
     border-radius: 6px;
     margin-bottom: 10px;
+}
+
+#meteo_disp, #twitch01_disp, #twitch02_disp, #crypto_disp, #youtube01_disp, #youtube02_disp, #youtube03_disp,
+#steam01_disp, #steam02_disp {
+    display: none;
 }
 
 #reconfig_meteo, #reconfig_steam01, #reconfig_steam02, #reconfig_twitch01, #reconfig_twitch02, #reconfig_crypto,
