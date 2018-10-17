@@ -1071,7 +1071,7 @@ function validate_steam02_widget_reconfig_modal() {
     var steam_id = $("#reconfig_steam_id02").val();
     var widg_n = $("#reconfig_name_steam02").val();
     var timer = $("#reconfig_timer_steam02").val();
-    obj_steam01(steam_id, widg_n, timer)
+    obj_steam02(steam_id, widg_n, timer)
     var newdata = {};
     newdata['steam02'] = {"name": widg_n, "steam_id": steam_id, "timer": timer};
     $.extend(true, Dashboard_Data, newdata);

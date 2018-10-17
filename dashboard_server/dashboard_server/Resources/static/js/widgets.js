@@ -13,7 +13,7 @@ class Widgets {
                url: this.widg_param.url,
                data: this.widg_param.src + "=" + this.widg_param.widg_param,
                dataType: 'json',
-               async: false,
+               async: true,
                contentType: "application/json; charset=utf-8",
                success: function(response){
                     this.objso = response;
@@ -45,7 +45,7 @@ class Widgets {
                url: this.widg_param.url,
                data: this.widg_param.widg_param,
                dataType: 'json',
-               async: false,
+               async: true,
                contentType: "application/json; charset=utf-8",
                success: function(response){
                     this.objso = response;
