@@ -1,0 +1,41 @@
+* {
+    outline: none;
+}
+
+html {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+
+body {
+    font-family: 'Montserrat', 'sans-serif';
+    font-size: 16px;
+    margin: 0;
+    height: 100%;
+}
+
+a {
+    text-decoration: none;
+}
+
+#glob {
+    margin-top: 3em;
+    flex-direction: column;
+    margin-right: 18%;
+    margin-left: 18%;
+}
+
+#wrap01 {
+    margin-right: 25%;
+    margin-left: 25%;
+    text-align: center;
+    font-family: 'Montserrat', 'sans-serif';
+}
+
+@media screen and ( max-width: 1250px ) {
+    #glob {
+        margin-right: 0;
+        margin-left: 0;
+    }
+}

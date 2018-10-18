@@ -1,0 +1,138 @@
+﻿{
+  "client": {
+    "host": "ip"
+  },
+  "server": {
+    "current_time": 1531680780,
+    "services": [
+      {
+        "name": "meteo",
+        "widgets": [
+          {
+            "name": "city_temp",
+            "description": "affichage de la temperature pour une ville",
+            "params": [
+              {
+                "name": "city",
+                "type": "string"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "steam",
+        "widgets": [
+          {
+            "name": "game_players",
+            "description": "affiche le nombre de joueurs sur un jeu steam",
+            "params": [
+              {
+                "name": "gameid",
+                "type": "integer"
+              }
+            ]
+          },
+          {
+            "name": "steam_friends",
+            "description": "affiche la liste d'amis d'un utilisateur steam",
+            "params": [
+              {
+                "name": "userid",
+                "type": "integer"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "twitch",
+        "widgets": [
+          {
+            "name": "streamer_data",
+            "description": "affiche des informations sur une chaine twitch",
+            "params": [
+              {
+                "name": "channel_name",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "game_data",
+            "description": "affiche des informations sur un jeu diffuse sur twitch",
+            "params": [
+              {
+                "name": "game",
+                "type": "string"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "starcraft2",
+        "widgets": [
+          {
+            "name": "sc2_player_data",
+            "description": "affiche des informations sur un joueur de starcraft2",
+            "params": [
+              {
+                "name": "sc2id",
+                "type": "integer"
+              },
+              {
+                "name": "sc2user",
+                "type": "string"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "crypto",
+        "widgets": [
+          {
+            "name": "over_currency",
+            "description": "affiche le cours d'une monnaie",
+            "params": [
+              {
+                "name": "initial_convert",
+                "type": "string"
+              },
+              {
+                "name": "final_convert",
+                "type": "string"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "youtube",
+        "widgets": [
+          {
+            "name": "channel_data",
+            "description": "Affiche des informations sur la chaînes d'un youtuber",
+            "params": [
+              {
+                "name": "youtube_channel_name",
+                "type": "string"
+              }
+            ]
+          },
+          {
+            "name": "video_data",
+            "description": "affiche des informations sur une video youtube",
+            "params": [
+              {
+                "name": "video_url",
+                "type": "string"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

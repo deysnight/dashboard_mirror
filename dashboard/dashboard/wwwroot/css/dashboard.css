@@ -1,0 +1,732 @@
+.services-global {
+    background-color: white !important;
+}
+
+#global_title {
+    text-align: center;
+    font-size: 26px;
+    margin: auto;
+    padding-top: 1em;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+}
+
+#service_container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.services {
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 1em;
+    padding: 1em;
+    cursor: pointer;
+    flex: 1;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+}
+
+#ServiceModal, #WidgetModal, #ConfigMeteo, #ConfigSteam01, #ConfigSteam02, #ConfigTwitch01, #ConfigTwitch02,
+#ConfigCrypto, #ConfigYoutube01, #ConfigYoutube02, #ConfigYoutube03, #ConfigOverwatch {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatefromtop;
+    -webkit-animation-duration: 0.5s;
+    animation-name: animatefromtop;
+    animation-duration: 0.5s;
+    border-radius: 10px;
+}
+
+.modal-header {
+    display: flex;
+    padding: 2px 16px;
+    background-color: white;
+    flex-direction: column;
+    border-radius: 10px;
+}
+
+.modal-body {
+    padding: 2px 16px;
+}
+
+.modal-footer {
+    padding: 2px 16px;
+    background-color: white;
+    color: white;
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+}
+
+.modal-footer button {
+    margin: 1em;
+}
+
+#WidgetModal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    max-height: 100%;
+
+}
+
+.modal-content_widget {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    margin-top: -3em;
+    padding: 0;
+    border: 1px solid #888;
+    width: 70%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatefromtop;
+    -webkit-animation-duration: 0.5s;
+    animation-name: animatefromtop;
+    animation-duration: 0.5s;
+    border-radius: 10px;
+    max-height: 90%;
+    overflow-y: auto;
+
+}
+
+.services i {
+    padding-top: 2px;
+}
+
+#service_intel_wrap {
+    display: flex;
+    margin-left:30%;
+    margin-right: 30%;
+}
+
+.service_intel {
+    display: none;
+    list-style-type: none;
+}
+
+.service_button {
+    font-size: 14px;
+	font-family: "Montserrat", sans-serif;
+	outline: none;
+	display: block;
+	color: white;
+    border-radius: 40px;
+    border: 2px solid #EA3D3D;
+	background-color: #EA3D3D;
+    padding: 1.2em 3em;
+    text-decoration: none;
+	text-align: center;
+	transition: transform 0.5s;
+	-moz-transition: transform 0.5s;
+	-webkit-transition: transform 0.5s;
+	-o-transition: transform 0.5s;
+	-ms-transition: transform 0.5s;
+    cursor: pointer;
+    margin: 0;
+}
+
+.widget_intel {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+}
+
+.widget_description {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    margin-left: 15%;
+}
+
+.dashboard_glob {
+    margin-top: 0!important;
+    position: absolute;
+    top: 72px;
+    bottom: 0;
+    width: 100%;
+    margin: 0!important;
+    display: flex;
+    flex-direction: row!important;
+}
+
+#widget_menu {
+    display: flex;
+    flex-direction: column;
+    flex: 1.3;
+    align-items: stretch;
+    background-color: hsla(220, 4%, 17%, 0.950);
+}
+
+#widget_list_title {
+    color: white;
+    text-align: center;
+    font-size: 26px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+#widget_list {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    flex: 7;
+    border: 1px solid rgba(0, 0, 0, 0.300);
+    overflow: auto;
+}
+
+#sortable {
+    list-style-type: none;
+    padding: 0;
+}
+
+#sortable li {
+    color: white;
+    padding: 0;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    background-color: hsla(220, 4%, 17%, 0.950);
+    display: flex;
+    justify-content: space-around;
+}
+
+#widg_mete li:hover, #widg_steam01 li:hover, #widg_steam01 li:hover, #widg_twitch01 li:hover, #widg_twitch01 li:hover,
+#widg_crypto li:hover, #widg_youtube01 li:hover, #widg_youtube02 li:hover, #widg_youtube03 li:hover,
+#widg_overwatch li:hover {
+    background-color: rgba(26, 27, 29, 0.95);
+}
+
+.select {
+    background-color: rgba(26, 27, 29, 0.95)!important;
+}
+
+#sortable li i {
+    margin-top: 3px;
+    cursor: pointer;
+}
+
+#widget_list_button {
+    display: flex;
+    flex: 1;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 2em;
+}
+
+#widget_div {
+    flex: 6;
+    display: flex;
+    flex-direction: column;
+}
+
+#more_data_service {
+    display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	-webkit-box-align: center;
+    flex: 1;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 17%;
+}
+
+#widget_result {
+    display: flex;
+    justify-content: center;
+    flex: 6;
+}
+
+.services i {
+    padding-top: 2px;
+}
+
+.services input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.checkmark {
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 18px;
+    width: 18px;
+    background-color: #eee;
+    border: black solid 1px;
+    border-radius: 50%
+}
+
+.services:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+.services input:checked ~ .checkmark {
+    background-color: black;
+    opacity: 0.70;
+}
+
+.services input:checked ~ .checkmark:after {
+    display: block;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: rgba(245, 245, 245, 0.500); 
+}
+ 
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+	box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: hsla(220, 4%, 17%, 0.900);
+}
+
+.pseudo {
+    color: rgb(218, 223, 226);    
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    cursor: text;
+}
+
+.title_widget {
+    text-align: center;
+    font-size: 30px;
+    font-weight: 600;
+    margin-top: 0;
+}
+
+.title_widget .fa-youtube {
+    font-size: 60px;
+    color: red;
+}
+
+.title_widget .fa-bitcoin {
+    font-size: 60px;
+    color: #F7931A;
+}
+
+.title_widget .fa-sun {
+    font-size: 60px;
+    color: #FFBE00;
+}
+
+.title_widget .fa-steam {
+    font-size: 60px;
+    color: black;
+}
+
+.title_widget .fa-twitch {
+    font-size: 60px;
+    color: #4B367C;
+}
+
+/* METEO WIDGET */
+
+#meteo_data {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 3em;
+}
+
+#region_div {
+    display: flex;
+    justify-content: center;
+    margin-right: 6em;
+}
+
+#region_data {
+    display: flex;
+    flex-direction: column;
+    font-size: 17px;
+}
+
+#weather_div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-left: 6em;
+}
+
+#weather_data {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+}
+
+#weather_data img {
+    width: 100%;
+}
+
+/* METEO WIDGET END */
+
+/* CRYPTO WIDGET */
+
+#crypto_data {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    padding: 4em;
+}
+
+#crypto_data p {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 36px;
+}
+
+/* CRYPTO WIDGET END */
+
+/* YOUTUBE WIDGET 1 */
+#youtube_widget_1_data {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    padding: 4em;
+    flex-direction: row;
+    border: solid black 1px;
+}
+#youtube_widget_1_thumb img{
+    width: 55%;
+    text-align: center;
+    margin-right: 4em;
+}
+
+#youtube_widget_1_data p {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+}
+
+#youtube_widget_1_sub {
+    margin-left: 4em;
+}
+
+#youtube_widget_1_sub p {
+    font-size: 20px;
+}
+
+/* YOUTUBE WIDGET 1 END */
+
+/* YOUTUBE WIDGET 2 */
+
+#youtube_widget_2_data {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    padding: 2em;
+    flex-direction: row;
+    border: solid black 1px;
+}
+
+#youtube_widget_2_thumb img{
+    width: 80%;
+    text-align: center;
+    margin-right: 2em;
+}
+
+#youtube_widget_2_data p {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+}
+
+#youtube_widget_2_sub {
+    margin-left: 4em;
+}
+
+#youtube_widget_2_sub p {
+    font-size: 17px;
+}
+
+/* YOUTUBE WIDGET 2 END */
+
+/* YOUTUBE WIDGET 3 */
+
+#youtube_widget_3_data {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    padding: 1em;
+    width: 80%;
+    margin: auto;
+    flex-direction: row;
+    border: solid black 1px;
+}
+
+#user_list {
+    height: 500px;
+    list-style-type: none;
+    overflow: auto;
+}
+
+#user_list li {
+    padding: 3px;
+}
+
+/* YOUTUBE WIDGET 3 END */
+
+
+/* STEAM WIDGET 1 */
+
+#steam_widget_1_data {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    padding: 4em;
+    flex-direction: row;
+    border: solid black 1px;
+}
+#steam_widget_1_thumb img{
+    width: 100%;
+    text-align: center;
+    margin-right: 4em;
+}
+
+#steam_widget_1_data p {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+}
+
+#steam_widget_1_sub p {
+    font-size: 17px;
+}
+
+/* STEAM WIDGET 1 END */
+
+
+/* STEAM WIDGET 2 */
+
+#steam_widget_2_data {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    flex-direction: row;
+    border: solid black 1px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    padding: 1em;
+}
+
+#steam_widget_2_data ul {
+    overflow: auto;
+    height: 300px;
+    list-style-type: none;
+    padding: 0;
+}
+
+#steam_widget_2_data ul li {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+/* STEAM WIDGET 2 END */
+
+/* TWITCH WIDGET 1  */
+
+
+#twitch_widget1_container {
+    display: flex;
+    flex-direction: row;
+}
+
+#title_twitch {
+    padding: 1em;
+    background-color: #6441A4; 
+    text-align: center;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+}
+
+#data_twitch_channel_main {
+    display: flex;
+    flex-direction: row;
+}
+
+#data_twitch_channel {
+    background-color: #343A40;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+}
+
+#data_twitch_channel hr {
+    width: 100%;
+}
+
+#data_twitch_channel p {
+    padding: 5px;
+    font-size: 13px;
+}
+
+#twitch_widget1_container img {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+/* TWITCH WIDGET 1 END */
+
+
+/* TWITCH WIDGET 2  */
+
+#twitch_widget2_container {
+    display: flex;
+    flex-direction: column;
+}
+
+#data_twitch_channel_02 {
+    background-color: #343A40;
+    color: white;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    border-radius: 6px;
+}
+
+/* TWITCH WIDGET 2 END */
+
+.widget_modal_title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+#widget_container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+#meteo_widget_modal, #steam_widget_modal, #twitch_widget_modal, #crypto_widget_modal, #youtube_widget_modal,
+#overwatch_widget_modal {
+    margin-left: 5%;
+    margin-right: 5%;
+    text-align: center;
+}
+
+.widget_modal {
+    margin-left: 1em;
+    margin-right: 1em;
+    padding: 15px;
+    border: 1px solid black;
+    cursor: pointer;
+    border-radius: 5px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    text-align: center;
+}
+
+.Twitch_link {
+    background-color: #4B367C;
+    color:white;
+    font-size: 13;
+    margin: auto;
+    padding: 1em;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+#meteo_disp, #twitch01_disp, #twitch02_disp, #crypto_disp, #youtube01_disp, #youtube02_disp, #youtube03_disp,
+#steam01_disp, #steam02_disp {
+    display: none;
+}
+
+#reconfig_meteo, #reconfig_steam01, #reconfig_steam02, #reconfig_twitch01, #reconfig_twitch02, #reconfig_crypto,
+ #reconfig_youtube01, #reconfig_youtube02, #reconfig_youtube03, #reconfig_overwatch {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+@-webkit-keyframes animatefromtop {
+    from {top:-300px; opacity:0}    
+    to {top:0; opacity:1}
+}
+
+@keyframes animatefromtop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+@media (max-width: 750px) {
+    #service_container {
+        flex-direction: column;
+    }
+    #widget_container {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 700px) {
+    #service_intel_wrap {
+        margin-left: 4%;
+        margin-right: 4%;
+    }
+}
