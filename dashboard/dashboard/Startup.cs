@@ -34,7 +34,7 @@ namespace dashboard
             {
                 app.UseDeveloperExceptionPage();
             }
-            //app.UseStaticFiles();
+            app.UseStaticFiles();
             app.UseStatusCodePagesWithReExecute("/error/{0}");
             app.UseMvc(routes =>
             {

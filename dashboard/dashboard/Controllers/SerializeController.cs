@@ -16,7 +16,7 @@ namespace dashboard.Controllers
         public ActionResult<string> Login(string id)
         {
             //127.0.0.1:8080/internal/login/machin:truc
-            string path = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\");
+            string path = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\internal");
             path += "\\users.json";
             List<Users> all_users = new List<Users>(); // list a recup de fichier json deja existant 
 
@@ -48,7 +48,7 @@ namespace dashboard.Controllers
         {
             //127.0.0.1:8080/internal/Signup/machin:truc:chose
 
-            string path = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\");
+            string path = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\internal");
             path += "\\users.json";
             List<Users> all_users = new List<Users>();// list a recup de fichier json deja existant 
 
@@ -92,7 +92,7 @@ namespace dashboard.Controllers
             //127.0.0.1:8080/internal/get_user_config/machin
 
             dynamic response = JsonConvert.DeserializeObject("{\"exist\": false}");
-            string path = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\");
+            string path = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\internal");
             path += "\\users.json";
             dynamic all_users;
             if (System.IO.File.Exists(path))
@@ -120,7 +120,7 @@ namespace dashboard.Controllers
             //127.0.0.1:8080/internal/set_user_config/machin
 
             dynamic response = JsonConvert.DeserializeObject("{\"success\": false}");
-            string path = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\");
+            string path = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\internal");
             path += "\\users.json";
             string[] user_data = id.Split('$');
 
