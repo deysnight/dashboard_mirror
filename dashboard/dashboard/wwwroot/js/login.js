@@ -25,10 +25,9 @@ $("#login_button").click(function () {
 
     var hash = EncryptPass(pass1);
     var my_url_for_ip = Get_Path_For_IP();
-    var final_ip_redirect = my_url_for_ip + "/home/dashboard";
-    var final_ip_login = my_url_for_ip + "/internal/login";
-	console.log(final_ip_login);
-	
+    var final_ip_redirect = my_url_for_ip + "/dashboard";
+    var final_ip_login = my_url_for_ip + "/?/login";
+
     var formData = username + ':' + hash;
     $.ajax(
         {
@@ -130,7 +129,7 @@ function delete_cookie(name) {
   {
     var myCookie = getCookie("login");
     if (myCookie != null)
-        location.href = "/home/dashboard";
+        location.href = "/dashboard";
   }
   
   window.onload = check_if_cookie();

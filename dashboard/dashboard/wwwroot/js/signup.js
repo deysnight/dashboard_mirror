@@ -92,15 +92,14 @@ $("#signup_button").click(function () {
     var formData = username + ':' + email + ':' + hash;
     var my_url_for_ip = Get_Path_For_IP();
     var final_ip_redirect = my_url_for_ip + "/home/dashboard"
-    var final_ip_signup = my_url_for_ip + "/?/signup"
+    var final_ip_signup = my_url_for_ip + "/internal/signup/"
 
    $.ajax(
     {
-        url: final_ip_signup,
-        type: "post",
+        url: final_ip_signup + formData,
+        type: "get",
         async: false,
-        data: formData,
-        success: function(response){
+            success: function(response){
             if (response == "OK USER REGISTER") {
                 createCookie("login", username, 1000);
                 $("#error_signup_login").remove();

@@ -222,7 +222,7 @@
     justify-content: space-around;
 }
 
-#widg_mete li:hover, #widg_steam01 li:hover, #widg_steam01 li:hover, #widg_twitch01 li:hover, #widg_twitch01 li:hover,
+#widg_mete li:hover, #widg_steam01 li:hover, #widg_steam02 li:hover, #widg_twitch01 li:hover, #widg_twitch02 li:hover,
 #widg_crypto li:hover, #widg_youtube01 li:hover, #widg_youtube02 li:hover, #widg_youtube03 li:hover,
 #widg_overwatch li:hover {
     background-color: rgba(26, 27, 29, 0.95);
@@ -606,6 +606,7 @@
     font-weight: 600;
     display: flex;
     flex-direction: column;
+    text-align: center;
 }
 
 #data_twitch_channel hr {
@@ -688,6 +689,17 @@
 #meteo_disp, #twitch01_disp, #twitch02_disp, #crypto_disp, #youtube01_disp, #youtube02_disp, #youtube03_disp,
 #steam01_disp, #steam02_disp {
     display: none;
+}
+
+#twitch_data_iframe01 {
+    margin: auto;
+    margin-top: 129px;
+
+}
+
+#twitch_data_iframe02 {
+    margin: auto;
+    margin-top: 129px;
 }
 
 #reconfig_meteo, #reconfig_steam01, #reconfig_steam02, #reconfig_twitch01, #reconfig_twitch02, #reconfig_crypto,

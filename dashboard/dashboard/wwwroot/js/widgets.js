@@ -1,27 +1,13 @@
 var stopmeteo;
 var stoptwitch01;
 var stoptwitch02;
-
-/*
-    send_request_crypto(fsym, tsym) {
-       var self = this;
-       $.get(
-           {
-               url: this.widg_param.url,
-               data: this.widg_param.widg_param,
-               dataType: 'json',
-               async: true,
-               contentType: "application/json; charset=utf-8",
-               success: function(response){
-                    this.objso = response;
-                    if (self.name == "crypto")
-                        create_crypto(this.objso, fsym, tsym, self.widg_param.widg_na);
-                    else if (self.name == "youtube03") 
-                        create_youtube03(this.objso, self.widg_param.widg_na);
-                }
-            })
-        }
-}*/
+var stopsteam01;
+var stopsteam02;
+var stopcrypto;
+var stopyoutube01;
+var stopyoutube02;
+var stopyoutube03;
+var stopoverwatch;
 
 function time_twitch01(refresh_interv, url, widg_param, src, widg_na, name){ // fonction pour le timer , prend un temps en minute en param
     refresh_interv = refresh_interv * 1000; // convertit temsp en ms pour la fct setinterv
@@ -36,6 +22,136 @@ function time_twitch02(refresh_interv, url, widg_param, src, widg_na, name){ // 
 function time_meteo(refresh_interv, url, widg_param, src, widg_na, name){ // fonction pour le timer , prend un temps en minute en param
     refresh_interv = refresh_interv * 1000; // convertit temsp en ms pour la fct setinterv
     stopmeteo = setInterval(send_meteo_request, refresh_interv, url, widg_param, src, widg_na, name);
+}
+
+function time_steam01(refresh_interv, url, widg_param, src, widg_na, name){ // fonction pour le timer , prend un temps en minute en param
+    refresh_interv = refresh_interv * 1000; // convertit temsp en ms pour la fct setinterv
+    stopsteam01 = setInterval(send_steam01_request, refresh_interv, url, widg_param, src, widg_na, name);
+}
+
+function time_steam02(refresh_interv, url, widg_param, src, widg_na, name){ // fonction pour le timer , prend un temps en minute en param
+    refresh_interv = refresh_interv * 1000; // convertit temsp en ms pour la fct setinterv
+    stopsteam02 = setInterval(send_steam02_request, refresh_interv, url, widg_param, src, widg_na, name);
+}
+
+function time_crypto(refresh_interv, fsym, tsym, url, widg_param, src, widg_na, name){ // fonction pour le timer , prend un temps en minute en param
+    refresh_interv = refresh_interv * 1000; // convertit temsp en ms pour la fct setinterv
+    stopcrypto = setInterval(send_crypto_request, refresh_interv, fsym, tsym, url, widg_param , src, widg_na, name);
+}
+
+function time_youtube03(refresh_interv, url, widg_param, src, widg_na, name){ // fonction pour le timer , prend un temps en minute en param
+    refresh_interv = refresh_interv * 1000; // convertit temsp en ms pour la fct setinterv
+    stopyoutube03 = setInterval(send_youtube03_request, refresh_interv, url, widg_param, src, widg_na, name);
+}
+
+function time_youtube01(refresh_interv, url, widg_param, src, widg_na, name){ // fonction pour le timer , prend un temps en minute en param
+    refresh_interv = refresh_interv * 1000; // convertit temsp en ms pour la fct setinterv
+    stopyoutube01 = setInterval(send_youtube01_request, refresh_interv, url, widg_param, src, widg_na, name);
+}
+
+function time_youtube02(refresh_interv, url, widg_param, src, widg_na, name){ // fonction pour le timer , prend un temps en minute en param
+    refresh_interv = refresh_interv * 1000; // convertit temsp en ms pour la fct setinterv
+    stopyoutube02 = setInterval(send_youtube02_request, refresh_interv, url, widg_param, src, widg_na, name);
+}
+
+function send_youtube03_request(url, widg_param, widg_na) {
+    $.get(
+        {
+            url: url,
+            data: widg_param,
+            dataType: 'json',
+            async: true,
+            contentType: "application/json; charset=utf-8",
+            success: function(response){
+                 objso = response;
+                 console.log(response);
+                     create_youtube03(objso, widg_na);
+             }
+         })
+}
+
+function send_crypto_request(fsym, tsym, url, widg_param, widg_na, name) {
+    $.get(
+        {
+            url: url,
+            data: widg_param,
+            dataType: 'json',
+            async: true,
+            contentType: "application/json; charset=utf-8",
+            success: function(response){
+                 objso = response;
+                 console.log(response);
+                     create_crypto(objso, fsym, tsym, widg_na);
+             }
+         })
+}
+
+function send_youtube01_request(url, widg_param, src, widg_na, name){ 
+    $.get(
+    {
+        url: url,
+        data: src + "=" + widg_param,
+        dataType: 'json',
+        async: true,
+        contentType: "application/json; charset=utf-8",
+        success: function(response){
+            objso = response;
+            console.log(response);
+                create_youtube01(objso, widg_na, widg_param);
+        }
+    }   
+    )   
+}
+
+function send_youtube02_request(url, widg_param, src, widg_na, name){ 
+    $.get(
+    {
+        url: url,
+        data: src + "=" + widg_param,
+        dataType: 'json',
+        async: true,
+        contentType: "application/json; charset=utf-8",
+        success: function(response){
+            objso = response;
+            console.log(response);
+                create_youtube02(objso, widg_na, widg_param);
+        }
+    }   
+    )   
+}
+
+function send_steam02_request(url, widg_param, src, widg_na, name){ 
+    $.get(
+    {
+        url: url,
+        data: src + "=" + widg_param,
+        dataType: 'json',
+        async: true,
+        contentType: "application/json; charset=utf-8",
+        success: function(response){
+            objso = response;
+            console.log(response);    
+            create_steam02(objso, widg_na, widg_param);
+        }
+    }   
+    )   
+}
+
+function send_steam01_request(url, widg_param, src, widg_na, name){ 
+    $.get(
+    {
+        url: url,
+        data: src + "=" + widg_param,
+        dataType: 'json',
+        async: true,
+        contentType: "application/json; charset=utf-8",
+        success: function(response){
+            objso = response;
+            console.log(response);
+                create_steam01(objso, widg_na, widg_param);
+        }
+    }   
+    )   
 }
 
 function send_meteo_request(url, widg_param, src, widg_na, name){ 
@@ -88,6 +204,7 @@ function send_twitch01_request(url, widg_param, src, widg_na, name){
     }   
     )   
 }
+
 function stop_twitch01(){
     clearInterval(stoptwitch01);
 }
@@ -98,6 +215,34 @@ function stop_twitch02(){
 
 function stop_meteo(){
     clearInterval(stopmeteo);
+}
+
+function stop_steam01(){
+    clearInterval(stopsteam01);
+}
+
+function stop_steam02(){
+    clearInterval(stopsteam02);
+}
+
+function stop_crypto(){
+    clearInterval(stopcrypto);
+}
+
+function stop_youtube01(){
+    clearInterval(stopyoutube01);
+}
+
+function stop_youtube02(){
+    clearInterval(stopyoutube02);
+}
+
+function stop_youtube03(){
+    clearInterval(stopyoutube03);
+}
+
+function stop_overwatch(){
+    clearInterval(stopoverwatch);
 }
 
 function create_steam01(resp_jso, widg_n) {
@@ -175,9 +320,6 @@ function create_meteo(resp_jso, widg_n){
 } 
 
 function create_twitch01(resp_jso, widg_n, stream_n) {
-    console.log(resp_jso);
-    console.log(stream_n);
-    console.log(widg_n);
     var game = resp_jso.game;
     var followers = resp_jso.followers;
     var pic = resp_jso.pic;
@@ -201,27 +343,23 @@ function create_twitch01(resp_jso, widg_n, stream_n) {
     "<div id=\"twitch01_widget\">" +
         "<p class=\"title_widget\"><i class=\"fab fa-twitch\"></i><br/>Twitch " + stream_n + "</p>" +
         "<div id=\"twitch_widget1_container\">" +
-        "<img src=\""+ pic +"\">" +                  
             "<div id=\"data_twitch_channel\">" +
-                "<div id=\"data_twitch_channel\">" +
-                    "<p id=\"" + stream_n + "\>OgamingSC2</p>\"" +
-                    "<p>Title: " + status +"</p>" +
-                    "<hr>" +
-                    "<p>Game: " + game + "</p>" +
-                    "<hr>" +
-                    "<p>Viewers: " + viewers + "</p>" +
-                    "<hr>" +
-                    "<p>Total views: " + views + "</p>" +
-                    "<hr>" +
-                    "<p>Followers: " + followers + "</p>" +
-                    "<hr>" +
-                    "<a class=\"Twitch_link\" target=\"_blank\" href=\" " + url +"\">Twitch" +
-                "</div>" +
+                "<p>Title: " + status +"</p>" +
+                "<hr>" +
+                "<p>Game: " + game + "</p>" +
+                "<hr>" +
+                "<p>Viewers: " + viewers + "</p>" +
+                "<hr>" +
+                "<p>Total views: " + views + "</p>" +
+                "<hr>" +
+                "<p>Followers: " + followers + "</p>" +
+                "<hr>" +
+                "<a class=\"Twitch_link\" target=\"_blank\" href=\" " + url +"\">Twitch" +
             "</div>" +
         "</div>" +
     "</div>";
     }
-    document.getElementById("twitch01_disp").innerHTML = template;
+    document.getElementById("twitch01_data").innerHTML = template;
     var widget_field_template = "<li id=\"field_twitch01_template\" onclick=\"Display_Twitch01_Widget()\" class=\"ui-state-default\">" + widg_n + "<i onclick=\"display_twitch_widget01_reconfig_modal()\" class=\"fas fa-cog\"></i></li>";
     document.getElementById("widg_twitch01").innerHTML = widget_field_template;
 }
@@ -350,23 +488,22 @@ function obj_steam01(steam_id, widg_n, timer){
     var my_url_for_ip = Get_Path_For_IP();
     var final_ip = my_url_for_ip + "/API/steam/game";
     var source = "game";
-    widg_steam01 = new Widgets({url: final_ip, widg_param: steam_id, src: source, widg_na:  widg_n}, "steam01");
-    widg_steam01.send_request();
+    send_steam01_request(final_ip, steam_id, source, widg_n, "steam01");
+    time_steam01(timer, final_ip, steam_id, source, widg_n, "steam01");
 }
 
 function obj_steam02(steam_id, widg_n, timer){
     var my_url_for_ip = Get_Path_For_IP();
     var final_ip = my_url_for_ip + "/API/steam/user";
     var source = "user";
-    widg_steam02 = new Widgets({url: final_ip, widg_param: steam_id, src: source, widg_na:  widg_n}, "steam02");
-    widg_steam02.send_request();
+    send_steam02_request(final_ip, steam_id, source, widg_n, "steam02");
+    time_steam02(timer, final_ip, steam_id, source, widg_n, "steam02");
 }
 
 function obj_twitch01(widg_n, twitch_streamer, timer){
     var my_url_for_ip = Get_Path_For_IP();
     var final_ip = my_url_for_ip + "/API/twitch/streamer";
     var source = "streamer";
-    console.log("test");
     send_twitch01_request(final_ip, twitch_streamer, source, widg_n, "twitch01");
     time_twitch01(timer, final_ip, twitch_streamer, source, widg_n, "twitch01");
 }
@@ -383,32 +520,41 @@ function obj_crypto(widg_n, fsym, tsym, timer){
     var my_url_for_ip = Get_Path_For_IP();
     var final_ip = my_url_for_ip + "/API/crypto";
     my_param = "&Cfrom=" + fsym + "&Cto=" + tsym;
-    widg_crypto = new Widgets({url: final_ip, widg_param: my_param, widg_na:  widg_n}, "crypto");
-    widg_crypto.send_request_crypto(fsym, tsym);
+    send_crypto_request(fsym, tsym, final_ip, my_param, widg_n, "crypto");
+    time_crypto(timer, fsym, tsym, final_ip, my_param, widg_n, "crypto");
 }
 
 function obj_youtube01(widg_n, ytb_channel, timer){
     var my_url_for_ip = Get_Path_For_IP();
     var final_ip = my_url_for_ip + "/API/YTB/channel";
     var source = "channel";
-    widg_youtube01 = new Widgets({url: final_ip, widg_param: ytb_channel, src: source, widg_na:  widg_n}, "youtube01");
-    widg_youtube01.send_request();
+    send_youtube01_request(final_ip, ytb_channel, source, widg_n, "youtube01");
+    time_youtube01(timer, final_ip, ytb_channel, source, widg_n, "youtube01");
 }
 
 function obj_youtube02(widg_n, ytb_video, timer){
     var my_url_for_ip = Get_Path_For_IP();
     var final_ip = my_url_for_ip + "/API/YTB/vod";
     var source = "vod";
-    widg_youtube02 = new Widgets({url: final_ip, widg_param: ytb_video, src: source, widg_na:  widg_n}, "youtube02");
-    widg_youtube02.send_request();
+    send_youtube02_request(final_ip, ytb_video, source, widg_n, "youtube02");
+    time_youtube02(timer, final_ip, ytb_video, source, widg_n, "youtube02");
 }
 
 function obj_youtube03(widg_n, ytb_video, max_comment, timer) {
     var my_url_for_ip = Get_Path_For_IP();
     var final_ip = my_url_for_ip + "/API/YTB/comment";
     var my_param = "max=" + max_comment + "&vod=" + ytb_video;
-    widg_youtube03 = new Widgets({ url: final_ip, widg_param: my_param, widg_na: widg_n }, "youtube03");
-    widg_youtube03.send_request_crypto();
+    send_youtube03_request(final_ip,  my_param, widg_n, "youtube03");
+    time_youtube03(timer, final_ip, my_param, widg_n, "youtube03");
+}
+
+function obj_overwatch(widg_n, battletag, timer){
+    var my_url_for_ip = Get_Path_For_IP();
+    var final_ip = my_url_for_ip + "/API/YTB/vod";
+    var source = "vod";
+    send_overwatch_request(final_ip, battletag, source, widg_n, "youtube02");
+    time_overwatch(timer, final_ip, battletag, source, widg_n, "youtube02");
+    
 }
 
 function Get_Path_For_IP() 
