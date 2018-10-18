@@ -397,7 +397,7 @@ function check_if_cookie()
 {
   var myCookie = getCookie("login");
   if (myCookie == null) {
-    location.href = "/login";
+    location.href = "/home/login";
   }
 }
 

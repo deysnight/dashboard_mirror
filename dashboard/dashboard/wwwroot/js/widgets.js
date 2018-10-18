@@ -121,10 +121,10 @@ function send_youtube02_request(url, widg_param, src, widg_na, name){
 }
 
 function send_steam02_request(url, widg_param, src, widg_na, name){ 
+    console.log(url + "/" + widg_param);
     $.get(
     {
-        url: url,
-        data: src + "=" + widg_param,
+        url: url + "/" + widg_param,
         dataType: 'json',
         async: true,
         contentType: "application/json; charset=utf-8",
@@ -140,8 +140,7 @@ function send_steam02_request(url, widg_param, src, widg_na, name){
 function send_steam01_request(url, widg_param, src, widg_na, name){ 
     $.get(
     {
-        url: url,
-        data: src + "=" + widg_param,
+        url: url + "/" + widg_param,
         dataType: 'json',
         async: true,
         contentType: "application/json; charset=utf-8",
@@ -157,8 +156,7 @@ function send_steam01_request(url, widg_param, src, widg_na, name){
 function send_meteo_request(url, widg_param, src, widg_na, name){ 
     $.get(
     {
-        url: url,
-        data: src + "=" + widg_param,
+        url: url + "/" + widg_param,
         dataType: 'json',
         async: true,
         contentType: "application/json; charset=utf-8",
@@ -174,8 +172,7 @@ function send_meteo_request(url, widg_param, src, widg_na, name){
 function send_twitch02_request(url, widg_param, src, widg_na, name){ 
     $.get(
     {
-        url: url,
-        data: src + "=" + widg_param,
+        url: url + "/" + widg_param,
         dataType: 'json',
         async: true,
         contentType: "application/json; charset=utf-8",
@@ -191,8 +188,7 @@ function send_twitch02_request(url, widg_param, src, widg_na, name){
 function send_twitch01_request(url, widg_param, src, widg_na, name){ 
     $.get(
     {
-        url: url,
-        data: src + "=" + widg_param,
+        url: url + "/" + widg_param,
         dataType: 'json',
         async: true,
         contentType: "application/json; charset=utf-8",
@@ -502,7 +498,7 @@ function obj_steam02(steam_id, widg_n, timer){
 
 function obj_twitch01(widg_n, twitch_streamer, timer){
     var my_url_for_ip = Get_Path_For_IP();
-    var final_ip = my_url_for_ip + "/API/twitch/streamer";
+    var final_ip = my_url_for_ip + "/API/twitch/stream";
     var source = "streamer";
     send_twitch01_request(final_ip, twitch_streamer, source, widg_n, "twitch01");
     time_twitch01(timer, final_ip, twitch_streamer, source, widg_n, "twitch01");
