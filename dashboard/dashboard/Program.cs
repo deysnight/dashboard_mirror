@@ -50,17 +50,13 @@ namespace dashboard
         {
             string filePath = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\" + folder);
             filePath += "\\" + file;
-            FileStream fileStream = new FileStream(filePath, FileMode.Open);
-            using (StreamReader reader = new StreamReader(fileStream))
+            string line = File.ReadAllText(filePath);
+            return new ContentResult
             {
-                string line = reader.ReadToEnd();
-                return new ContentResult
-                {
-                    ContentType = type,
-                    StatusCode = (int)HttpStatusCode.OK,
-                    Content = line
-                };
-            }
+                ContentType = type,
+                StatusCode = (int)HttpStatusCode.OK,
+                Content = line
+            };
         }
 
         public static void Main(string[] args)
