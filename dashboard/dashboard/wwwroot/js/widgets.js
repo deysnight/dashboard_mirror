@@ -54,11 +54,16 @@ function time_youtube02(refresh_interv, url, widg_param, src, widg_na, name){ //
     stopyoutube02 = setInterval(send_youtube02_request, refresh_interv, url, widg_param, src, widg_na, name);
 }
 
+function time_overwatch(refresh_interv, url, widg_param, src, widg_na, name){ // fonction pour le timer , prend un temps en minute en param
+    refresh_interv = refresh_interv * 1000; // convertit temsp en ms pour la fct setinterv
+    stopoverwatch = setInterval(send_overwatch_request, refresh_interv, url, widg_param, src, widg_na, name);
+}
+
 function send_youtube03_request(url, widg_param, widg_na) {
+    console.log(url + "com/" + widg_param);
     $.get(
         {
-            url: url,
-            data: widg_param,
+            url: url + "com/" + widg_param,
             dataType: 'json',
             async: true,
             contentType: "application/json; charset=utf-8",
@@ -73,8 +78,7 @@ function send_youtube03_request(url, widg_param, widg_na) {
 function send_crypto_request(fsym, tsym, url, widg_param, widg_na, name) {
     $.get(
         {
-            url: url,
-            data: widg_param,
+            url: url + widg_param,
             dataType: 'json',
             async: true,
             contentType: "application/json; charset=utf-8",
@@ -89,8 +93,7 @@ function send_crypto_request(fsym, tsym, url, widg_param, widg_na, name) {
 function send_youtube01_request(url, widg_param, src, widg_na, name){ 
     $.get(
     {
-        url: url,
-        data: src + "=" + widg_param,
+        url: url + "stat/" + widg_param,
         dataType: 'json',
         async: true,
         contentType: "application/json; charset=utf-8",
@@ -104,10 +107,10 @@ function send_youtube01_request(url, widg_param, src, widg_na, name){
 }
 
 function send_youtube02_request(url, widg_param, src, widg_na, name){ 
+    console.log(url + "vod/" + widg_param);
     $.get(
     {
-        url: url,
-        data: src + "=" + widg_param,
+        url: url + "vod/" + widg_param,
         dataType: 'json',
         async: true,
         contentType: "application/json; charset=utf-8",
@@ -121,7 +124,6 @@ function send_youtube02_request(url, widg_param, src, widg_na, name){
 }
 
 function send_steam02_request(url, widg_param, src, widg_na, name){ 
-    console.log(url + "/" + widg_param);
     $.get(
     {
         url: url + "/" + widg_param,
@@ -196,6 +198,22 @@ function send_twitch01_request(url, widg_param, src, widg_na, name){
             objso = response;
             console.log(response);
                 create_twitch01(objso, widg_na, widg_param);
+        }
+    }   
+    )   
+}
+
+function send_overwatch_request(url, widg_param, src, widg_na, name){ 
+    $.get(
+    {
+        url: url + "stat/" + widg_param,
+        dataType: 'json',
+        async: true,
+        contentType: "application/json; charset=utf-8",
+        success: function(response){
+            objso = response;
+            console.log(response);
+                create_overwatch(objso, widg_na, widg_param, name);
         }
     }   
     )   
@@ -380,6 +398,16 @@ function create_twitch02(resp_jso, widg_n, game_name) {
  }
 
  function create_crypto(resp_jso, fsym, tsym, widg_n) {
+    if (resp_jso.hasOwnProperty("Message") == true)
+    var template =
+    "<div id=\"crypto_widget\">" +
+        "<p class=\"title_widget\"><i class=\"fab fa-bitcoin\"></i><br/>Crypto</p>" +
+        "<div id=\"crypto_data\">" +
+            "<p>Une des monnaies renseignées n'existe pas</p>" +
+            "<p><a target=\"_blank\" href=\"https://coinmarketcap.com/fr/all/views/all/\">Liste des crypto</a></p>" +
+        "</div>" +
+    "</div>";
+    else {
     var price = resp_jso[tsym];
     var template =
     "<div id=\"crypto_widget\">" +
@@ -388,6 +416,7 @@ function create_twitch02(resp_jso, widg_n, game_name) {
             "<p>Un " + fsym + " vaut " + price + " " + tsym + "</p>" +
         "</div>" +
     "</div>";
+    }
 
     document.getElementById("crypto_disp").innerHTML = template;
     var widget_field_template = "<li id=\"field_crypto_template\" onclick=\"Display_Crypto_Widget()\" class=\"ui-state-default\">" + widg_n + "<i onclick=\"display_crypto_widget_reconfig_modal()\" class=\"fas fa-cog\"></i></li>";
@@ -472,6 +501,56 @@ function create_youtube03(resp_jso, widg_n) {
     document.getElementById("widg_youtube03").innerHTML = widget_field_template;
 }
 
+function create_overwatch(resp_jso, widg_n, name) {
+
+    if (resp_jso.hasOwnProperty("error") == true) {
+        var template = 
+        "<div id=\"overwatch_widget\">" +
+        "<p class=\"title_widget\"><i class=\"fab fa-games\"></i><br/>Overwatch <br/>" + name + "</p>" +
+        "<div id=\"youtube_widget_1_data\">" +
+            "<p>Ce BattleTag est introuvable</p>" +
+           "</div>" +
+        "</div>";
+        document.getElementById("overwatch_disp").innerHTML = template;
+        var widget_field_template = "<li id=\"field_overwatch_template\" onclick=\"Display_Overwatch_Widget()\" class=\"ui-state-default\">" + widg_n + "<i onclick=\"display_overwatch_widget_reconfig_modal()\" class=\"fas fa-cog\"></i></li>";
+        document.getElementById("widg_overwatch").innerHTML = widget_field_template;
+        return false;
+    }
+    var name1 = resp_jso.name;
+    var name2 = name;
+    var pic = resp_jso.icon;
+    var level = resp_jso.level;
+    var prestige = resp_jso.prestige;
+    var damageDoneAvg = resp_jso.quickPlayStats.damageDoneAvg;
+    var deathsAvg = resp_jso.quickPlayStats.deathsAvg;
+    var eliminationsAvg = resp_jso.quickPlayStats.eliminationsAvg;
+
+    var template = 
+    "<div id=\"overwatch_widget\">" +
+        "<p class=\"title_widget\"><i class=\"fab fa-games\"></i><br/>Overwatch <br/>" + name2 + "</p>" +
+        "<div id=\"youtube_widget_1_data\">" +
+            "<div id=\"youtube_widget_1_thumb\">" +
+            "<p id=\"tg\">" + name1 + "</p>" +
+
+                "<img src="+ pic +">" +
+            "</div>" +
+                "<div id=\"youtube_widget_1_sub\">" +
+                    "<p>Level: " + level + "</p>" +
+                    "<p>Prestige: " + prestige + "</p>" +
+                    "<p>Dégâts: " + damageDoneAvg + "</p>" +
+                    "<p>Nombre de morts: " + deathsAvg + "</p>" +
+                    "<p>Eliminations: " + eliminationsAvg + "</p>" +
+               "</div>" +
+           "</div>" +
+    "</div>";
+
+
+
+   document.getElementById("overwatch_disp").innerHTML = template;
+   var widget_field_template = "<li id=\"field_overwatch_template\" onclick=\"Display_Overwatch_Widget()\" class=\"ui-state-default\">" + widg_n + "<i onclick=\"display_overwatch_widget_reconfig_modal()\" class=\"fas fa-cog\"></i></li>";
+   document.getElementById("widg_overwatch").innerHTML = widget_field_template;
+}
+
 function obj_meteo(ville_name, timer, widg_n){
     var my_url_for_ip = Get_Path_For_IP();
     var final_ip = my_url_for_ip + "/API/meteo";
@@ -515,14 +594,14 @@ function obj_twitch02(widg_n, twitch_game, timer){
 function obj_crypto(widg_n, fsym, tsym, timer){
     var my_url_for_ip = Get_Path_For_IP();
     var final_ip = my_url_for_ip + "/API/crypto";
-    my_param = "&Cfrom=" + fsym + "&Cto=" + tsym;
+    my_param = "/Cfrom=" + fsym + "&Cto=" + tsym;
     send_crypto_request(fsym, tsym, final_ip, my_param, widg_n, "crypto");
     time_crypto(timer, fsym, tsym, final_ip, my_param, widg_n, "crypto");
 }
 
 function obj_youtube01(widg_n, ytb_channel, timer){
     var my_url_for_ip = Get_Path_For_IP();
-    var final_ip = my_url_for_ip + "/API/YTB/channel";
+    var final_ip = my_url_for_ip + "/API/YTB/";
     var source = "channel";
     send_youtube01_request(final_ip, ytb_channel, source, widg_n, "youtube01");
     time_youtube01(timer, final_ip, ytb_channel, source, widg_n, "youtube01");
@@ -530,7 +609,7 @@ function obj_youtube01(widg_n, ytb_channel, timer){
 
 function obj_youtube02(widg_n, ytb_video, timer){
     var my_url_for_ip = Get_Path_For_IP();
-    var final_ip = my_url_for_ip + "/API/YTB/vod";
+    var final_ip = my_url_for_ip + "/API/YTB/";
     var source = "vod";
     send_youtube02_request(final_ip, ytb_video, source, widg_n, "youtube02");
     time_youtube02(timer, final_ip, ytb_video, source, widg_n, "youtube02");
@@ -538,7 +617,7 @@ function obj_youtube02(widg_n, ytb_video, timer){
 
 function obj_youtube03(widg_n, ytb_video, max_comment, timer) {
     var my_url_for_ip = Get_Path_For_IP();
-    var final_ip = my_url_for_ip + "/API/YTB/comment";
+    var final_ip = my_url_for_ip + "/API/YTB/";
     var my_param = "max=" + max_comment + "&vod=" + ytb_video;
     send_youtube03_request(final_ip,  my_param, widg_n, "youtube03");
     time_youtube03(timer, final_ip, my_param, widg_n, "youtube03");
@@ -546,10 +625,10 @@ function obj_youtube03(widg_n, ytb_video, max_comment, timer) {
 
 function obj_overwatch(widg_n, battletag, timer){
     var my_url_for_ip = Get_Path_For_IP();
-    var final_ip = my_url_for_ip + "/API/YTB/vod";
-    var source = "vod";
-    send_overwatch_request(final_ip, battletag, source, widg_n, "youtube02");
-    time_overwatch(timer, final_ip, battletag, source, widg_n, "youtube02");
+    var final_ip = my_url_for_ip + "/API/ow/";
+    var source = "stat";
+    send_overwatch_request(final_ip, battletag, source, widg_n, "overwatch");
+    time_overwatch(timer, final_ip, battletag, source, widg_n, "overwatch");
     
 }
 

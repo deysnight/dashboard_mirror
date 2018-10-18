@@ -413,12 +413,18 @@
     align-items: center;
     border-radius: 5px;
     padding: 4em;
+    flex-direction: column;
 }
 
 #crypto_data p {
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
     font-size: 36px;
+    color: black;
+}
+
+#crypto_data p a {
+    color: rgb(19, 18, 18);
 }
 
 /* CRYPTO WIDGET END */
@@ -643,6 +649,42 @@
 }
 
 /* TWITCH WIDGET 2 END */
+
+/* OVERWATCH WIDGET 1 */
+#youtube_widget_1_data {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    padding: 4em;
+    flex-direction: row;
+    border: solid black 1px;
+}
+#youtube_widget_1_thumb img{
+    text-align: center;
+    margin-right: 4em;
+}
+
+#youtube_widget_1_data p {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+}
+
+#youtube_widget_1_sub {
+    margin-left: 4em;
+}
+
+#youtube_widget_1_sub p {
+    font-size: 20px;
+}
+
+#youtube_widget_1_data #tg {
+    margin-left: 1em;
+}
+
+/* OVERWATCH WIDGET 2 END */
+
 
 .widget_modal_title {
     font-family: 'Montserrat', sans-serif;

@@ -114,6 +114,7 @@ function read_json()
     }
     else
         $("#overwatch_checkbox").removeAttr("checked");
+
     if (Dashboard_Data.hasOwnProperty("meteo") == true) {
         var ville_n = Dashboard_Data.meteo.town;
         var timer = Dashboard_Data.meteo.timer;
@@ -228,7 +229,7 @@ $("#checkmark_overwatch").click(function () {
     if ($("#overwatch_checkbox").prop('checked') == true) {
         Dashboard_Data.config.ss.s06 = false;
     }
-    else if ($("overwatch_checkbox").prop('checked') == false) {
+    else if ($("#overwatch_checkbox").prop('checked') == false) {
         Dashboard_Data.config.ss.s06 = true;
     }
 });
@@ -671,9 +672,9 @@ $('#ServiceButtonValide').click(function() {
     }
     if ($("#crypto_checkbox").prop('checked') == false) {
         delete Dashboard_Data['crypto'];
+        stop_crypto();
         $("#crypto_widget").remove();
         $("#field_crypto_template").remove();
-        stop_crypto();
     }
     if ($("#youtube_checkbox").prop('checked') == false) {
         delete Dashboard_Data['youtube01'];
@@ -1012,6 +1013,7 @@ $('.CloseConfigYoutubeValidate02').click(function() {
     stop_youtube02();
     obj_youtube02(widg_n, ytb_video, timer)
     var newdata = {};
+    console.log(ytb_video);
     newdata['youtube02'] = {"name": widg_n, "ytb_video": ytb_video, "timer": timer};
     $.extend(true, Dashboard_Data, newdata);
     console.log(Dashboard_Data);
@@ -1579,8 +1581,8 @@ function validate_overwatch_widget_reconfig_modal() {
 
 function delete_overwatch_widget_reconfig_modal() {
     delete Dashboard_Data['overwatch'];
-    $("#meteo_widget").remove();
-    $("#field_meteo_template").remove();
+    $("#overwatch_widget").remove();
+    $("#field_overwatch_template").remove();
     $("#reconfig_name_overwatch01").val("");
     $("#reconfig_id_overwatch01").val("");
     $("#reconfig_timer_overwatch01").val("");
