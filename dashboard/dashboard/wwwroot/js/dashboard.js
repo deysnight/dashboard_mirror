@@ -41,17 +41,16 @@ function check_if_widget_exist() {
 function send_data()
 {
     var my_url_for_ip = Get_Path_For_IP();
-    var final_ip = my_url_for_ip + "/?/set_user_config";
+    var final_ip = my_url_for_ip + "/internal/set_user_config/";
     var login = getCookie("login");
     var Json_to_send = JSON.stringify(Dashboard_Data);
     var Data = login + "$" + Json_to_send;
     console.log(Json_to_send);
     $.ajax(
         {
-            url: final_ip,
-            type: "post",
+            url: final_ip + Data,
+            type: "get",
             async: false,
-            data: Data,
             success: function(response) {
                 console.log(response);
             }
@@ -62,18 +61,17 @@ function send_data()
 function ask_data()
 {
     var my_url_for_ip = Get_Path_For_IP();
-    var final_ip = my_url_for_ip + "/?/get_user_config";
+    var final_ip = my_url_for_ip + "/internal/get_user_config/";
     console.log(final_ip);
     var Data = getCookie("login");
     console.log(Data);
     $.ajax(
         {
-            url: final_ip,
-            type: "post",
+            url: final_ip + Data,
+            type: "get",
             async: false,
             dataType: 'json',
             contentType: "application/json; charset=utf-8",
-            data: Data,
             success: function(response) {
                 console.log(response);
                 Dashboard_Data = response;

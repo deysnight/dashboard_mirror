@@ -91,7 +91,7 @@ $("#signup_button").click(function () {
 
     var formData = username + ':' + email + ':' + hash;
     var my_url_for_ip = Get_Path_For_IP();
-    var final_ip_redirect = my_url_for_ip + "/home/dashboard"
+    var final_ip_redirect = my_url_for_ip + "/home/dashboard/"
     var final_ip_signup = my_url_for_ip + "/internal/signup/"
 
    $.ajax(
