@@ -47,7 +47,7 @@ namespace dashboard.Controllers
         [HttpGet]
         public ActionResult<string> About()
         {
-            string filePath = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\");
+            string filePath = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\internal");
             filePath += "\\about.json";
             dynamic about = JsonConvert.DeserializeObject(System.IO.File.ReadAllText(filePath));
 
