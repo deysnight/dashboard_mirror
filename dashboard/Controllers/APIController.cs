@@ -19,10 +19,18 @@ namespace dashboard.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<string>> MeteoAsync(string id)
         {
-            string query = string.Format("https://api.apixu.com/v1/current.json?key=a938d217462b43e5a91150242180110&q={0}", id);
-            var uri = new Uri(query);
-            var hc = new HttpClient();
-            var result = await hc.GetStringAsync(uri);
+            string result;
+            try
+            {
+                string query = string.Format("https://api.apixu.com/v1/current.json?key=a938d217462b43e5a91150242180110&q={0}", id);
+                var uri = new Uri(query);
+                var hc = new HttpClient();
+                result = await hc.GetStringAsync(uri);
+            }
+            catch (Exception e)
+            {
+                result = "KO";
+            }
             return new ContentResult
             {
                 ContentType = "application/json",
@@ -97,31 +105,43 @@ namespace dashboard.Controllers
         {
             string query = string.Format("https://www.googleapis.com/youtube/v3/search/?key=AIzaSyBdZCKH5Ol54YuvVU5WyyQY4Wi00mlY7y0&part=snippet&q={0}", id);
 
-            var uri = new Uri(query);
-            var hc = new HttpClient();
-            var result = await hc.GetStringAsync(uri);
-            dynamic json = JsonConvert.DeserializeObject(result);
-
-            dynamic response = JsonConvert.DeserializeObject("{" + "\"videoID\"" + ": \"" + json.items[0].id.videoId + "\"}");
-            response.title = json.items[0].snippet.title;
-            response.description = json.items[0].snippet.description;
-            response.url = json.items[0].snippet.thumbnails.high.url;
-
-            query = string.Format("https://www.googleapis.com/youtube/v3/videos?part=statistics&id={0}&key=AIzaSyBdZCKH5Ol54YuvVU5WyyQY4Wi00mlY7y0", response.videoID);
-            uri = new Uri(query);
-            result = await hc.GetStringAsync(uri);
-            json = JsonConvert.DeserializeObject(result);
-
-            response.viewCount = json.items[0].statistics.viewCount;
-            response.likeCount = json.items[0].statistics.likeCount;
-            response.dislikeCount = json.items[0].statistics.dislikeCount;
-            response.commentCount = json.items[0].statistics.commentCount;
-            return new ContentResult
+            try
             {
-                ContentType = "application/json",
-                StatusCode = (int)HttpStatusCode.OK,
-                Content = JsonConvert.SerializeObject(response)
-            };
+                var uri = new Uri(query);
+                var hc = new HttpClient();
+                var result = await hc.GetStringAsync(uri);
+                dynamic json = JsonConvert.DeserializeObject(result);
+
+                dynamic response = JsonConvert.DeserializeObject("{" + "\"videoID\"" + ": \"" + json.items[0].id.videoId + "\"}");
+                response.title = json.items[0].snippet.title;
+                response.description = json.items[0].snippet.description;
+                response.url = json.items[0].snippet.thumbnails.high.url;
+
+                query = string.Format("https://www.googleapis.com/youtube/v3/videos?part=statistics&id={0}&key=AIzaSyBdZCKH5Ol54YuvVU5WyyQY4Wi00mlY7y0", response.videoID);
+                uri = new Uri(query);
+                result = await hc.GetStringAsync(uri);
+                json = JsonConvert.DeserializeObject(result);
+
+                response.viewCount = json.items[0].statistics.viewCount;
+                response.likeCount = json.items[0].statistics.likeCount;
+                response.dislikeCount = json.items[0].statistics.dislikeCount;
+                response.commentCount = json.items[0].statistics.commentCount;
+                return new ContentResult
+                {
+                    ContentType = "application/json",
+                    StatusCode = (int)HttpStatusCode.OK,
+                    Content = JsonConvert.SerializeObject(response)
+                };
+            }
+            catch (Exception e)
+            {
+                return new ContentResult
+                {
+                    ContentType = "application/json",
+                    StatusCode = (int)HttpStatusCode.OK,
+                    Content = "KO"
+                };
+            }
         }
 
         // GET api/ytb/com/max={nb de com}&vod={id vod ytb}
@@ -131,26 +151,38 @@ namespace dashboard.Controllers
             string[] tmp = id.Split(new Char[] { '=', '&' });
             string query = string.Format("https://www.googleapis.com/youtube/v3/commentThreads?key=AIzaSyBdZCKH5Ol54YuvVU5WyyQY4Wi00mlY7y0&textFormat=plainText&part=snippet&videoId={0}&maxResults={1}", tmp[3], tmp[1]);
 
-            var uri = new Uri(query);
-            var hc = new HttpClient();
-            var result = await hc.GetStringAsync(uri);
-            dynamic json = JsonConvert.DeserializeObject(result);
-            dynamic response = JsonConvert.DeserializeObject("{" + "\"videoID\"" + ": \"" + tmp[3] + "\", \"comments\" : []}");
-            foreach (dynamic element in json.items)
+            try
             {
-                dynamic new_com = new JObject();
-                new_com.authorDisplayName = element.snippet.topLevelComment.snippet.authorDisplayName;
-                new_com.authorProfileImageUrl = element.snippet.topLevelComment.snippet.authorProfileImageUrl;
-                new_com.textDisplay = element.snippet.topLevelComment.snippet.textDisplay;
-                JArray item = (JArray)response.comments;
-                item.Add(new_com);
+                var uri = new Uri(query);
+                var hc = new HttpClient();
+                var result = await hc.GetStringAsync(uri);
+                dynamic json = JsonConvert.DeserializeObject(result);
+                dynamic response = JsonConvert.DeserializeObject("{" + "\"videoID\"" + ": \"" + tmp[3] + "\", \"comments\" : []}");
+                foreach (dynamic element in json.items)
+                {
+                    dynamic new_com = new JObject();
+                    new_com.authorDisplayName = element.snippet.topLevelComment.snippet.authorDisplayName;
+                    new_com.authorProfileImageUrl = element.snippet.topLevelComment.snippet.authorProfileImageUrl;
+                    new_com.textDisplay = element.snippet.topLevelComment.snippet.textDisplay;
+                    JArray item = (JArray)response.comments;
+                    item.Add(new_com);
+                }
+                return new ContentResult
+                {
+                    ContentType = "application/json",
+                    StatusCode = (int)HttpStatusCode.OK,
+                    Content = JsonConvert.SerializeObject(response)
+                };
             }
-            return new ContentResult
+            catch (Exception e)
             {
-                ContentType = "application/json",
-                StatusCode = (int)HttpStatusCode.OK,
-                Content = JsonConvert.SerializeObject(response)
-            };
+                return new ContentResult
+                {
+                    ContentType = "application/json",
+                    StatusCode = (int)HttpStatusCode.OK,
+                    Content = "KO"
+                };
+            }
         }
     }
 
