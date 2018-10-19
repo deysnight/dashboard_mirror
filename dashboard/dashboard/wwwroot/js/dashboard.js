@@ -1856,5 +1856,4 @@ $("#widg_overwatch").on("click", "li", function(e) {
     $("#widg_youtube01 li").removeClass("select");
     $("#widg_youtube02 li").removeClass("select");
     $("#widg_youtube03 li").removeClass("select");
-    $("#widg_overwatch li").removeClass("select");
 })

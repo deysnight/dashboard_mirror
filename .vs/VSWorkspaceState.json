@@ -1,13 +1,13 @@
 {
   "ExpandedNodes": [
     "",
-    "\\dashboard_server",
-    "\\dashboard_server\\dashboard_server",
-    "\\dashboard_server\\dashboard_server\\Resources",
-    "\\dashboard_server\\dashboard_server\\Resources\\static",
-    "\\dashboard_server\\dashboard_server\\Resources\\static\\css",
-    "\\dashboard_server\\dashboard_server\\Resources\\template"
+    "\\dashboard",
+    "\\dashboard\\dashboard",
+    "\\dashboard\\dashboard\\wwwroot",
+    "\\dashboard\\dashboard\\wwwroot\\css",
+    "\\dashboard\\dashboard\\wwwroot\\html",
+    "\\dashboard\\dashboard\\wwwroot\\js"
   ],
-  "SelectedNode": "\\dashboard_server\\dashboard_server\\Program.cs",
+  "SelectedNode": "\\dashboard\\dashboard\\wwwroot\\js\\dashboard.js",
   "PreviewInSolutionExplorer": false
 }

@@ -157,18 +157,21 @@ function send_steam01_request(url, widg_param, src, widg_na, name){
 
 function send_meteo_request(url, widg_param, src, widg_na, name){ 
     $.get(
-    {
-        url: url + "/" + widg_param,
-        dataType: 'json',
-        async: true,
-        contentType: "application/json; charset=utf-8",
-        success: function(response){
-            objso = response;
-            console.log(response);
+        {
+            url: url + "/" + widg_param,
+            dataType: 'json',
+            async: true,
+            contentType: "application/json; charset=utf-8",
+            success: function (response) {
+                objso = response;
                 create_meteo(objso, widg_na, widg_param);
+            },
+            error: function () {
+                create_meteo_error();
+
+            }
         }
-    }   
-    )   
+    )  
 }
 
 function send_twitch02_request(url, widg_param, src, widg_na, name){ 
@@ -298,6 +301,23 @@ function create_steam02(resp_jso, widg_n) {
     }
     var widget_field_template = "<li id=\"field_steam02_template\" onclick=\"Display_Steam02_Widget()\" class=\"ui-state-default\">" + widg_n + "<i onclick=\"display_steam_widget02_reconfig_modal()\" class=\"fas fa-cog\"></i></li>";
     document.getElementById("widg_steam02").innerHTML = widget_field_template;
+}
+
+function create_meteo_error() {
+    var Meteo_Error = "Meteo Error";
+    var template =
+        "<div id=\"meteo_widget\">" +
+            "<p class=\"title_widget\"><i class=\"fas fa-sun\"></i><br/>Météo</p>" +
+            "<div id=\"meteo_data\">" +
+                "<div id=\"tg\">" +
+                        "<p id=\"tg_error\">Cette ville n'existe pas.</p>" +
+                "</div>" +
+            "</div>" +
+        "</div>";
+
+    document.getElementById("meteo_disp").innerHTML = template;
+    var widget_field_template = "<li id=\"field_meteo_template\" onclick=\"Display_Meteo_Widget()\" class=\"ui-state-default\">" + Meteo_Error + "<i onclick=\"display_meteo_widget_reconfig_modal()\" class=\"fas fa-cog\"></i></li>";
+    document.getElementById("widg_mete").innerHTML = widget_field_template;
 }
 
 function create_meteo(resp_jso, widg_n){

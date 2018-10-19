@@ -372,10 +372,9 @@
     padding: 3em;
 }
 
-#region_div {
+#tg {
     display: flex;
     justify-content: center;
-    margin-right: 6em;
 }
 
 #region_data {
